@@ -58,6 +58,7 @@ export default function Home() {
           <div className="fig" id="fig1">
             <div className="fig-label">FIG.1 — 業務の仕組み化 工程図</div>
             <svg
+              className="fig-svg"
               viewBox="0 0 1000 190"
               role="img"
               aria-label="いまの業務がシクミAIコンサルを経て仕組み化された業務に変わる工程図"
@@ -111,6 +112,35 @@ export default function Home() {
                 3ヶ月
               </text>
             </svg>
+
+            {/* 狭い画面ではSVGの文字が潰れるため、縦積みのHTML工程図に差し替える */}
+            <div className="fig-flow">
+              <div className="fig-step">
+                <span className="fig-step-title">いまの業務</span>
+                <span className="fig-step-body">
+                  毎週の報告書づくり・データ転記・メール対応に数時間
+                </span>
+              </div>
+              <div className="fig-arrow" aria-hidden="true">
+                <i />
+              </div>
+              <div className="fig-step">
+                <span className="fig-step-title">シクミAIコンサル</span>
+                <span className="fig-step-body">
+                  講座で基礎を学び、伴走で自分の業務に実装
+                </span>
+              </div>
+              <div className="fig-arrow is-result">
+                <i />
+                <span>3ヶ月</span>
+              </div>
+              <div className="fig-step is-result">
+                <span className="fig-step-title">仕組み化された業務</span>
+                <span className="fig-step-body">
+                  AIが下ごしらえ、あなたは判断に集中
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -457,6 +487,12 @@ export default function Home() {
           </nav>
         </div>
       </footer>
+
+      {/* スマホのみ:フォームが画面に入るまで常時表示するCTA */}
+      <a className="mobile-cta is-hidden" id="mobile-cta" href="#contact">
+        <span>無料相談を申し込む</span>
+        <small>30分・オンライン・営業なし</small>
+      </a>
     </>
   );
 }

@@ -120,9 +120,14 @@ export default function ConsultForm() {
         disabled={status === "sending"}
         onClick={submit}
       >
-        {status === "sending"
-          ? "送信しています…"
-          : "無料相談を申し込む(30分・オンライン)"}
+        {status === "sending" ? (
+          "送信しています…"
+        ) : (
+          <>
+            <span className="btn-label">無料相談を申し込む</span>
+            <span className="btn-sub">30分・オンライン</span>
+          </>
+        )}
       </button>
       <p className="form-note">
         送信後、日程調整のご案内をメールでお送りします。しつこい営業は行いません。

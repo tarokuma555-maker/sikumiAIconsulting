@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Zen_Old_Mincho, Zen_Kaku_Gothic_New, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -37,6 +37,14 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     siteName: "シクミAIコンサル",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // ピンチズームは潰さない(アクセシビリティ上、拡大は常に許可する)
+  maximumScale: 5,
+  themeColor: "#F5F7F9",
 };
 
 export default function RootLayout({

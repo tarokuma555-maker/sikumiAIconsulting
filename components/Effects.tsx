@@ -34,9 +34,30 @@ export default function Effects() {
       io2.observe(fig);
     }
 
+    // スマホの追従CTA:ヒーローのCTAか申込フォームが画面内にある間は引っ込める
+    const cta = document.getElementById("mobile-cta");
+    let io3: IntersectionObserver | undefined;
+    if (cta) {
+      const onScreen = new Set<Element>();
+      io3 = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) onScreen.add(e.target);
+            else onScreen.delete(e.target);
+          });
+          cta.classList.toggle("is-hidden", onScreen.size > 0);
+        },
+        { threshold: 0 }
+      );
+      document
+        .querySelectorAll(".hero .cta-group, #contact")
+        .forEach((el) => io3!.observe(el));
+    }
+
     return () => {
       io.disconnect();
       io2?.disconnect();
+      io3?.disconnect();
     };
   }, []);
 
