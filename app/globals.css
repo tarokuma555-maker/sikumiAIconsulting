@@ -387,8 +387,11 @@ header{
   display:flex;flex-wrap:wrap;gap:8px;align-items:center;
   font-size:13.5px;font-weight:500;
 }
-.career-path span{background:var(--paper);border:1px solid var(--grid-strong);padding:6px 15px;border-radius:99px;}
-.career-path .arrow{border:none;background:none;color:var(--indigo);padding:0;font-family:var(--font-mono);}
+/* 矢印と直後のピルを1つのフレックスアイテムにまとめる。
+   別々のアイテムだと折り返し位置によっては行末に「→」だけが残る */
+.career-path .cp-group{display:inline-flex;align-items:center;gap:8px;}
+.career-path .cp{background:var(--paper);border:1px solid var(--grid-strong);padding:6px 15px;border-radius:99px;}
+.career-path .arrow{color:var(--indigo);font-family:var(--font-mono);}
 .career-path .now{background:var(--indigo);color:var(--white);border-color:var(--indigo);}
 .teacher p{font-size:15px;margin-bottom:var(--sp-2);}
 .teacher .mission{
@@ -609,20 +612,33 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   .mobile-cta.is-hidden{transform:translateY(120%);pointer-events:none;}
   body{padding-bottom:82px;}
 
-  /* 泣き別れ対策:狭い幅だと最終行に「す。」「か。」だけが残る箇所が多い。
-     見出しは balance で行長を揃え、本文は pretty で短い最終行を避ける。
-     未対応ブラウザでは従来どおりの折り返しに戻るだけ。 */
+  /* 改行の調整。未対応ブラウザは宣言を無視して従来の折り返しに戻るだけ。
+
+     word-break:auto-phrase(文節単位の折り返し)は2〜3行までの短い文には
+     効くが、走り文に使うと逆効果になる。狭い画面では1行が17〜22字しかなく、
+     「基幹システム刷新プロジェクトで」のような長い文節が入りきらないと丸ごと
+     次行に落ちるため、途中に極端に短い行ができる。実測でも講師紹介の段落で
+     途中行の最短/最長が 50%(320px)・41%(390px) まで落ちていた。
+     そのため auto-phrase は見出しと2行程度の短文だけに限定する。 */
   h2,h3,.faq summary,.plan-name,.pain-close,.teacher .mission,
   .fig-step-title,.plan-promise,.form-success-title,.pain-card strong{
     text-wrap:balance;
     word-break:auto-phrase;
   }
-  p,li,.answer,.fig-step-body,.concept-lead,.closing-lead,.form-note,
-  .case-note,.pain-card,.plan-for,.plan-price-note,.form-field label{
+  li,.fig-step-body,.plan-for,.plan-price-note,.form-field label{
     text-wrap:pretty;
-    /* 文節単位で折り返す(Chromium系)。未対応ブラウザはこの宣言を捨てるだけ */
     word-break:auto-phrase;
   }
+  /* 走り文は行末を揃えることを優先し、pretty で最終行だけを調整する */
+  p,.answer,.pain-card{
+    text-wrap:pretty;
+  }
+
+  /* auto-phrase では防げない意味の切れ目を .seg で明示する。
+     「元・」「機会を」の直後など、文法上は折り返せても読点までを1つの
+     まとまりとして扱いたい箇所に使う。
+     デスクトップでは通常のインラインのままなので影響しない。 */
+  h2 .seg,.mission .seg{display:inline-block;}
 
   section{padding:var(--sp-6) 0;}
   .hero{padding:var(--sp-4) 0 var(--sp-5);}
@@ -702,7 +718,8 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   .teacher-inner{gap:var(--sp-4);}
   .teacher-photo{width:100%;max-width:240px;height:240px;}
   .career-path{font-size:13px;gap:6px;}
-  .career-path span{padding:5px 12px;}
+  /* ピルだけを対象にする。span 全体に当てると矢印と .cp-group まで太る */
+  .career-path .cp{padding:5px 12px;}
 
   /* footer — stack, and give the links real tap targets */
   .footer-inner{flex-direction:column;gap:var(--sp-1);}

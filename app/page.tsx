@@ -330,18 +330,27 @@ export default function Home() {
       <section className="teacher">
         <div className="container">
           <span className="eyebrow">講師紹介</span>
-          <h2>教えるのは、「元・非エンジニア」です。</h2>
+          <h2>
+            <span className="seg">教えるのは、</span>
+            <span className="seg">「元・非エンジニア」です。</span>
+          </h2>
           <div className="teacher-inner">
             <div className="teacher-photo">PHOTO 240×280</div>
             <div>
               <div className="career-path">
-                <span>飲食店 店長</span>
-                <span className="arrow">→</span>
-                <span>法人営業</span>
-                <span className="arrow">→</span>
-                <span>労務コンサル</span>
-                <span className="arrow">→</span>
-                <span className="now">ITコンサル / PMO</span>
+                <span className="cp">飲食店 店長</span>
+                <span className="cp-group">
+                  <span className="arrow">→</span>
+                  <span className="cp">法人営業</span>
+                </span>
+                <span className="cp-group">
+                  <span className="arrow">→</span>
+                  <span className="cp">労務コンサル</span>
+                </span>
+                <span className="cp-group">
+                  <span className="arrow">→</span>
+                  <span className="cp now">ITコンサル / PMO</span>
+                </span>
               </div>
               <p>
                 私自身、キャリアのスタートは飲食店の店長でした。コードとは無縁の現場から、営業、労務コンサルを経てIT業界へ。現在は大手企業グループの基幹システム刷新プロジェクトでPMOを務めながら、AIを活用した業務の仕組み化を実践しています。
@@ -354,9 +363,11 @@ export default function Home() {
                 エンジニアの「当たり前」を前提にしない、ビジネス職のための言葉で教えます。
               </p>
               <p className="mission">
-                眠っている可能性を、機会を通じて強みに変える。
+                <span className="seg">眠っている可能性を、</span>
+                <span className="seg">機会を通じて強みに変える。</span>
                 <br />
-                AIは、そのための最強の道具です。
+                <span className="seg">AIは、そのための</span>
+                <span className="seg">最強の道具です。</span>
               </p>
             </div>
           </div>
