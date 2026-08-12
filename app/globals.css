@@ -640,6 +640,17 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
      デスクトップでは通常のインラインのままなので影響しない。 */
   h2 .seg,.mission .seg{display:inline-block;}
 
+  /* 行頭の始め括弧のぶら下げ。
+     「 は墨が字面の右半分にあるため、行頭に来ると他の行より字下がりして
+     左端が揃わない。Zen Old Mincho で実測すると 教 の墨開始が 1/22px、
+     「 が 13/22px で、ズレは 0.55em。その分だけ左に引いて天付きにする。
+     Safari の hanging-punctuation は Chromium 系が未対応なので明示的に相殺する。 */
+  h2.hang-q{text-indent:-.55em;}          /* 1行目が「で始まる見出し */
+  h2 .seg.hang-q{margin-left:-.55em;}     /* 2行目が「で始まる場合 */
+  /* text-indent は継承する。.seg は inline-block = ブロックコンテナなので
+     リセットしないと親と子で二重に効いて 1.1em 分も外に出てしまう */
+  h2.hang-q .seg{text-indent:0;}
+
   section{padding:var(--sp-6) 0;}
   .hero{padding:var(--sp-4) 0 var(--sp-5);}
   .fig{margin-top:var(--sp-4);}

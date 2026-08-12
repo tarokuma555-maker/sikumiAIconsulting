@@ -149,7 +149,7 @@ export default function Home() {
       <section className="pain">
         <div className="container">
           <span className="eyebrow">こんな悩みはありませんか</span>
-          <h2>
+          <h2 className="hang-q">
             「AIを使いこなせ」と言われても、
             <br />
             何から始めればいいのか。
@@ -219,7 +219,7 @@ export default function Home() {
       <section className="cases">
         <div className="container">
           <span className="eyebrow">Before / After</span>
-          <h2>「仕組み化」で、業務はここまで変わる。</h2>
+          <h2 className="hang-q">「仕組み化」で、業務はここまで変わる。</h2>
           <div className="case-grid">
             <div className="case-card reveal">
               <span className="job">CASE 01 — 企画職</span>
@@ -275,7 +275,10 @@ export default function Home() {
       <section>
         <div className="container">
           <span className="eyebrow">プランと料金</span>
-          <h2>「学ぶだけ」か、「完成させる」か。</h2>
+          <h2 className="hang-q">
+            <span className="seg">「学ぶだけ」か、</span>
+            <span className="seg hang-q">「完成させる」か。</span>
+          </h2>
           <div className="plan-grid">
             <div className="plan-card reveal">
               <div className="plan-name">講座プラン</div>
@@ -332,7 +335,7 @@ export default function Home() {
           <span className="eyebrow">講師紹介</span>
           <h2>
             <span className="seg">教えるのは、</span>
-            <span className="seg">「元・非エンジニア」です。</span>
+            <span className="seg hang-q">「元・非エンジニア」です。</span>
           </h2>
           <div className="teacher-inner">
             <div className="teacher-photo">PHOTO 240×280</div>
