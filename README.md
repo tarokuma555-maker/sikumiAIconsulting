@@ -65,20 +65,55 @@ LINE_CHANNEL_ACCESS_TOKEN=...  # LINE Developers > Messaging API設定(長期ト
 
 ### 2. リッチメニュー
 
+**画像は `line/richmenu.png` に生成済み**です。登録方法は2通りあります。
+
+#### 方法A: 管理画面から登録(ターミナル不要)
+
+LINE Official Account Manager > トークルーム管理 > リッチメニュー > 作成
+
+| 項目 | 設定値 |
+|---|---|
+| タイトル | シクミAIコンサル メインメニュー(管理用。利用者には見えない) |
+| メニューバーのテキスト | メニューを開く |
+| メニューのデフォルト表示 | 表示する |
+| テンプレート | 6分割(3列×2行)のもの |
+| 背景画像 | `line/richmenu.png` をアップロード |
+
+各エリアのアクション(左上から右へ、上段→下段の順):
+
+| エリア | タイル | タイプ | 設定値 |
+|---|---|---|---|
+| A | 相談をはじめる | テキスト | `相談したいです` |
+| B | 無料相談を申し込む | リンク | `{siteUrl}/#contact` |
+| C | 料金プラン | リンク | `{siteUrl}/#plans` |
+| D | サービス内容 | リンク | `{siteUrl}/#concept` |
+| E | よくある質問 | リンク | `{siteUrl}/#faq` |
+| F | 講師紹介 | リンク | `{siteUrl}/#teacher` |
+
+`{siteUrl}` は `site.config.json` の値。
+`npm run line:setup -- --dry-run` を実行すると、この表が実URL入りで出力されます。
+
+#### 方法B: コマンドで登録
+
 ```bash
-npm run dev                                    # 別ターミナルで起動
-npm run line:image                             # 原画→ line/richmenu.png
-LINE_CHANNEL_ACCESS_TOKEN=... npm run line:setup   # LINEに登録
+LINE_CHANNEL_ACCESS_TOKEN=... npm run line:setup
 ```
 
-- 文言・リンク先の定義: `line/richmenu.tiles.json`(ここが唯一の正)
-- 原画: `app/line-richmenu/page.tsx`(LPと同じフォントで描くためのページ。noindex)
-- `npm run line:setup -- --dry-run` で、APIを呼ばずに送信内容だけ確認できます
-- `npm run line:image` にはPlaywrightが必要です
-  (`npm i -D playwright && npx playwright install chromium`)
+既存メニューの削除・作成・画像アップロード・全ユーザーへの適用まで一括で行います。
+`-- --dry-run` を付けるとAPIを呼ばず、送信内容だけ表示します。
 
-画像を作り直さず文言だけ変えた場合でも、`line:image` → `line:setup` の順で
-実行してください(画像と当たり判定がずれます)。
+#### 文言やリンク先を変えるとき
+
+1. `line/richmenu.tiles.json` を編集(ここが唯一の定義)
+2. 画像を作り直す — **タップ位置と絵がずれるため必須**
+   ```bash
+   npm run dev            # 別ターミナルで起動しておく
+   npm run line:image
+   ```
+   ※ Playwrightが必要: `npm i -D playwright && npx playwright install chromium`
+3. 方法AまたはBで登録し直す
+
+原画は `app/line-richmenu/page.tsx`(LPと同じフォントで描くためのページ。noindex)。
 
 ## 今後のTODO
 - [ ] 講師写真の差し込み(`.teacher-photo`)
