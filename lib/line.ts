@@ -20,5 +20,14 @@ export const SITE_URL = clean(process.env.NEXT_PUBLIC_SITE_URL || config.siteUrl
  */
 export const LINE_URL = clean(process.env.NEXT_PUBLIC_LINE_URL || config.lineUrl);
 
+/**
+ * 無料相談の日程調整ページ。
+ * LINEのあいさつと「日程」キーワードへの自動返信で案内します。
+ * 空にすると、URLを出さずトークで希望日時を聞く文面に切り替わります。
+ */
+export const BOOKING_URL = clean(
+  process.env.NEXT_PUBLIC_BOOKING_URL || config.bookingUrl
+);
+
 /** 申し込み完了後にLINEへ自動遷移するまでの秒数。0にすると自動遷移しません。 */
 export const LINE_AUTO_REDIRECT_SEC = 5;

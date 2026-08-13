@@ -376,13 +376,20 @@ header{
 .teacher-inner{display:grid;grid-template-columns:240px 1fr;gap:var(--sp-6);align-items:start;}
 @media (max-width:760px){.teacher-inner{grid-template-columns:1fr;}}
 .teacher-photo{
-  width:240px;height:280px;
+  /* 正方形。丸いアイコン等をトリミングせずに収めるため */
+  width:240px;height:240px;
   background:var(--paper);
   border:1px solid var(--grid-strong);
   outline:1px solid var(--grid-strong);
   outline-offset:5px;
   display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
   font-family:var(--font-mono);font-size:11px;color:var(--ink-soft);letter-spacing:.15em;
+}
+.teacher-photo img{
+  width:100%;height:100%;
+  object-fit:cover;   /* 縦横比が違う写真でも枠いっぱいに収める */
+  display:block;
 }
 .career-path{
   margin:var(--sp-3) 0;

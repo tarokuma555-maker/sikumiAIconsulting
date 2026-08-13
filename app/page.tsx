@@ -1,6 +1,18 @@
+import fs from "node:fs";
+import path from "node:path";
+import Image from "next/image";
 import Effects from "@/components/Effects";
 import ConsultForm from "@/components/ConsultForm";
 import { LINE_URL } from "@/lib/line";
+
+/**
+ * 講師写真。public/teacher.png(または jpg/jpeg/webp)を置くと自動で表示される。
+ * ファイルがない間は枠だけのプレースホルダーになるので、
+ * 置き忘れても画像リンク切れにはならない。
+ */
+const TEACHER_PHOTO = ["teacher.png", "teacher.jpg", "teacher.jpeg", "teacher.webp"].find(
+  (file) => fs.existsSync(path.join(process.cwd(), "public", file))
+);
 
 export default function Home() {
   return (
@@ -346,7 +358,19 @@ export default function Home() {
             <span className="seg hang-q">「元・非エンジニア」です。</span>
           </h2>
           <div className="teacher-inner">
-            <div className="teacher-photo">PHOTO 240×280</div>
+            <div className="teacher-photo">
+              {TEACHER_PHOTO ? (
+                <Image
+                  src={`/${TEACHER_PHOTO}`}
+                  alt="シクミAIコンサルの講師"
+                  width={240}
+                  height={240}
+                  sizes="240px"
+                />
+              ) : (
+                "PHOTO 240×240"
+              )}
+            </div>
             <div>
               <div className="career-path">
                 <span className="cp">飲食店 店長</span>
