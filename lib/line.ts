@@ -12,7 +12,7 @@
  *
  * 未設定の場合、LINEへの導線は表示されません(リンク切れを出さないため)。
  */
-const FALLBACK_LINE_URL = "";
+const FALLBACK_LINE_URL = "https://lin.ee/Wh4KvwQ";
 
 export const LINE_URL = (
   process.env.NEXT_PUBLIC_LINE_URL || FALLBACK_LINE_URL
