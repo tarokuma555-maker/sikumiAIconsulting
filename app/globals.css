@@ -94,6 +94,7 @@ header{
   border-bottom:1px solid var(--grid-strong);
 }
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;height:var(--header-h);}
+.header-ctas{display:flex;align-items:center;gap:8px;}
 .logo{font-family:var(--font-display);font-weight:700;font-size:19px;letter-spacing:.08em;text-decoration:none;line-height:1.2;}
 .logo small{font-family:var(--font-mono);font-size:9.5px;color:var(--indigo);display:block;letter-spacing:.26em;}
 .header-cta{
@@ -105,6 +106,8 @@ header{
   transition:background .2s var(--ease-out);
 }
 .header-cta:hover{background:var(--amber-deep);color:var(--white);}
+.header-cta.is-line{background:var(--line);color:var(--white);}
+.header-cta.is-line:hover{background:var(--line-deep);color:var(--white);}
 
 /* ============================================================
    HERO — the drawing sheet
@@ -191,7 +194,6 @@ header{
   font-family:var(--font-mono);font-size:11px;font-weight:500;
   letter-spacing:.08em;opacity:.7;
 }
-.btn-line{font-size:var(--fs-small);font-weight:500;color:var(--indigo);text-decoration:underline;text-underline-offset:5px;}
 .hero-note{font-family:var(--font-mono);font-size:var(--fs-caption);color:var(--ink-soft);margin-top:var(--sp-2);animation:fadeUp .8s var(--ease-out) 1.2s both;}
 
 /* FIG.1 — animated blueprint flow */
@@ -359,6 +361,19 @@ header{
 .btn-secondary:hover{background:var(--indigo);color:var(--white);}
 .plan-card.featured .btn-secondary{background:var(--amber);border-color:var(--amber);color:var(--ink);box-shadow:0 3px 0 var(--amber-deep);}
 .plan-card.featured .btn-secondary:hover{background:var(--amber-deep);border-color:var(--amber-deep);color:var(--white);}
+/* 「無料相談」ボタンとLINEボタンを横並びにする */
+.cta-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media (max-width:520px){.cta-pair{grid-template-columns:1fr;}}
+/* .plan-card.featured .btn-secondary(0,3,0)に負けないよう同じ強さで打ち消す */
+.btn-secondary.is-line,
+.plan-card.featured .btn-secondary.is-line{
+  background:var(--line);border-color:var(--line);color:var(--white);
+  box-shadow:0 3px 0 var(--line-deep);
+}
+.btn-secondary.is-line:hover,
+.plan-card.featured .btn-secondary.is-line:hover{
+  background:var(--line-deep);border-color:var(--line-deep);color:var(--white);
+}
 .price-policy{
   margin-top:var(--sp-4);
   border:1px solid var(--grid-strong);
@@ -556,10 +571,11 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 
 /* 送信完了後のLINE導線。他のCTAと役割が違うのでLINEの色を使う */
 .btn-line-cta{
-  display:block;width:100%;text-align:center;
   background:var(--line);color:var(--white);
   box-shadow:0 4px 0 var(--line-deep);
 }
+/* 全幅にするのは送信完了カードの中だけ。ヒーローでは横並びにするため */
+.form-card .btn-line-cta{display:block;width:100%;text-align:center;}
 .btn-line-cta:hover{background:var(--line-deep);color:var(--white);}
 .btn-line-cta:focus-visible{outline:3px solid var(--ink);outline-offset:3px;}
 .btn-line-cta .btn-sub{opacity:.85;}
@@ -623,19 +639,24 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 /* --- below 760px: mobile CTA bar + tighter vertical rhythm --- */
 @media (max-width:760px){
   .mobile-cta{
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    display:grid;grid-template-columns:1fr 1fr;
     position:fixed;left:0;right:0;bottom:0;z-index:60;
-    background:var(--amber);color:var(--ink);
-    text-decoration:none;font-weight:700;
-    padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
-    border-top:1.5px solid var(--amber-deep);
     box-shadow:0 -6px 20px rgba(15,29,51,.16);
     transition:transform .3s var(--ease-out);
   }
-  .mobile-cta span{font-size:16px;line-height:1.4;}
+  .mobile-cta > a{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    text-decoration:none;font-weight:700;
+    padding:12px 10px calc(12px + env(safe-area-inset-bottom, 0px));
+    border-top:1.5px solid;
+    min-height:56px;
+  }
+  .mobile-cta-main{background:var(--amber);color:var(--ink);border-top-color:var(--amber-deep);}
+  .mobile-cta-line{background:var(--line);color:var(--white);border-top-color:var(--line-deep);}
+  .mobile-cta span{font-size:15px;line-height:1.35;}
   .mobile-cta small{
-    font-family:var(--font-mono);font-weight:500;font-size:10.5px;
-    letter-spacing:.1em;opacity:.72;line-height:1.4;
+    font-family:var(--font-mono);font-weight:500;font-size:10px;
+    letter-spacing:.06em;opacity:.85;line-height:1.35;
   }
   /* hidden while the hero CTA or the contact form is on screen (toggled in Effects.tsx) */
   .mobile-cta.is-hidden{transform:translateY(120%);pointer-events:none;}
@@ -771,10 +792,6 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 @media (max-width:520px){
   .cta-group{flex-direction:column;align-items:stretch;gap:14px;}
   .btn-primary{width:100%;text-align:center;padding:18px 20px;font-size:16px;}
-  .btn-line{
-    display:flex;align-items:center;justify-content:center;
-    min-height:44px;text-align:center;
-  }
   .hero-note{text-align:center;}
 
   /* steps: the 64px number gutter squeezes the copy — stack instead */
@@ -796,9 +813,18 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
      400pxで22.4px(上のルールと連続)、320pxで20pxまで落として2行に収める */
   :root{--gutter:18px;--fs-h2:clamp(20px,5.6vw,22.4px);}
   .drawing-frame{padding:var(--sp-3) var(--sp-2) var(--sp-3);outline-offset:4px;}
-  .logo{font-size:16px;}
-  .header-cta{font-size:12.5px;padding:9px 13px;letter-spacing:0;}
+  /* ボタンが2つになった分、ロゴに使える幅が減る。
+     英字サブタイトルを畳んでロゴを1行に収める */
+  .logo{font-size:15px;}
+  .logo small{display:none;}
+  .header-cta{font-size:12px;padding:8px 10px;letter-spacing:0;}
+  .header-ctas{gap:6px;}
   .fig-step{padding:14px 15px;}
+  /* 320px級ではロゴとボタン2つが競合する。ここまで詰めると1行に収まる */
+  @media (max-width:340px){
+    .logo{font-size:13.5px;letter-spacing:.04em;}
+    .header-cta{font-size:11.5px;padding:8px 8px;}
+  }
   /* 一番長いeyebrow(AI × 業務の仕組み化スクール)が1行に収まるまで詰める */
   .eyebrow{letter-spacing:.16em;gap:10px;}
   .eyebrow::before{width:24px;}

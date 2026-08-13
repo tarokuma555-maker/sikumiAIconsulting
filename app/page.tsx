@@ -3,7 +3,23 @@ import path from "node:path";
 import Image from "next/image";
 import Effects from "@/components/Effects";
 import ConsultForm from "@/components/ConsultForm";
-import { LINE_URL } from "@/lib/line";
+import { BOOKING_URL, LINE_URL } from "@/lib/line";
+
+/**
+ * 「無料相談」系ボタンの遷移先。
+ * 日程調整ページ(site.config.json の bookingUrl)が設定されていればそこへ、
+ * 未設定なら従来どおりページ下部の申込フォームへ送る。
+ */
+const bookingLink = BOOKING_URL
+  ? { href: BOOKING_URL, target: "_blank", rel: "noopener noreferrer" }
+  : { href: "#contact" };
+
+/** LINE公式アカウントへの遷移先 */
+const lineLink = {
+  href: LINE_URL,
+  target: "_blank",
+  rel: "noopener noreferrer",
+} as const;
 
 /**
  * 講師写真。public/teacher.png(または jpg/jpeg/webp)を置くと自動で表示される。
@@ -24,9 +40,16 @@ export default function Home() {
           <a className="logo" href="#top">
             シクミAIコンサル<small>SHIKUMI AI CONSULTING</small>
           </a>
-          <a className="header-cta" href="#contact">
-            無料相談する
-          </a>
+          <div className="header-ctas">
+            <a className="header-cta" {...bookingLink}>
+              無料相談する
+            </a>
+            {LINE_URL && (
+              <a className="header-cta is-line" {...lineLink}>
+                LINE
+              </a>
+            )}
+          </div>
         </div>
       </header>
 
@@ -50,17 +73,12 @@ export default function Home() {
                   <strong>3ヶ月で業務自動化を1つ完成</strong>させます。
                 </p>
                 <div className="cta-group">
-                  <a className="btn-primary" href="#contact">
+                  <a className="btn-primary" {...bookingLink}>
                     無料相談を申し込む
                   </a>
                   {LINE_URL && (
-                    <a
-                      className="btn-line"
-                      href={LINE_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      まずはLINEで相談する
+                    <a className="btn-primary btn-line-cta" {...lineLink}>
+                      LINEで相談する
                     </a>
                   )}
                 </div>
@@ -313,9 +331,16 @@ export default function Home() {
                 <li>業務自動化テンプレート集</li>
                 <li>教材内容の質問サポート(30日間)</li>
               </ul>
-              <a className="btn-secondary" href="#contact">
-                無料相談で詳しく聞く
-              </a>
+              <div className="cta-pair">
+                <a className="btn-secondary" {...bookingLink}>
+                  無料相談で詳しく聞く
+                </a>
+                {LINE_URL && (
+                  <a className="btn-secondary is-line" {...lineLink}>
+                    LINEで相談
+                  </a>
+                )}
+              </div>
             </div>
             <div className="plan-card featured reveal d1">
               <div className="plan-name">伴走プラン</div>
@@ -337,9 +362,16 @@ export default function Home() {
                 <strong>成果物のお約束:</strong>
                 3ヶ月で、あなたの業務の自動化を1つ完成させます。
               </div>
-              <a className="btn-secondary" href="#contact">
-                無料相談を申し込む
-              </a>
+              <div className="cta-pair">
+                <a className="btn-secondary" {...bookingLink}>
+                  無料相談を申し込む
+                </a>
+                {LINE_URL && (
+                  <a className="btn-secondary is-line" {...lineLink}>
+                    LINEで相談
+                  </a>
+                )}
+              </div>
             </div>
           </div>
           <div className="price-policy reveal">
@@ -540,10 +572,18 @@ export default function Home() {
       </footer>
 
       {/* スマホのみ:フォームが画面に入るまで常時表示するCTA */}
-      <a className="mobile-cta is-hidden" id="mobile-cta" href="#contact">
-        <span>無料相談を申し込む</span>
-        <small>30分・オンライン・営業なし</small>
-      </a>
+      <div className="mobile-cta is-hidden" id="mobile-cta">
+        <a className="mobile-cta-main" {...bookingLink}>
+          <span>無料相談を予約</span>
+          <small>30分・オンライン</small>
+        </a>
+        {LINE_URL && (
+          <a className="mobile-cta-line" {...lineLink}>
+            <span>LINEで相談</span>
+            <small>友だち追加</small>
+          </a>
+        )}
+      </div>
     </>
   );
 }
