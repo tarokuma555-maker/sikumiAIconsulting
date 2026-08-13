@@ -300,12 +300,16 @@ header{
 /* ============================================================
    PLANS
    ============================================================ */
-.plan-grid{display:grid;grid-template-columns:1fr 1.12fr;gap:var(--sp-4);margin-top:var(--sp-5);align-items:stretch;}
-@media (max-width:760px){.plan-grid{grid-template-columns:1fr;}}
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);margin-top:var(--sp-5);align-items:stretch;}
+/* 3枚を2カラムにすると 2+1 の欠けた並びになるので、入らなくなった時点で1カラムに落とす */
+@media (max-width:1000px){
+  .plan-grid{grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto;}
+}
 .plan-card{
   background:var(--white);
   border:1px solid var(--grid-strong);
-  padding:var(--sp-5) var(--sp-4);
+  /* 3カラムになり1枚あたりの幅が狭くなったぶん、左右の余白を詰める */
+  padding:var(--sp-5) var(--sp-3);
   display:flex;flex-direction:column;
 }
 .plan-card.featured{
@@ -362,6 +366,9 @@ header{
 /* 「無料相談」ボタンとLINEボタンを横並びにする */
 .cta-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 @media (max-width:520px){.cta-pair{grid-template-columns:1fr;}}
+/* プランカードは3枚並ぶと1枚あたり330px程度。横に2つ置くとボタンの文字が
+   2行に折れるので、カード内では常に縦積みにする */
+.plan-card .cta-pair{grid-template-columns:1fr;}
 /* .plan-card.featured .btn-secondary(0,3,0)に負けないよう同じ強さで打ち消す */
 .btn-secondary.is-line,
 .plan-card.featured .btn-secondary.is-line{

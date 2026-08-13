@@ -356,7 +356,7 @@ export default function Home() {
                 月額¥50,000 × 3ヶ月 / 分割払い相談可
               </div>
               <div className="plan-price-note">
-                対象業務が複雑な場合は上位プラン(総額¥240,000〜)をご提案することがあります。金額は無料相談で確定し、開始後の追加請求はありません。
+                金額は無料相談で確定し、開始後の追加請求はありません。対象業務が複雑な場合は、右の定着プランをご提案することがあります。
               </div>
               <ul>
                 <li>講座プランの全教材が含まれます</li>
@@ -380,10 +380,47 @@ export default function Home() {
                 )}
               </div>
             </div>
+
+            <div className="plan-card reveal d2">
+              <div className="plan-name">定着プラン</div>
+              <div className="plan-for">
+                業務全体を仕組み化し、運用に乗せたい方に
+              </div>
+              <div className="plan-price">
+                総額 ¥240,000<small>(税込)</small>
+              </div>
+              <div className="plan-price-sub">
+                月額¥40,000 × 6ヶ月 / 分割払い相談可
+              </div>
+              <div className="plan-price-note">
+                期間が長いぶん、月あたりの負担は伴走プランより抑えられます。
+              </div>
+              <ul>
+                <li>伴走プランの内容がすべて含まれます</li>
+                <li>期間は6ヶ月(伴走プランの2倍)</li>
+                <li>月2回のマンツーマンセッション(60分)</li>
+                <li>業務の棚卸しから、自動化する対象の選定まで</li>
+                <li>作った仕組みの手順書化・引き継ぎ資料の作成</li>
+              </ul>
+              <div className="plan-promise">
+                <strong>成果物のお約束:</strong>
+                6ヶ月で、あなたの業務の自動化を3つ完成させ、運用に乗せます。
+              </div>
+              <div className="cta-pair">
+                <a className="btn-secondary" {...bookingLink}>
+                  無料相談を申し込む
+                </a>
+                {LINE_URL && (
+                  <a className="btn-secondary is-line" {...lineLink}>
+                    LINEで相談
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
           <div className="price-policy reveal">
             <strong>料金の考え方</strong>
-            伴走プランは3ヶ月・総額¥150,000を基本とし、対象業務が複雑な場合のみ上位プランをご提案します。いずれの場合も、無料相談で業務内容を伺ったうえで確定金額をお伝えし、開始後に追加請求することはありません。相談したからといって申し込む必要は一切ありません。
+            まずは伴走プラン(3ヶ月・総額¥150,000)で自動化を1つ完成させるのが基本です。対象業務が複数にまたがる場合や、作った仕組みを運用に定着させたい場合は定着プラン(6ヶ月・総額¥240,000)をご提案します。いずれの場合も、無料相談で業務内容を伺ったうえで確定金額をお伝えし、開始後に追加請求することはありません。相談したからといって申し込む必要は一切ありません。
           </div>
         </div>
       </section>
