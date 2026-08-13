@@ -28,3 +28,9 @@ export const LINE_URL = clean(process.env.NEXT_PUBLIC_LINE_URL || config.lineUrl
 export const BOOKING_URL = clean(
   process.env.NEXT_PUBLIC_BOOKING_URL || config.bookingUrl
 );
+
+/** 発信リンク(X / note)。空の項目はLPに表示されません。 */
+export const SNS = {
+  x: clean(config.snsX),
+  note: clean(config.snsNote),
+};

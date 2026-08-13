@@ -8,5 +8,9 @@
   "lineUrl": "https://lin.ee/Wh4KvwQ",
 
   "_bookingUrl": "無料相談の日程調整ページ(Googleカレンダーの予約ページなど)。LINEのあいさつと日程の自動返信で案内します。空にするとURLを出さず、トークで日程を聞く文面に切り替わります。",
-  "bookingUrl": "https://calendar.app.google/hqGCw5hd9FQvqKWv5"
+  "bookingUrl": "https://calendar.app.google/hqGCw5hd9FQvqKWv5",
+
+  "_sns": "講師紹介セクションに出す発信リンク。空にするとその行ごと非表示になります(リンク切れを出さないため)。",
+  "snsX": "",
+  "snsNote": ""
 }

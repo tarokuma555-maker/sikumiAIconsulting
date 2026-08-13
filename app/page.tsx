@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import Effects from "@/components/Effects";
-import { BOOKING_URL, LINE_URL } from "@/lib/line";
+import { BOOKING_URL, LINE_URL, SNS } from "@/lib/line";
+import { WORKS } from "@/lib/works";
 
 /**
  * 「無料相談」系ボタンの遷移先。
@@ -329,6 +330,7 @@ export default function Home() {
                 <li>非エンジニアのためのClaude Code入門</li>
                 <li>業務自動化テンプレート集</li>
                 <li>教材内容の質問サポート(30日間)</li>
+                <li>伴走プランへは差額でアップグレード可能</li>
               </ul>
               <div className="cta-pair">
                 <a className="btn-secondary" {...bookingLink}>
@@ -345,15 +347,18 @@ export default function Home() {
               <div className="plan-name">伴走プラン</div>
               <div className="plan-for">自分の業務を確実に自動化したい方に</div>
               <div className="plan-price">
-                月額 ¥50,000〜<small>(税込・3ヶ月〜)</small>
+                総額 ¥150,000<small>(税込)</small>
+              </div>
+              <div className="plan-price-sub">
+                月額¥50,000 × 3ヶ月 / 分割払い相談可
               </div>
               <div className="plan-price-note">
-                業務内容に応じて無料相談時にお見積り
+                対象業務が複雑な場合は上位プラン(総額¥240,000〜)をご提案することがあります。金額は無料相談で確定し、開始後の追加請求はありません。
               </div>
               <ul>
                 <li>講座プランの全教材が含まれます</li>
                 <li>月2回のマンツーマンセッション(60分)</li>
-                <li>期間中のチャットサポート(無制限)</li>
+                <li>期間中のチャットサポート(平日24時間以内に返信)</li>
                 <li>あなたの業務に合わせた自動化の設計・実装伴走</li>
                 <li>社内で説明するための資料化サポート</li>
               </ul>
@@ -375,7 +380,7 @@ export default function Home() {
           </div>
           <div className="price-policy reveal">
             <strong>料金の考え方</strong>
-            伴走プランの料金は、対象業務の複雑さとサポート密度によって決まります。無料相談であなたの業務内容を伺ったうえで、最適なプランと確定金額をご提案します。相談したからといって申し込む必要は一切ありません。
+            伴走プランは3ヶ月・総額¥150,000を基本とし、対象業務が複雑な場合のみ上位プランをご提案します。いずれの場合も、無料相談で業務内容を伺ったうえで確定金額をお伝えし、開始後に追加請求することはありません。相談したからといって申し込む必要は一切ありません。
           </div>
         </div>
       </section>
@@ -389,18 +394,24 @@ export default function Home() {
             <span className="seg hang-q">「元・非エンジニア」です。</span>
           </h2>
           <div className="teacher-inner">
-            <div className="teacher-photo">
-              {TEACHER_PHOTO ? (
-                <Image
-                  src={`/${TEACHER_PHOTO}`}
-                  alt="シクミAIコンサルの講師"
-                  width={240}
-                  height={240}
-                  sizes="240px"
-                />
-              ) : (
-                "PHOTO 240×240"
-              )}
+            <div className="teacher-profile">
+              <div className="teacher-photo">
+                {TEACHER_PHOTO ? (
+                  <Image
+                    src={`/${TEACHER_PHOTO}`}
+                    alt="シクミAIコンサル 講師 大熊太郎"
+                    width={240}
+                    height={240}
+                    sizes="240px"
+                  />
+                ) : (
+                  "PHOTO 240×240"
+                )}
+              </div>
+              <div className="teacher-name">大熊　太郎</div>
+              <div className="teacher-title">
+                事業側プロキシ型ITコンサル / PMO
+              </div>
             </div>
             <div>
               <div className="career-path">
@@ -436,6 +447,43 @@ export default function Home() {
                 <span className="seg">最強の道具です。</span>
               </p>
             </div>
+          </div>
+
+          {/* 実績。カードは lib/works.ts の配列から生成する */}
+          <div className="works reveal">
+            <h3 className="works-title">講師が実際にAIで作ったもの</h3>
+            <div className="works-grid">
+              {WORKS.map((work) => (
+                <a
+                  className="work-card"
+                  key={work.url}
+                  href={work.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="work-tag">{work.tag ?? "Claude Codeで開発"}</span>
+                  <span className="work-name">{work.name}</span>
+                  <span className="work-desc">{work.desc}</span>
+                  <span className="work-link">サイトを見る →</span>
+                </a>
+              ))}
+            </div>
+
+            {(SNS.x || SNS.note) && (
+              <p className="sns-links">
+                <span className="sns-label">発信</span>
+                {SNS.x && (
+                  <a href={SNS.x} target="_blank" rel="noopener noreferrer">
+                    X
+                  </a>
+                )}
+                {SNS.note && (
+                  <a href={SNS.note} target="_blank" rel="noopener noreferrer">
+                    note
+                  </a>
+                )}
+              </p>
+            )}
           </div>
         </div>
       </section>
@@ -519,7 +567,7 @@ export default function Home() {
           <details>
             <summary>忙しくて時間が取れるか不安です。</summary>
             <div className="answer">
-              伴走プランのセッションは月2回・各60分。それ以外は隙間時間のチャットで進められる設計です。「学習時間を捻出する」のではなく「業務の中で作る」のがこのプログラムの考え方です。
+              伴走プランのセッションは月2回・各60分。それ以外は隙間時間のチャット(平日24時間以内返信)で進められる設計です。「学習時間を捻出する」のではなく「業務の中で作る」のがこのプログラムの考え方です。
             </div>
           </details>
         </div>
