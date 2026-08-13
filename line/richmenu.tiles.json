@@ -1,0 +1,68 @@
+{
+  "_comment": "リッチメニューの唯一の定義。原画(app/line-richmenu)と登録スクリプト(line/setup.mjs)の両方がここを読む。文言やリンク先を変えたら npm run line:image → npm run line:setup の順に実行する。",
+  "name": "シクミAIコンサル メインメニュー",
+  "chatBarText": "メニューを開く",
+  "size": {
+    "width": 2500,
+    "height": 1686,
+    "cols": 3,
+    "rows": 2
+  },
+  "tiles": [
+    {
+      "key": "talk",
+      "icon": "talk",
+      "accent": true,
+      "label": "相談を\nはじめる",
+      "action": {
+        "type": "message",
+        "text": "相談したいです"
+      }
+    },
+    {
+      "key": "form",
+      "icon": "form",
+      "label": "無料相談を\n申し込む",
+      "action": {
+        "type": "uri",
+        "path": "/#contact"
+      }
+    },
+    {
+      "key": "price",
+      "icon": "price",
+      "label": "料金プラン",
+      "action": {
+        "type": "uri",
+        "path": "/#plans"
+      }
+    },
+    {
+      "key": "service",
+      "icon": "service",
+      "label": "サービス内容",
+      "action": {
+        "type": "uri",
+        "path": "/#concept"
+      }
+    },
+    {
+      "key": "faq",
+      "icon": "faq",
+      "label": "よくある質問",
+      "action": {
+        "type": "uri",
+        "path": "/#faq"
+      }
+    },
+    {
+      "key": "teacher",
+      "icon": "teacher",
+      "label": "講師紹介",
+      "action": {
+        "type": "uri",
+        "path": "/#teacher"
+      }
+    }
+  ]
+}

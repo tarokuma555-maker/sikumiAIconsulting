@@ -183,7 +183,7 @@ export default function Home() {
       </section>
 
       {/* ========== CONCEPT ========== */}
-      <section className="sheet">
+      <section className="sheet" id="concept">
         <div className="container">
           <span className="eyebrow">シクミAIコンサルとは</span>
           <h2>教材で学び、伴走で完成させる。</h2>
@@ -224,7 +224,7 @@ export default function Home() {
       </section>
 
       {/* ========== BEFORE/AFTER ========== */}
-      <section className="cases">
+      <section className="cases" id="cases">
         <div className="container">
           <span className="eyebrow">Before / After</span>
           <h2 className="hang-q">「仕組み化」で、業務はここまで変わる。</h2>
@@ -280,7 +280,7 @@ export default function Home() {
       </section>
 
       {/* ========== PLANS ========== */}
-      <section>
+      <section id="plans">
         <div className="container">
           <span className="eyebrow">プランと料金</span>
           <h2 className="hang-q">
@@ -338,7 +338,7 @@ export default function Home() {
       </section>
 
       {/* ========== TEACHER ========== */}
-      <section className="teacher">
+      <section className="teacher" id="teacher">
         <div className="container">
           <span className="eyebrow">講師紹介</span>
           <h2>
@@ -386,7 +386,7 @@ export default function Home() {
       </section>
 
       {/* ========== STEPS ========== */}
-      <section className="sheet">
+      <section className="sheet" id="steps">
         <div className="container">
           <span className="eyebrow">受講までの流れ</span>
           <h2>まずは30分、話すところから。</h2>
@@ -433,7 +433,7 @@ export default function Home() {
       </section>
 
       {/* ========== FAQ ========== */}
-      <section className="faq">
+      <section className="faq" id="faq">
         <div className="container">
           <span className="eyebrow">よくある質問</span>
           <h2>不安な点は、ここで解消を。</h2>

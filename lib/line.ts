@@ -20,3 +20,12 @@ export const LINE_URL = (
 
 /** 申し込み完了後にLINEへ自動遷移するまでの秒数。0にすると自動遷移しません。 */
 export const LINE_AUTO_REDIRECT_SEC = 5;
+
+/**
+ * 公開サイトのURL(末尾スラッシュなし)。
+ * LINEのメッセージからLPへリンクするときに使います。
+ * Vercelの環境変数 NEXT_PUBLIC_SITE_URL に本番URLを設定してください。
+ */
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "")
+  .trim()
+  .replace(/\/+$/, "");
