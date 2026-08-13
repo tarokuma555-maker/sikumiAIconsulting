@@ -25,7 +25,7 @@
       "label": "無料相談を\n申し込む",
       "action": {
         "type": "uri",
-        "path": "/#contact"
+        "config": "bookingUrl"
       }
     },
     {

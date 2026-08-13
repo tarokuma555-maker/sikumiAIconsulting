@@ -62,12 +62,27 @@ const rowH = Array.from({ length: rows }, (_, i) =>
   i === rows - 1 ? height - Math.floor(height / rows) * (rows - 1) : Math.floor(height / rows)
 );
 
+/**
+ * タイルのURLを解決する。
+ *   path   … サイト内リンク(siteUrl + path)
+ *   config … site.config.json のキーをそのまま使う外部リンク(bookingUrl など)
+ */
+function resolveUri(action) {
+  if (action.config) {
+    const url = (siteConfig[action.config] || "").trim().replace(/\/+$/, "");
+    if (!url) die(`site.config.json の ${action.config} が空です`);
+    return url;
+  }
+  if (action.path) return `${SITE_URL}${action.path}`;
+  die(`uriアクションに path も config もありません: ${JSON.stringify(action)}`);
+}
+
 const areas = def.tiles.map((tile, i) => {
   const c = i % cols;
   const r = Math.floor(i / cols);
   const action =
     tile.action.type === "uri"
-      ? { type: "uri", label: tile.label.replace(/\n/g, ""), uri: `${SITE_URL}${tile.action.path}` }
+      ? { type: "uri", label: tile.label.replace(/\n/g, ""), uri: resolveUri(tile.action) }
       : { type: "message", label: tile.label.replace(/\n/g, ""), text: tile.action.text };
   return {
     bounds: {

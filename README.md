@@ -81,13 +81,13 @@ LINE Official Account Manager > トークルーム管理 > リッチメニュー
 | エリア | タイル | タイプ | 設定値 |
 |---|---|---|---|
 | A | 相談をはじめる | テキスト | `相談したいです` |
-| B | 無料相談を申し込む | リンク | `{siteUrl}/#contact`(最終CTAセクション) |
+| B | 無料相談を申し込む | リンク | `{bookingUrl}`(日程調整ページ直リンク) |
 | C | 料金プラン | リンク | `{siteUrl}/#plans` |
 | D | サービス内容 | リンク | `{siteUrl}/#concept` |
 | E | よくある質問 | リンク | `{siteUrl}/#faq` |
 | F | 講師紹介 | リンク | `{siteUrl}/#teacher` |
 
-`{siteUrl}` は `site.config.json` の値。
+`{siteUrl}` `{bookingUrl}` は `site.config.json` の値。
 `npm run line:setup -- --dry-run` を実行すると、この表が実URL入りで出力されます。
 
 #### 方法B: コマンドで登録
@@ -101,8 +101,12 @@ LINE_CHANNEL_ACCESS_TOKEN=... npm run line:setup
 
 #### 文言やリンク先を変えるとき
 
+リンク先の指定は2種類あります。
+- `"path": "/#plans"` … サイト内リンク(`siteUrl` + path)
+- `"config": "bookingUrl"` … `site.config.json` のキーを直接参照する外部リンク
+
 1. `line/richmenu.tiles.json` を編集(ここが唯一の定義)
-2. 画像を作り直す — **タップ位置と絵がずれるため必須**
+2. **ラベルを変えた場合のみ**画像を作り直す — タップ位置と絵がずれるため
    ```bash
    npm run dev            # 別ターミナルで起動しておく
    npm run line:image
@@ -124,5 +128,4 @@ LINE_CHANNEL_ACCESS_TOKEN=... npm run line:setup
 - [ ] 特定商取引法に基づく表記/プライバシーポリシーページの作成
 - [ ] GA4計測タグの設置
 - [ ] OGP画像(`public/og.png` 1200x630)の作成と`layout.tsx`への追加
-- [ ] リッチメニューBを日程調整ページ直リンクに変更(現在は `#contact` 経由。
-      変更する場合は画像の作り直しと再登録が必要)
+- [ ] 申込・予約数の計測(GA4のイベント設定)
