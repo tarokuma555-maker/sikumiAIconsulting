@@ -187,13 +187,6 @@ header{
 }
 .btn-primary:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--amber-deep);}
 .btn-primary:focus-visible{outline:3px solid var(--indigo-bright);outline-offset:3px;}
-/* 補足を別行に逃がす(1行に収めると狭い画面で末尾2文字だけが折り返す) */
-.btn-primary .btn-label{display:block;}
-.btn-primary .btn-sub{
-  display:block;margin-top:3px;
-  font-family:var(--font-mono);font-size:11px;font-weight:500;
-  letter-spacing:.08em;opacity:.7;
-}
 .hero-note{font-family:var(--font-mono);font-size:var(--fs-caption);color:var(--ink-soft);margin-top:var(--sp-2);animation:fadeUp .8s var(--ease-out) 1.2s both;}
 
 /* FIG.1 — animated blueprint flow */
@@ -492,39 +485,15 @@ header{
 .closing h2{color:var(--white);}
 .closing .eyebrow{color:var(--amber);}
 .closing .eyebrow::before{background:var(--amber);}
-.closing-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6);align-items:start;}
-@media (max-width:860px){.closing-grid{grid-template-columns:1fr;}}
 .closing-lead{font-size:15px;opacity:.9;margin-bottom:var(--sp-4);}
 .closing-points{list-style:none;font-size:14.5px;}
 .closing-points li{padding:10px 0 10px 28px;position:relative;border-bottom:1px dashed rgba(255,255,255,.18);}
 .closing-points li::before{content:"—";position:absolute;left:0;color:var(--amber);font-family:var(--font-mono);}
-.form-card{
-  background:var(--white);color:var(--ink);
-  padding:var(--sp-5) var(--sp-4);
-  border-top:4px solid var(--amber);
-}
-@media (max-width:640px){.form-card{padding:var(--sp-4) var(--sp-3);}}
-.form-field{margin-bottom:var(--sp-3);}
-.form-field label{display:block;font-size:13.5px;font-weight:700;margin-bottom:6px;}
-.form-field label .req{color:var(--amber-deep);font-size:10.5px;margin-left:8px;font-family:var(--font-mono);letter-spacing:.1em;}
-.form-field input,.form-field select,.form-field textarea{
-  width:100%;
-  border:1.5px solid var(--grid-strong);
-  border-radius:3px;
-  padding:13px 14px;
-  /* 16px minimum: anything smaller makes iOS Safari zoom on focus */
-  font-size:16px;
-  font-family:var(--font-body);
-  background:var(--paper);
-  color:var(--ink);
-  transition:border-color .2s;
-}
-.form-field input:focus,.form-field select:focus,.form-field textarea:focus{
-  outline:2px solid var(--indigo-bright);outline-offset:1px;border-color:var(--indigo-bright);
-}
-.form-note{font-size:var(--fs-caption);color:var(--ink-soft);margin-top:var(--sp-2);}
-.line-alt{margin-top:var(--sp-4);font-size:var(--fs-small);}
-.line-alt a{color:var(--amber);font-weight:700;text-underline-offset:4px;}
+/* 申込フォームを廃止したので、最後のセクションは1カラムのCTAブロック */
+.closing-inner{max-width:640px;}
+.closing-cta{margin-top:var(--sp-5);}
+.closing-cta .btn-primary{text-align:center;}
+.closing-note{margin-top:var(--sp-3);font-size:13.5px;opacity:.7;}
 
 /* ============================================================
    FOOTER
@@ -551,43 +520,15 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 /* ============================================================
    FORM STATES (Next.js版で追加)
    ============================================================ */
-.form-error{
-  color:#B4231F;
-  background:#FDF0EF;
-  border:1px solid #E8B4B2;
-  font-size:13.5px;
-  padding:10px 14px;
-  margin-bottom:var(--sp-2);
-}
-.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-.form-success-title{
-  font-family:var(--font-display);
-  font-size:var(--fs-h3);
-  font-weight:700;
-  margin-bottom:var(--sp-2);
-}
-.form-success-body{font-size:14.5px;margin-bottom:var(--sp-3);}
-.form-success-body strong{background:linear-gradient(transparent 68%, var(--amber-pale) 0);box-shadow:inset 0 -2px 0 var(--amber);}
 
 /* 送信完了後のLINE導線。他のCTAと役割が違うのでLINEの色を使う */
 .btn-line-cta{
   background:var(--line);color:var(--white);
   box-shadow:0 4px 0 var(--line-deep);
 }
-/* 全幅にするのは送信完了カードの中だけ。ヒーローでは横並びにするため */
-.form-card .btn-line-cta{display:block;width:100%;text-align:center;}
 .btn-line-cta:hover{background:var(--line-deep);color:var(--white);}
 .btn-line-cta:focus-visible{outline:3px solid var(--ink);outline-offset:3px;}
-.btn-line-cta .btn-sub{opacity:.85;}
 
-/* 文中に置く控えめなボタン(「このページに留まる」など) */
-.link-btn{
-  border:none;background:none;padding:0;margin-left:8px;
-  font:inherit;color:var(--indigo);
-  text-decoration:underline;text-underline-offset:3px;
-  cursor:pointer;
-}
-.link-btn:hover{color:var(--indigo-bright);}
 
 /* ============================================================
    FIG.1 — mobile flow (HTML fallback for the wide SVG)
@@ -671,11 +612,11 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
      途中行の最短/最長が 50%(320px)・41%(390px) まで落ちていた。
      そのため auto-phrase は見出しと2行程度の短文だけに限定する。 */
   h2,h3,.faq summary,.plan-name,.pain-close,.teacher .mission,
-  .fig-step-title,.plan-promise,.form-success-title,.pain-card strong{
+  .fig-step-title,.plan-promise,.pain-card strong{
     text-wrap:balance;
     word-break:auto-phrase;
   }
-  li,.fig-step-body,.plan-for,.plan-price-note,.form-field label{
+  li,.fig-step-body,.plan-for,.plan-price-note{
     text-wrap:pretty;
     word-break:auto-phrase;
   }
@@ -754,8 +695,6 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   /* キャプション類:12px前後は日本語だと読みづらいので底上げする */
   .eyebrow{font-size:12.5px;}
   .hero-note{font-size:12.5px;}
-  .form-note{font-size:13px;}
-  .form-field label{font-size:14.5px;}
   .plan-for{font-size:14px;}
   .plan-price-note{font-size:13px;}
   .plan-promise{font-size:15px;padding:var(--sp-2);}

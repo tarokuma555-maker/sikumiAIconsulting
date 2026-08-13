@@ -4,24 +4,22 @@
 
 ## 技術スタック
 - Next.js 14 (App Router) / TypeScript
-- Supabase(無料相談フォームの保存先)
 - Vercel(ホスティング)
 
 ## セットアップ
 
 ```bash
 npm install
-cp .env.local.example .env.local   # Supabase設定を記入(未設定でも動作します)
 npm run dev
 ```
 
-## Supabase設定
-1. Supabaseプロジェクトで `supabase/schema.sql` を SQL Editor から実行
-2. `.env.local` に以下を設定
-   - `NEXT_PUBLIC_SUPABASE_URL`: プロジェクトURL
-   - `SUPABASE_SERVICE_ROLE_KEY`: service_role キー(サーバー側のみで使用)
+## 申込導線
+問い合わせフォームは廃止し、CTAはすべて日程調整ページ(Googleカレンダー)と
+LINE公式アカウントに直結しています。URLは `site.config.json` で管理。
 
-※ 未設定の場合、フォームは受理されサーバーログに内容が出力されます(本番前に必ず設定してください)。
+`supabase/` と `.env.local.example` のSupabase設定は、フォーム時代の名残です。
+過去の申込データがテーブルに残っている場合に備えて残してあります。
+不要であればディレクトリごと削除して構いません。
 
 ## Vercelデプロイ
 1. GitHubリポジトリにpush
@@ -33,8 +31,7 @@ npm run dev
 ### 全体像
 | 機能 | 実体 | 必要な設定 |
 |---|---|---|
-| LPからLINEへの導線(3か所) | `lib/line.ts` | なし(設定済み) |
-| 申込送信後の自動遷移 | `components/ConsultForm.tsx` | なし |
+| LPの全CTA(無料相談ボタンの隣のLINEボタン) | `app/page.tsx` / `lib/line.ts` | なし(設定済み) |
 | リッチメニュー | `line/` | チャネルアクセストークン |
 | 友だち追加時の自動あいさつ・キーワード返信 | `app/api/line/webhook/` | チャネルシークレット + トークン |
 
@@ -84,7 +81,7 @@ LINE Official Account Manager > トークルーム管理 > リッチメニュー
 | エリア | タイル | タイプ | 設定値 |
 |---|---|---|---|
 | A | 相談をはじめる | テキスト | `相談したいです` |
-| B | 無料相談を申し込む | リンク | `{siteUrl}/#contact` |
+| B | 無料相談を申し込む | リンク | `{siteUrl}/#contact`(最終CTAセクション) |
 | C | 料金プラン | リンク | `{siteUrl}/#plans` |
 | D | サービス内容 | リンク | `{siteUrl}/#concept` |
 | E | よくある質問 | リンク | `{siteUrl}/#faq` |
@@ -125,7 +122,7 @@ LINE_CHANNEL_ACCESS_TOKEN=... npm run line:setup
 
 ## 今後のTODO
 - [ ] 特定商取引法に基づく表記/プライバシーポリシーページの作成
-- [ ] TimeRex等の日程調整ツール連携(フォーム送信後の導線)
 - [ ] GA4計測タグの設置
 - [ ] OGP画像(`public/og.png` 1200x630)の作成と`layout.tsx`への追加
-- [ ] 申込通知(メール or LINE Notify or Slack)
+- [ ] リッチメニューBを日程調整ページ直リンクに変更(現在は `#contact` 経由。
+      変更する場合は画像の作り直しと再登録が必要)

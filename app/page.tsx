@@ -2,13 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import Effects from "@/components/Effects";
-import ConsultForm from "@/components/ConsultForm";
 import { BOOKING_URL, LINE_URL } from "@/lib/line";
 
 /**
  * 「無料相談」系ボタンの遷移先。
  * 日程調整ページ(site.config.json の bookingUrl)が設定されていればそこへ、
- * 未設定なら従来どおりページ下部の申込フォームへ送る。
+ * 未設定ならページ下部のCTAセクション(#contact)へ送る。
  */
 const bookingLink = BOOKING_URL
   ? { href: BOOKING_URL, target: "_blank", rel: "noopener noreferrer" }
@@ -526,7 +525,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== CLOSING / FORM ========== */}
+      {/* ========== CLOSING ========== */}
       <section className="closing" id="contact">
         <div className="container">
           <span className="eyebrow">無料相談</span>
@@ -535,27 +534,28 @@ export default function Home() {
             <br />
             どこまで自動化できるか診断します。
           </h2>
-          <div className="closing-grid">
-            <div>
-              <p className="closing-lead">
-                30分のオンライン相談で、いまの業務の「仕組み化ポイント」をその場でお伝えします。相談だけで終わってもまったく問題ありません。
-              </p>
-              <ul className="closing-points">
-                <li>所要30分・オンライン(Google Meet)</li>
-                <li>その場で「自動化できる業務」を診断</li>
-                <li>無理な勧誘・しつこい営業は一切なし</li>
-              </ul>
+          <div className="closing-inner">
+            <p className="closing-lead">
+              30分のオンライン相談で、いまの業務の「仕組み化ポイント」をその場でお伝えします。相談だけで終わってもまったく問題ありません。
+            </p>
+            <ul className="closing-points">
+              <li>所要30分・オンライン(Google Meet)</li>
+              <li>その場で「自動化できる業務」を診断</li>
+              <li>無理な勧誘・しつこい営業は一切なし</li>
+            </ul>
+            <div className="cta-pair closing-cta">
+              <a className="btn-primary" {...bookingLink}>
+                日程を選んで予約する
+              </a>
               {LINE_URL && (
-                <p className="line-alt">
-                  フォームの入力が面倒な方は、
-                  <a href={LINE_URL} target="_blank" rel="noopener noreferrer">
-                    LINEから直接ご相談
-                  </a>
-                  いただくこともできます。
-                </p>
+                <a className="btn-primary btn-line-cta" {...lineLink}>
+                  LINEで相談する
+                </a>
               )}
             </div>
-            <ConsultForm />
+            <p className="closing-note">
+              カレンダーの空いている時間から選ぶだけで予約できます。まず質問だけしたい方はLINEへどうぞ。
+            </p>
           </div>
         </div>
       </section>

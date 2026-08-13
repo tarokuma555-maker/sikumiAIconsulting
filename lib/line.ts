@@ -28,6 +28,3 @@ export const LINE_URL = clean(process.env.NEXT_PUBLIC_LINE_URL || config.lineUrl
 export const BOOKING_URL = clean(
   process.env.NEXT_PUBLIC_BOOKING_URL || config.bookingUrl
 );
-
-/** 申し込み完了後にLINEへ自動遷移するまでの秒数。0にすると自動遷移しません。 */
-export const LINE_AUTO_REDIRECT_SEC = 5;
