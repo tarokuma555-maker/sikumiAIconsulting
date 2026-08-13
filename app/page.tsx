@@ -564,9 +564,8 @@ export default function Home() {
         <div className="container footer-inner">
           <div>© 2026 シクミAIコンサル / Shikumi.ai</div>
           <nav>
-            <a href="#">特定商取引法に基づく表記</a>
-            <a href="#">プライバシーポリシー</a>
-            <a href="#">運営者情報</a>
+            <a href="/tokushoho">特定商取引法に基づく表記</a>
+            <a href="/privacy">プライバシーポリシー</a>
           </nav>
         </div>
       </footer>

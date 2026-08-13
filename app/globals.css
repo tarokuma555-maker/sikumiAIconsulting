@@ -773,3 +773,81 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 @media (prefers-reduced-motion:reduce){
   .mobile-cta{transition:none;}
 }
+
+/* ============================================================
+   LEGAL — 特商法表記 / プライバシーポリシー
+   読み物なので装飾は最小限にし、LPの配色だけ引き継ぐ
+   ============================================================ */
+.legal{display:flex;flex-direction:column;min-height:100vh;background:var(--white);}
+.legal-header{
+  border-bottom:1px solid var(--grid-strong);
+  background:var(--paper);
+}
+.legal-header .container{display:flex;align-items:center;height:var(--header-h);}
+.legal-body{
+  flex:1;
+  max-width:760px;
+  padding-top:var(--sp-6);
+  padding-bottom:var(--sp-7);
+}
+.legal-footer{
+  border-top:1px solid var(--grid-strong);
+  padding:var(--sp-4) 0;
+  font-size:var(--fs-small);
+}
+.legal-footer a{color:var(--indigo);text-decoration:none;}
+.legal-footer a:hover{text-decoration:underline;}
+
+.legal h1{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(24px,4vw,34px);line-height:1.5;
+  margin-bottom:var(--sp-5);
+}
+.legal h2{
+  font-family:var(--font-display);
+  font-size:var(--fs-h3);
+  margin:var(--sp-5) 0 var(--sp-2);
+  padding-left:12px;
+  border-left:3px solid var(--indigo);
+}
+.legal p{margin-bottom:var(--sp-2);font-size:15.5px;}
+.legal ul{margin:0 0 var(--sp-3) 1.2em;font-size:15.5px;}
+.legal li{margin-bottom:10px;}
+.legal-lead{margin-bottom:var(--sp-4);}
+.legal-note{font-size:13.5px;color:var(--ink-soft);}
+
+/* 項目表。狭い画面では見出しと内容を縦に積む */
+.legal-dl{border-top:1px solid var(--grid);}
+.legal-dl > div{
+  display:grid;grid-template-columns:200px 1fr;
+  border-bottom:1px solid var(--grid);
+}
+.legal-dl dt{
+  padding:var(--sp-2) var(--sp-2) var(--sp-2) 0;
+  font-weight:700;font-size:14.5px;
+  background:var(--paper);
+  padding-left:var(--sp-2);
+}
+.legal-dl dd{padding:var(--sp-2);font-size:15px;}
+@media (max-width:640px){
+  .legal-dl > div{grid-template-columns:1fr;}
+  .legal-dl dt{padding:10px var(--sp-2);}
+  .legal-dl dd{padding:var(--sp-2) var(--sp-2) var(--sp-3);}
+}
+
+.legal-missing{
+  color:#B4231F;font-weight:700;
+  background:#FDF0EF;padding:2px 8px;border-radius:3px;
+}
+.legal-warning{
+  background:#FDF0EF;border:1px solid #E8B4B2;
+  color:#8A1C19;
+  padding:var(--sp-2) var(--sp-3);
+  margin-bottom:var(--sp-5);
+  font-size:14px;
+}
+.legal-warning code{font-family:var(--font-mono);font-size:13px;}
+.legal-updated{
+  margin-top:var(--sp-5);
+  font-family:var(--font-mono);font-size:12.5px;color:var(--ink-soft);
+}
