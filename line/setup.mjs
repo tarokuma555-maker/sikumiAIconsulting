@@ -2,9 +2,10 @@
 /**
  * リッチメニューをLINEに登録する。
  *
- *   SITE_URL=https://example.com \
- *   LINE_CHANNEL_ACCESS_TOKEN=xxxxx \
- *   npm run line:setup
+ *   LINE_CHANNEL_ACCESS_TOKEN=xxxxx npm run line:setup
+ *
+ * リンク先のサイトURLは site.config.json から読みます
+ * (環境変数 SITE_URL を渡した場合はそちらが優先)。
  *
  * やること:
  *   1. 既存のリッチメニューを削除(--keep で残せる)
@@ -30,15 +31,17 @@ const args = new Set(process.argv.slice(2));
 const DRY_RUN = args.has("--dry-run");
 const KEEP_OLD = args.has("--keep");
 
-const TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN?.trim();
-const SITE_URL = process.env.SITE_URL?.trim().replace(/\/+$/, "");
-
 function die(msg) {
   console.error(`\n✗ ${msg}\n`);
   process.exit(1);
 }
 
-if (!SITE_URL) die("SITE_URL が未設定です(例: SITE_URL=https://example.com)");
+const TOKEN = process.env.LINE_CHANNEL_ACCESS_TOKEN?.trim();
+// LP側(lib/line.ts)と同じ site.config.json を読むので、リンク先がずれない
+const siteConfig = JSON.parse(readFileSync(join(HERE, "..", "site.config.json"), "utf8"));
+const SITE_URL = (process.env.SITE_URL || siteConfig.siteUrl || "").trim().replace(/\/+$/, "");
+
+if (!SITE_URL) die("サイトURLが未設定です(site.config.json の siteUrl を設定してください)");
 if (!/^https:\/\//.test(SITE_URL)) die(`SITE_URL は https で始まる必要があります: ${SITE_URL}`);
 if (!TOKEN && !DRY_RUN) die("LINE_CHANNEL_ACCESS_TOKEN が未設定です");
 

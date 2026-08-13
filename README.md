@@ -33,10 +33,15 @@ npm run dev
 ### 全体像
 | 機能 | 実体 | 必要な設定 |
 |---|---|---|
-| LPからLINEへの導線(3か所) | `lib/line.ts` | なし(URL設定済み) |
+| LPからLINEへの導線(3か所) | `lib/line.ts` | なし(設定済み) |
 | 申込送信後の自動遷移 | `components/ConsultForm.tsx` | なし |
 | リッチメニュー | `line/` | チャネルアクセストークン |
 | 友だち追加時の自動あいさつ・キーワード返信 | `app/api/line/webhook/` | チャネルシークレット + トークン |
+
+### URLの変更
+サイトURLとLINEのURLは **`site.config.json`** にまとまっています。
+移転やアカウント変更のときはこのファイルだけ直せば、LP・LINEのメッセージ・
+リッチメニューのすべてに反映されます(リッチメニューは `line:setup` の再実行が必要)。
 
 ### 1. Webhook(自動あいさつ・キーワード返信)
 
@@ -44,8 +49,8 @@ npm run dev
 ```
 LINE_CHANNEL_SECRET=...        # LINE Developers > チャネル基本設定
 LINE_CHANNEL_ACCESS_TOKEN=...  # LINE Developers > Messaging API設定(長期トークン)
-NEXT_PUBLIC_SITE_URL=https://本番URL
 ```
+(サイトURLは `site.config.json` から読むので設定不要です)
 
 **LINE Developers 側の設定**
 1. Messaging API設定 > Webhook URL に `https://本番URL/api/line/webhook` を登録
@@ -63,9 +68,7 @@ NEXT_PUBLIC_SITE_URL=https://本番URL
 ```bash
 npm run dev                                    # 別ターミナルで起動
 npm run line:image                             # 原画→ line/richmenu.png
-SITE_URL=https://本番URL \
-LINE_CHANNEL_ACCESS_TOKEN=... \
-npm run line:setup                             # LINEに登録
+LINE_CHANNEL_ACCESS_TOKEN=... npm run line:setup   # LINEに登録
 ```
 
 - 文言・リンク先の定義: `line/richmenu.tiles.json`(ここが唯一の正)

@@ -1,0 +1,9 @@
+{
+  "_comment": "サイト全体で使うURL。ここを直せばLP・LINEのメッセージ・リッチメニューすべてに反映されます。Vercelの環境変数(NEXT_PUBLIC_SITE_URL / NEXT_PUBLIC_LINE_URL)を設定した場合はそちらが優先されます。",
+
+  "_siteUrl": "公開サイトのURL。末尾のスラッシュは不要です。",
+  "siteUrl": "https://sikumi-a-iconsulting.vercel.app",
+
+  "_lineUrl": "LINE公式アカウントの友だち追加URL。空にするとLPからLINE導線が消えます。",
+  "lineUrl": "https://lin.ee/Wh4KvwQ"
+}

@@ -1,31 +1,24 @@
-/**
- * LINE公式アカウントのURL。
- *
- * 設定方法は2通りあります(どちらか一方でOK)。
- *   1. Vercelの環境変数 NEXT_PUBLIC_LINE_URL に設定する(推奨。再デプロイで反映)
- *   2. 下の FALLBACK_LINE_URL に直接書く
- * 両方ある場合は環境変数が優先されます。
- *
- * 入れる値は「友だち追加」用のURLです。例:
- *   https://lin.ee/xxxxxxx        (LINE Official Account Manager の友だち追加URL)
- *   https://line.me/R/ti/p/@xxxxx (ベーシックIDを使う形式)
- *
- * 未設定の場合、LINEへの導線は表示されません(リンク切れを出さないため)。
- */
-const FALLBACK_LINE_URL = "https://lin.ee/Wh4KvwQ";
+import config from "@/site.config.json";
 
-export const LINE_URL = (
-  process.env.NEXT_PUBLIC_LINE_URL || FALLBACK_LINE_URL
-).trim();
+/**
+ * サイトとLINEのURL。
+ *
+ * 値は site.config.json にあります。変更したいときはそちらを直してください。
+ * Vercelの環境変数を設定した場合は、環境変数が優先されます。
+ *   NEXT_PUBLIC_SITE_URL … 公開サイトのURL
+ *   NEXT_PUBLIC_LINE_URL … LINE公式アカウントの友だち追加URL
+ * (環境変数はビルド時に埋め込まれるため、変更したら再デプロイが必要です)
+ */
+const clean = (v: string) => v.trim().replace(/\/+$/, "");
+
+/** 公開サイトのURL(末尾スラッシュなし)。LINEのメッセージからLPへリンクするのに使います。 */
+export const SITE_URL = clean(process.env.NEXT_PUBLIC_SITE_URL || config.siteUrl);
+
+/**
+ * LINE公式アカウントの友だち追加URL。
+ * 未設定の場合、LPのLINE導線は表示されません(リンク切れを出さないため)。
+ */
+export const LINE_URL = clean(process.env.NEXT_PUBLIC_LINE_URL || config.lineUrl);
 
 /** 申し込み完了後にLINEへ自動遷移するまでの秒数。0にすると自動遷移しません。 */
 export const LINE_AUTO_REDIRECT_SEC = 5;
-
-/**
- * 公開サイトのURL(末尾スラッシュなし)。
- * LINEのメッセージからLPへリンクするときに使います。
- * Vercelの環境変数 NEXT_PUBLIC_SITE_URL に本番URLを設定してください。
- */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "")
-  .trim()
-  .replace(/\/+$/, "");
