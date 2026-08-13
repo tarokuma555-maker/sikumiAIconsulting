@@ -13,6 +13,8 @@
   --amber:#E8A33D;
   --amber-deep:#B97A14;
   --amber-pale:#FFF6E6;
+  --line:#06C755;        /* LINEブランドカラー。導線と分かるようにここだけ使う */
+  --line-deep:#04A344;
 
   --fs-caption:12px;
   --fs-small:14px;
@@ -542,7 +544,27 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   font-weight:700;
   margin-bottom:var(--sp-2);
 }
-.form-success-body{font-size:14.5px;}
+.form-success-body{font-size:14.5px;margin-bottom:var(--sp-3);}
+.form-success-body strong{background:linear-gradient(transparent 68%, var(--amber-pale) 0);box-shadow:inset 0 -2px 0 var(--amber);}
+
+/* 送信完了後のLINE導線。他のCTAと役割が違うのでLINEの色を使う */
+.btn-line-cta{
+  display:block;width:100%;text-align:center;
+  background:var(--line);color:var(--white);
+  box-shadow:0 4px 0 var(--line-deep);
+}
+.btn-line-cta:hover{background:var(--line-deep);color:var(--white);}
+.btn-line-cta:focus-visible{outline:3px solid var(--ink);outline-offset:3px;}
+.btn-line-cta .btn-sub{opacity:.85;}
+
+/* 文中に置く控えめなボタン(「このページに留まる」など) */
+.link-btn{
+  border:none;background:none;padding:0;margin-left:8px;
+  font:inherit;color:var(--indigo);
+  text-decoration:underline;text-underline-offset:3px;
+  cursor:pointer;
+}
+.link-btn:hover{color:var(--indigo-bright);}
 
 /* ============================================================
    FIG.1 — mobile flow (HTML fallback for the wide SVG)

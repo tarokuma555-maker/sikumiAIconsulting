@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { LINE_AUTO_REDIRECT_SEC, LINE_URL } from "@/lib/line";
 
 type Status = "idle" | "sending" | "success" | "error";
 
 export default function ConsultForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [secLeft, setSecLeft] = useState(LINE_AUTO_REDIRECT_SEC);
+  const [autoRedirect, setAutoRedirect] = useState(true);
+  const doneRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -52,13 +56,70 @@ export default function ConsultForm() {
     }
   };
 
+  // 入力欄が完了メッセージに置き換わると高さが縮み、送信ボタンを押した位置の
+  // まま残るとカードが画面外になることがあるので、確実に見える位置へ寄せる
+  useEffect(() => {
+    if (status !== "success") return;
+    doneRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+  }, [status]);
+
+  // 送信完了後、LINEが設定されていれば自動で友だち追加ページへ送る。
+  // 「このページに留まる」でいつでも止められる。
+  const countingDown =
+    status === "success" &&
+    !!LINE_URL &&
+    autoRedirect &&
+    LINE_AUTO_REDIRECT_SEC > 0;
+
+  useEffect(() => {
+    if (!countingDown) return;
+    if (secLeft <= 0) {
+      window.location.href = LINE_URL;
+      return;
+    }
+    const timer = setTimeout(() => setSecLeft((s) => s - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [countingDown, secLeft]);
+
   if (status === "success") {
     return (
-      <div className="form-card">
+      <div className="form-card" ref={doneRef} role="status">
         <p className="form-success-title">送信を受け付けました</p>
-        <p className="form-success-body">
-          ありがとうございます。日程調整のご案内を1営業日以内にメールでお送りします。届かない場合は迷惑メールフォルダをご確認ください。
-        </p>
+        {LINE_URL ? (
+          <>
+            <p className="form-success-body">
+              ありがとうございます。続けて
+              <strong>LINEで友だち追加</strong>
+              していただくと、日程調整も気になっていることの相談も、そのままトークで進められます。
+            </p>
+            <a className="btn-primary btn-line-cta" href={LINE_URL}>
+              <span className="btn-label">LINEで今すぐ相談する</span>
+              <span className="btn-sub">友だち追加してトークを開く</span>
+            </a>
+            {/* カードは role="status" で1回だけ読み上げる。残り秒数まで
+                読み上げると毎秒割り込むので、この行は live から外す */}
+            <p className="form-note" aria-live="off">
+              {countingDown ? (
+                <>
+                  {secLeft}秒後にLINEへ移動します。
+                  <button
+                    type="button"
+                    className="link-btn"
+                    onClick={() => setAutoRedirect(false)}
+                  >
+                    このページに留まる
+                  </button>
+                </>
+              ) : (
+                "LINEをお使いでない場合も、日程調整のご案内を1営業日以内にメールでお送りします。"
+              )}
+            </p>
+          </>
+        ) : (
+          <p className="form-success-body">
+            ありがとうございます。日程調整のご案内を1営業日以内にメールでお送りします。届かない場合は迷惑メールフォルダをご確認ください。
+          </p>
+        )}
       </div>
     );
   }

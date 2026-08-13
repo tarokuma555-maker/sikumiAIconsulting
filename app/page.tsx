@@ -1,5 +1,6 @@
 import Effects from "@/components/Effects";
 import ConsultForm from "@/components/ConsultForm";
+import { LINE_URL } from "@/lib/line";
 
 export default function Home() {
   return (
@@ -40,9 +41,16 @@ export default function Home() {
                   <a className="btn-primary" href="#contact">
                     無料相談を申し込む
                   </a>
-                  <a className="btn-line" href="#contact">
-                    まずはLINEで情報を受け取る
-                  </a>
+                  {LINE_URL && (
+                    <a
+                      className="btn-line"
+                      href={LINE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      まずはLINEで相談する
+                    </a>
+                  )}
                 </div>
                 <p className="hero-note">{"// 相談は30分・オンライン・営業なし"}</p>
               </div>
@@ -481,10 +489,15 @@ export default function Home() {
                 <li>その場で「自動化できる業務」を診断</li>
                 <li>無理な勧誘・しつこい営業は一切なし</li>
               </ul>
-              <p className="line-alt">
-                今すぐの相談はちょっと…という方は、
-                <a href="#">LINEでAI活用のヒントを受け取る</a> こともできます。
-              </p>
+              {LINE_URL && (
+                <p className="line-alt">
+                  フォームの入力が面倒な方は、
+                  <a href={LINE_URL} target="_blank" rel="noopener noreferrer">
+                    LINEから直接ご相談
+                  </a>
+                  いただくこともできます。
+                </p>
+              )}
             </div>
             <ConsultForm />
           </div>
