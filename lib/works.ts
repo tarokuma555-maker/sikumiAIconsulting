@@ -28,4 +28,19 @@ export const WORKS: Work[] = [
     desc: "アニメの聖地巡礼をサポートするアプリ",
     url: "https://www.anime-trips.com/",
   },
+  {
+    name: "適職みつかる.com",
+    desc: "診断結果から、自分に合った求人や転職サービスを提案するアプリ",
+    url: "https://tekishoku-mitsukaru.com/",
+  },
+  {
+    name: "今の会社、続けるといくら損？",
+    desc: "いまの会社に居続けた場合の生涯収入の差を試算するアプリ",
+    url: "https://life-plan-app.vercel.app/",
+  },
+  {
+    name: "MoguMogu",
+    desc: "離乳食のレシピを月齢や食材から検索できるアプリ",
+    url: "https://mogumogu-omega.vercel.app/",
+  },
 ];

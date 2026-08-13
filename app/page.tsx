@@ -14,6 +14,9 @@ const bookingLink = BOOKING_URL
   ? { href: BOOKING_URL, target: "_blank", rel: "noopener noreferrer" }
   : { href: "#contact" };
 
+/** XのURLからハンドル名(@xxx)を取り出す。リンクが1文字だと押しづらいため */
+const X_HANDLE = SNS.x ? `@${SNS.x.replace(/\/+$/, "").split("/").pop()}` : "";
+
 /** LINE公式アカウントへの遷移先 */
 const lineLink = {
   href: LINE_URL,
@@ -474,7 +477,7 @@ export default function Home() {
                 <span className="sns-label">発信</span>
                 {SNS.x && (
                   <a href={SNS.x} target="_blank" rel="noopener noreferrer">
-                    X
+                    X {X_HANDLE}
                   </a>
                 )}
                 {SNS.note && (

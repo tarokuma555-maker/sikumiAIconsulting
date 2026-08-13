@@ -11,6 +11,6 @@
   "bookingUrl": "https://calendar.app.google/hqGCw5hd9FQvqKWv5",
 
   "_sns": "講師紹介セクションに出す発信リンク。空にするとその行ごと非表示になります(リンク切れを出さないため)。",
-  "snsX": "",
+  "snsX": "https://x.com/kumataroAI565",
   "snsNote": ""
 }
