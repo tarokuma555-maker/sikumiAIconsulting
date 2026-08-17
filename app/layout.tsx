@@ -53,6 +53,16 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${mincho.variable} ${gothic.variable} ${mono.variable}`}>
+        {/* オープニング演出は同じ訪問中1回だけ。描画前にクラスを付けたいので
+            インラインで先に実行する(遅らせると一瞬だけ幕が見えてしまう) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              // アンカー付き(リッチメニューの /#plans など)で来た人は、
+              // 目的のセクションが幕で隠れてしまうので演出を出さない
+              "try{if(location.hash||sessionStorage.getItem('intro'))document.documentElement.classList.add('intro-skip')}catch(e){if(location.hash)document.documentElement.classList.add('intro-skip')}",
+          }}
+        />
         {children}
       </body>
     </html>

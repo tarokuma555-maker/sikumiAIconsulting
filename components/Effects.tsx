@@ -54,10 +54,24 @@ export default function Effects() {
         .forEach((el) => io3!.observe(el));
     }
 
+    // オープニング演出: 同じ訪問中は2回目以降スキップする。
+    // 演出中に画面を触ったら即座に飛ばす(CSS側でも自動的に消えるので保険)。
+    const intro = document.getElementById("intro");
+    const skipIntro = () => document.documentElement.classList.add("intro-skip");
+    if (intro) {
+      try {
+        sessionStorage.setItem("intro", "1");
+      } catch {
+        /* プライベートブラウズ等で書けない場合は毎回再生されるだけ */
+      }
+      intro.addEventListener("click", skipIntro);
+    }
+
     return () => {
       io.disconnect();
       io2?.disconnect();
       io3?.disconnect();
+      intro?.removeEventListener("click", skipIntro);
     };
   }, []);
 

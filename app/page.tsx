@@ -38,6 +38,20 @@ export default function Home() {
     <>
       <Effects />
 
+      {/* オープニング演出。設計図の枠が引かれてから幕が上がる。
+          CSSだけで消えるので、JSが動かなくても閉じ込められることはない。
+          2回目以降の表示・prefers-reduced-motion では表示しない(Effects.tsx / globals.css) */}
+      <div className="intro" id="intro" aria-hidden="true">
+        <svg className="intro-frame" viewBox="0 0 400 260" fill="none">
+          <rect className="intro-rect" x="12" y="12" width="376" height="236" />
+          <path className="intro-mark" d="M200 118v16M192 126h16" />
+        </svg>
+        <div className="intro-logo">
+          シクミAIコンサル
+          <small>SHIKUMI AI CONSULTING</small>
+        </div>
+      </div>
+
       <header>
         <div className="container header-inner">
           <a className="logo" href="#top">
