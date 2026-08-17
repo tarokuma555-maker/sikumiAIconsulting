@@ -42,14 +42,24 @@ export default function Home() {
           CSSだけで消えるので、JSが動かなくても閉じ込められることはない。
           2回目以降の表示・prefers-reduced-motion では表示しない(Effects.tsx / globals.css) */}
       <div className="intro" id="intro" aria-hidden="true">
-        <svg className="intro-frame" viewBox="0 0 400 260" fill="none">
-          <rect className="intro-rect" x="12" y="12" width="376" height="236" />
-          <path className="intro-mark" d="M200 118v16M192 126h16" />
+        <svg className="intro-frame" viewBox="0 0 440 300" fill="none">
+          {/* 枠 → 四隅の基準十字 → 寸法線 の順に、製図するように引かれる */}
+          <rect className="intro-rect" x="40" y="60" width="360" height="180" />
+          <g className="intro-crosses">
+            <path d="M33 60h14M40 53v14" />
+            <path d="M393 60h14M400 53v14" />
+            <path d="M33 240h14M40 233v14" />
+            <path d="M393 240h14M400 233v14" />
+          </g>
+          <path className="intro-dim" d="M40 272h360" />
+          <path className="intro-tick" d="M40 265v14M400 265v14" />
         </svg>
         <div className="intro-logo">
           シクミAIコンサル
           <small>SHIKUMI AI CONSULTING</small>
         </div>
+        <p className="intro-tagline">非エンジニアのための、業務設計。</p>
+        <p className="intro-hint">タップでスキップ</p>
       </div>
 
       <header>
