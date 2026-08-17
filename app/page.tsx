@@ -33,6 +33,19 @@ const TEACHER_PHOTO = ["teacher.png", "teacher.jpg", "teacher.jpeg", "teacher.we
   (file) => fs.existsSync(path.join(process.cwd(), "public", file))
 );
 
+/**
+ * 操作の実演動画。public/demo.mp4(または webm)を置くと、
+ * FIG.2 の作図パネルの代わりに動画が再生される。
+ * 置いていない間は作図パネルのままなので、動画がなくても成立する。
+ */
+const DEMO_VIDEO = ["demo.mp4", "demo.webm"].find((file) =>
+  fs.existsSync(path.join(process.cwd(), "public", file))
+);
+/** 動画のサムネイル(再生前に出る静止画)。あれば使う */
+const DEMO_POSTER = ["demo.jpg", "demo.png", "demo.webp"].find((file) =>
+  fs.existsSync(path.join(process.cwd(), "public", file))
+);
+
 export default function Home() {
   return (
     <>
@@ -299,6 +312,120 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ========== DEMO(FIG.2) ==========
+          「Claude Codeで自動化」と言われても絵が浮かばない人向けに、
+          実際のやりとりの形を作図で見せるセクション。
+          public/demo.mp4 を置けば、作図の代わりに実演動画が入る。 */}
+      <section className="demo-sec" id="demo">
+        <div className="container">
+          <span className="eyebrow">実際の操作イメージ</span>
+          <h2 className="hang-q">
+            <span className="seg">やることは、</span>
+            <span className="seg">日本語で頼むだけ。</span>
+          </h2>
+          <p className="demo-lead">
+            「黒い画面でプログラムを書く」わけではありません。
+            <strong>やってほしいことを日本語で書くと、AIが手を動かします。</strong>
+            たとえば週次報告書を仕組み化すると、こうなります。
+          </p>
+
+          <div className="fig demo-fig" id="fig2">
+            <div className="fig-label">FIG.2 — 週次報告書を仕組み化した場合</div>
+
+            {DEMO_VIDEO ? (
+              <video
+                className="demo-video"
+                controls
+                playsInline
+                preload="metadata"
+                poster={DEMO_POSTER ? `/${DEMO_POSTER}` : undefined}
+              >
+                <source
+                  src={`/${DEMO_VIDEO}`}
+                  type={DEMO_VIDEO.endsWith(".webm") ? "video/webm" : "video/mp4"}
+                />
+                お使いのブラウザは動画の再生に対応していません。
+              </video>
+            ) : (
+              <div className="demo">
+                {/* 01 — 人が書く指示 */}
+                <div className="demo-pane">
+                  <span className="demo-step">01</span>
+                  <span className="demo-role">あなたが書く</span>
+                  <div className="demo-screen is-prompt">
+                    <p className="demo-typed">
+                      <span className="dl">議事録フォルダの先週分を読んで、</span>
+                      <span className="dl">週報のドラフトを作って。</span>
+                      <span className="dl">書式は、先月の週報に合わせて。</span>
+                    </p>
+                    <span className="demo-caret" aria-hidden="true" />
+                  </div>
+                  <span className="demo-cap">打つのは、この3行だけ</span>
+                </div>
+
+                <div className="demo-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none">
+                    <path d="M4 18h24M22 10l8 8-8 8" stroke="currentColor" strokeWidth="1.5" />
+                  </svg>
+                </div>
+
+                {/* 02 — AIが動く */}
+                <div className="demo-pane">
+                  <span className="demo-step">02</span>
+                  <span className="demo-role">AIが手を動かす</span>
+                  <div className="demo-screen is-run">
+                    <span className="dr">
+                      <i aria-hidden="true" />
+                      議事録を12件読み込み
+                    </span>
+                    <span className="dr">
+                      <i aria-hidden="true" />
+                      先月の週報から書式を抽出
+                    </span>
+                    <span className="dr">
+                      <i aria-hidden="true" />
+                      ドラフトを書き出し
+                    </span>
+                    <span className="demo-file">週報_08-17.md</span>
+                  </div>
+                  <span className="demo-cap">待っているだけ・約1分</span>
+                </div>
+
+                <div className="demo-arrow is-result" aria-hidden="true">
+                  <svg viewBox="0 0 36 36" fill="none">
+                    <path d="M4 18h24M22 10l8 8-8 8" stroke="currentColor" strokeWidth="1.5" />
+                  </svg>
+                </div>
+
+                {/* 03 — 人は判断だけ */}
+                <div className="demo-pane is-result">
+                  <span className="demo-step">03</span>
+                  <span className="demo-role">あなたは確認して出す</span>
+                  <div className="demo-screen is-doc" aria-hidden="true">
+                    <span className="doc-title">週報_08-17.md</span>
+                    <span className="doc-h">今週のトピック</span>
+                    <span className="doc-b" />
+                    <span className="doc-b is-short" />
+                    <span className="doc-h">進捗と課題</span>
+                    <span className="doc-b" />
+                    <span className="doc-b is-short" />
+                    <span className="doc-h">来週の予定</span>
+                    <span className="doc-b" />
+                  </div>
+                  <span className="demo-cap">事実を確認して、ひとこと添えるだけ</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <p className="demo-note">
+            {DEMO_VIDEO
+              ? "* 題材は一例です。実際に何を仕組み化するかは、あなたの業務に合わせて無料相談で決めます。"
+              : "* 画面は操作イメージです。実際に何を仕組み化するかは、あなたの業務に合わせて無料相談で決めます。"}
+          </p>
+        </div>
+      </section>
+
       {/* ========== BEFORE/AFTER ========== */}
       <section className="cases" id="cases">
         <div className="container">
@@ -315,6 +442,14 @@ export default function Home() {
                   15<small>分</small>
                 </span>
               </div>
+              {/* 帯の長さがそのまま所要時間の比。180分 → 15分 = 8% */}
+              <div
+                className="ba-bar"
+                style={{ "--after": "8%" } as React.CSSProperties}
+                aria-hidden="true"
+              >
+                <i />
+              </div>
               <p>
                 各所からのメモやデータをClaude
                 Codeが集約・整形。人は最終チェックと判断だけに集中。
@@ -330,6 +465,14 @@ export default function Home() {
                   5<small>分</small>
                 </span>
               </div>
+              {/* 40分 → 5分 = 13% */}
+              <div
+                className="ba-bar"
+                style={{ "--after": "13%" } as React.CSSProperties}
+                aria-hidden="true"
+              >
+                <i />
+              </div>
               <p>
                 音声メモや箇条書きを投げるだけで、フォーマットに沿った日報と次回アクションが自動生成。
               </p>
@@ -344,13 +487,22 @@ export default function Home() {
                   30<small>分</small>
                 </span>
               </div>
+              {/* 480分 → 30分 = 6% */}
+              <div
+                className="ba-bar"
+                style={{ "--after": "6%" } as React.CSSProperties}
+                aria-hidden="true"
+              >
+                <i />
+              </div>
               <p>
                 複数ファイルからの転記・集計・レポート化をワンコマンドで実行する仕組みを構築。
               </p>
             </div>
           </div>
           <p className="case-note">
-            * 削減時間は業務内容により異なります。上記は想定モデルケースです。
+            * 帯の長さは作業時間の比です。斜線の部分がなくなる時間にあたります。
+            <br />* 削減時間は業務内容により異なります。上記は想定モデルケースです。
           </p>
         </div>
       </section>
@@ -544,10 +696,25 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="work-tag">{work.tag ?? "Claude Codeで開発"}</span>
-                  <span className="work-name">{work.name}</span>
-                  <span className="work-desc">{work.desc}</span>
-                  <span className="work-link">サイトを見る →</span>
+                  {/* public/works/<slug>.png を置くと画面写真が入る。
+                      置いていないカードは、いままでどおり文字だけで成立する */}
+                  {work.shot && (
+                    <span className="work-shot">
+                      <Image
+                        src={work.shot}
+                        alt={`${work.name}の画面`}
+                        width={640}
+                        height={400}
+                        sizes="(max-width:720px) 100vw, (max-width:1000px) 50vw, 33vw"
+                      />
+                    </span>
+                  )}
+                  <span className="work-body">
+                    <span className="work-tag">{work.tag ?? "Claude Codeで開発"}</span>
+                    <span className="work-name">{work.name}</span>
+                    <span className="work-desc">{work.desc}</span>
+                    <span className="work-link">サイトを見る →</span>
+                  </span>
                 </a>
               ))}
             </div>

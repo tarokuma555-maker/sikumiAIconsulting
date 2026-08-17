@@ -264,6 +264,144 @@ header{
 @media (max-width:760px){.concept-joint svg{transform:rotate(90deg);}}
 
 /* ============================================================
+   DEMO(FIG.2)— 操作イメージ
+
+   「Claude Codeで自動化」が絵として浮かばない人向けのセクション。
+   指示 → 実行 → 成果物 の3枚を、画面に入ったら順に組み上げて見せる。
+   演出は .fig.visible が付いてから始まる(Effects.tsx)。
+   ============================================================ */
+.demo-sec{background:var(--white);border-top:1px solid var(--grid-strong);border-bottom:1px solid var(--grid-strong);}
+.demo-lead{max-width:40em;font-size:var(--fs-body);}
+.demo-fig{margin-top:var(--sp-5);}
+.demo-note{
+  font-family:var(--font-mono);font-size:var(--fs-caption);letter-spacing:.04em;
+  color:var(--ink-soft);margin-top:var(--sp-3);
+}
+.demo-video{
+  width:100%;height:auto;display:block;
+  border:1px solid var(--grid-strong);background:var(--ink);
+}
+
+.demo{display:grid;grid-template-columns:1fr 52px 1fr 52px 1fr;align-items:stretch;}
+.demo-pane{
+  display:flex;flex-direction:column;position:relative;
+  background:var(--paper);
+  border:1px solid var(--grid-strong);
+  padding:var(--sp-4) var(--sp-3) var(--sp-3);
+}
+.demo-pane.is-result{border-color:var(--amber);background:var(--amber-pale);}
+.demo-step{
+  position:absolute;top:-11px;left:20px;
+  background:var(--indigo);color:var(--white);
+  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;
+  padding:3px 10px;
+}
+.demo-pane.is-result .demo-step{background:var(--amber);color:var(--ink);}
+.demo-role{
+  font-family:var(--font-display);font-weight:700;font-size:16px;line-height:1.5;
+  margin-bottom:var(--sp-2);
+}
+.demo-cap{
+  display:block;margin-top:10px;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-soft);
+}
+.demo-pane.is-result .demo-cap{color:var(--amber-deep);}
+
+/* 3枚の中身が入る「画面」。等幅にして端末っぽさを出す */
+.demo-screen{
+  flex:1;overflow:hidden;
+  background:var(--white);
+  border:1px solid var(--grid-strong);
+  border-left:3px solid var(--indigo);
+  padding:13px 14px 15px;
+  font-family:var(--font-mono);font-size:12.5px;line-height:1.95;color:var(--ink);
+}
+.demo-screen.is-doc{border-left-color:var(--amber);}
+
+/* 01 — 人が打ち込む指示。1行ずつ左から現れて、最後にカーソルが点滅する */
+.demo-typed{margin:0;}
+.demo-typed .dl{display:block;padding-left:1.35em;}
+.demo-typed .dl:first-child{text-indent:-1.35em;}
+.demo-typed .dl:first-child::before{content:"> ";color:var(--indigo);font-weight:600;}
+.demo-caret{display:block;width:9px;height:14px;background:var(--indigo);margin-top:5px;}
+
+/* 02 — AIの実行ログ。丸チェックが1行ずつ増える */
+.demo-screen.is-run .dr{display:flex;align-items:flex-start;gap:9px;}
+.dr i{
+  flex:none;width:15px;height:15px;margin-top:5px;
+  border:1.5px solid var(--indigo);border-radius:50%;position:relative;
+}
+.dr i::after{
+  content:"";position:absolute;left:4.4px;top:2.2px;width:3.4px;height:6.6px;
+  border:solid var(--indigo);border-width:0 1.5px 1.5px 0;transform:rotate(42deg);
+}
+.demo-file{
+  display:inline-block;margin-top:9px;padding:2px 9px;font-size:11.5px;
+  background:var(--amber-pale);border:1px solid var(--amber);color:var(--amber-deep);
+}
+.demo-file::before{content:"→ ";}
+
+/* 03 — 出来上がった書類。本文は「文書の形」だけを示す線にする
+   (読ませる文章ではないので、実在の文面を捏造せずに済む) */
+.demo-screen.is-doc{display:flex;flex-direction:column;}
+.doc-title{
+  font-size:11px;letter-spacing:.06em;color:var(--amber-deep);
+  border-bottom:1px solid var(--grid);padding-bottom:6px;margin-bottom:9px;
+}
+.doc-h{
+  font-family:var(--font-body);font-weight:700;font-size:12.5px;line-height:1.6;
+  color:var(--ink);margin-top:10px;
+}
+.doc-h:first-of-type{margin-top:0;}
+.doc-b{display:block;height:5px;border-radius:3px;background:var(--grid);margin-top:7px;}
+.doc-b.is-short{width:58%;}
+
+.demo-arrow{display:flex;align-items:center;justify-content:center;color:var(--indigo);}
+.demo-arrow.is-result{color:var(--amber);}
+/* .fig svg{width:100%} に持っていかれないよう、この矢印だけ強く指定する */
+.demo .demo-arrow svg{width:32px;height:32px;}
+
+/* --- 演出。JSが動く環境でだけ隠しておき、画面に入ったら順に出す。
+       js クラスが無い(=JS無効)ときは最初から全部見えている --- */
+.js .demo-typed .dl{clip-path:inset(0 100% 0 0);}
+.js .demo-caret{opacity:0;}
+.js .demo-screen.is-run .dr{opacity:0;}
+.js .dr i{transform:scale(.3);}
+.js .demo-file{opacity:0;}
+.js .demo-screen.is-doc > *{opacity:0;}
+
+.fig.visible .demo-typed .dl{animation:demoType .8s steps(22,end) both;}
+.fig.visible .demo-typed .dl:nth-child(1){animation-delay:.35s;}
+.fig.visible .demo-typed .dl:nth-child(2){animation-delay:1.2s;}
+.fig.visible .demo-typed .dl:nth-child(3){animation-delay:2.05s;}
+.fig.visible .demo-caret{animation:demoCaret 1s step-end 2.9s infinite;}
+@keyframes demoType{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 -3px 0 0);}}
+@keyframes demoCaret{0%,50%{opacity:1;}50.01%,100%{opacity:0;}}
+
+.fig.visible .demo-screen.is-run .dr{animation:demoRow .45s var(--ease-out) both;}
+.fig.visible .demo-screen.is-run .dr:nth-child(1){animation-delay:3.3s;}
+.fig.visible .demo-screen.is-run .dr:nth-child(2){animation-delay:3.9s;}
+.fig.visible .demo-screen.is-run .dr:nth-child(3){animation-delay:4.5s;}
+.fig.visible .dr i{animation:demoCheck .35s var(--ease-out) both;}
+.fig.visible .dr:nth-child(1) i{animation-delay:3.6s;}
+.fig.visible .dr:nth-child(2) i{animation-delay:4.2s;}
+.fig.visible .dr:nth-child(3) i{animation-delay:4.8s;}
+.fig.visible .demo-file{animation:demoRow .45s var(--ease-out) 5.2s both;}
+@keyframes demoRow{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+@keyframes demoCheck{from{transform:scale(.3);}60%{transform:scale(1.15);}to{transform:scale(1);}}
+
+.fig.visible .demo-screen.is-doc > *{animation:demoRow .4s var(--ease-out) both;}
+.fig.visible .is-doc > *:nth-child(1){animation-delay:5.6s;}
+.fig.visible .is-doc > *:nth-child(2){animation-delay:5.8s;}
+.fig.visible .is-doc > *:nth-child(3){animation-delay:5.95s;}
+.fig.visible .is-doc > *:nth-child(4){animation-delay:6.1s;}
+.fig.visible .is-doc > *:nth-child(5){animation-delay:6.3s;}
+.fig.visible .is-doc > *:nth-child(6){animation-delay:6.45s;}
+.fig.visible .is-doc > *:nth-child(7){animation-delay:6.6s;}
+.fig.visible .is-doc > *:nth-child(8){animation-delay:6.8s;}
+.fig.visible .is-doc > *:nth-child(9){animation-delay:6.95s;}
+
+/* ============================================================
    CASES — dark readout
    ============================================================ */
 .cases{background:var(--ink);color:var(--paper);position:relative;}
@@ -294,6 +432,22 @@ header{
 .ba .arrow{color:var(--amber);font-family:var(--font-mono);}
 .ba .after{font-family:var(--font-mono);font-weight:600;font-size:clamp(30px,3.4vw,40px);color:var(--amber);line-height:1;}
 .ba .after small{font-size:14px;font-family:var(--font-body);font-weight:500;margin-left:2px;}
+/* 帯の長さ = 所要時間の比。画面に入ると「元の長さ」から実際の比まで縮む。
+   --after は page.tsx 側でカードごとに指定している */
+.ba-bar{
+  margin-top:15px;height:10px;overflow:hidden;
+  border:1px solid rgba(232,163,61,.4);
+  /* 斜線の部分が「なくなった時間」。実線(=いま掛かる時間)との対比で読ませる */
+  background-image:repeating-linear-gradient(
+    -45deg,
+    rgba(232,163,61,.22) 0 2px,
+    transparent 2px 6px
+  );
+}
+.ba-bar i{display:block;height:100%;width:var(--after);background:var(--amber);}
+.js .ba-bar i{width:100%;}
+.case-card.visible .ba-bar i{animation:baShrink 1.3s var(--ease-out) .3s both;}
+@keyframes baShrink{from{width:100%;}to{width:var(--after);}}
 .case-card p{font-size:13.5px;margin-top:var(--sp-2);opacity:.8;line-height:1.85;}
 .case-note{font-size:var(--fs-caption);opacity:.55;margin-top:var(--sp-4);font-family:var(--font-mono);letter-spacing:.05em;}
 
@@ -526,7 +680,26 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   html{scroll-behavior:auto;}
   .reveal,.drawing-frame,.hero .sub,.cta-group,.hero-note,.tategaki{opacity:1;transform:none;transition:none;animation:none;}
   .reveal-line{clip-path:none;animation:none;}
-  .fig .wire{stroke-dashoffset:0;animation:none;}
+
+  /* 演出を止める側は、動かす側(.fig.visible … など)と同じかそれ以上の
+     詳細度で書かないと打ち消せない。以下は打ち消す相手と対で並べている */
+  .fig .wire,.fig.visible .wire{stroke-dashoffset:0;animation:none;}
+
+  /* 操作イメージは「順に組み上がる」のが演出なので、完成形をそのまま出す */
+  .js .demo-typed .dl{clip-path:none;}
+  .js .demo-caret{opacity:1;}
+  .js .demo-screen.is-run .dr,.js .demo-file,.js .demo-screen.is-doc > *{opacity:1;}
+  .js .dr i{transform:none;}
+  .fig.visible .demo-typed .dl,
+  .fig.visible .demo-caret,
+  .fig.visible .demo-screen.is-run .dr,
+  .fig.visible .dr i,
+  .fig.visible .demo-file,
+  .fig.visible .demo-screen.is-doc > *{animation:none;}
+
+  /* 帯は縮むアニメを省いて、最初から比率どおりの長さで置く */
+  .js .ba-bar i{width:var(--after);}
+  .case-card.visible .ba-bar i{animation:none;}
 }
 
 /* ============================================================
@@ -587,6 +760,18 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   .fig .fig-svg{display:none;}
   .fig-flow{display:block;}
   .fig-label{font-size:12.5px;margin-bottom:var(--sp-2);}
+
+  /* 操作イメージも横3枚だと1枚あたりが狭すぎるので、縦積みにして矢印を回す */
+  .demo{grid-template-columns:1fr;}
+  .demo-arrow{padding:6px 0;}
+  .demo .demo-arrow svg{transform:rotate(90deg);}
+}
+
+/* --- 小さい端末: 指示の1行(全角16文字)が折り返さない字送りまで詰める --- */
+@media (max-width:400px){
+  .demo-pane{padding:var(--sp-4) 14px 14px;}
+  .demo-screen{font-size:11px;padding:12px 11px 13px;}
+  .demo-role{font-size:15px;}
 }
 
 /* --- below 760px: mobile CTA bar + tighter vertical rhythm --- */
@@ -628,7 +813,8 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
     text-wrap:balance;
     word-break:auto-phrase;
   }
-  li,.fig-step-body,.plan-for,.plan-price-note{
+  li,.fig-step-body,.plan-for,.plan-price-note,
+  .demo-cap,.demo-note,.case-note,.demo-typed .dl{
     text-wrap:pretty;
     word-break:auto-phrase;
   }
@@ -887,13 +1073,24 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 }
 .works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-3);}
 .work-card{
-  display:flex;flex-direction:column;align-items:flex-start;gap:6px;
+  display:flex;flex-direction:column;
   background:var(--paper);
   border:1px solid var(--grid-strong);
   border-top:3px solid var(--indigo);
-  padding:var(--sp-3);
+  overflow:hidden;
   text-decoration:none;
   transition:transform .3s var(--ease-out), box-shadow .3s var(--ease-out);
+}
+/* public/works/<slug>.png があるカードだけ画面写真が入る。
+   無いカードは文字だけで完結するので、混在しても崩れない */
+.work-shot{
+  display:block;aspect-ratio:16/10;overflow:hidden;
+  background:var(--white);border-bottom:1px solid var(--grid-strong);
+}
+.work-shot img{width:100%;height:100%;display:block;object-fit:cover;object-position:top center;}
+.work-body{
+  display:flex;flex-direction:column;align-items:flex-start;gap:6px;flex:1;
+  padding:var(--sp-3);
 }
 .work-card:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(15,29,51,.08);}
 .work-card:focus-visible{outline:3px solid var(--indigo-bright);outline-offset:3px;}
