@@ -60,13 +60,22 @@ export default function Home() {
         </svg>
 
         {/* 枠の中で入れ替わる2つのメッセージ(痛み → 約束)、そのあと社名 */}
-        <p className="intro-beat b1">毎週、同じ作業に数時間。</p>
-        <p className="intro-beat b2">その時間を、仕組みで取り戻す。</p>
+        <p className="intro-beat b1">
+          <span className="seg">毎週、</span>
+          <span className="seg">同じ作業に数時間。</span>
+        </p>
+        <p className="intro-beat b2">
+          <span className="seg">その時間を、</span>
+          <span className="seg">仕組みで取り戻す。</span>
+        </p>
         <div className="intro-logo">
           シクミAIコンサル
           <small>SHIKUMI AI CONSULTING</small>
         </div>
-        <p className="intro-tagline">非エンジニアのための、業務設計。</p>
+        <p className="intro-tagline">
+          <span className="seg">非エンジニアのための、</span>
+          <span className="seg">業務設計。</span>
+        </p>
 
         <p className="intro-hint">タップでスキップ</p>
         <div className="intro-progress" />
