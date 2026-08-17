@@ -236,11 +236,12 @@ header{
    CONCEPT
    ============================================================ */
 .concept-lead{max-width:40em;font-size:var(--fs-body);}
-.concept-cols{
-  display:grid;grid-template-columns:1fr 56px 1fr;gap:0;
+/* 選ぶ → 一緒に作る → 手元に残る の3枚。矢印は幅を持つ列として挟む */
+.concept-steps{
+  display:grid;grid-template-columns:1fr 48px 1fr 48px 1fr;gap:0;
   margin-top:var(--sp-6);align-items:stretch;
 }
-@media (max-width:760px){.concept-cols{grid-template-columns:1fr;gap:var(--sp-3);}}
+@media (max-width:900px){.concept-steps{grid-template-columns:1fr;gap:var(--sp-3);}}
 .concept-card{
   background:var(--white);
   border:1px solid var(--grid-strong);
@@ -248,10 +249,10 @@ header{
   position:relative;
 }
 .concept-card .tag{
-  position:absolute;top:-11px;left:24px;
+  position:absolute;top:-12px;left:24px;
   background:var(--indigo);color:var(--white);
-  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;
-  padding:3px 12px;
+  font-family:var(--font-body);font-weight:700;font-size:12px;letter-spacing:.06em;
+  padding:4px 12px;
 }
 .concept-card.accent .tag{background:var(--amber);color:var(--ink);}
 .concept-card h3{font-family:var(--font-display);font-size:var(--fs-h3);margin:var(--sp-1) 0 var(--sp-2);}
@@ -261,7 +262,7 @@ header{
   color:var(--indigo);
 }
 .concept-joint svg{width:36px;height:36px;}
-@media (max-width:760px){.concept-joint svg{transform:rotate(90deg);}}
+@media (max-width:900px){.concept-joint svg{transform:rotate(90deg);}}
 
 /* ============================================================
    DEMO(FIG.2)— 操作イメージ
@@ -290,11 +291,14 @@ header{
   padding:var(--sp-4) var(--sp-3) var(--sp-3);
 }
 .demo-pane.is-result{border-color:var(--amber);background:var(--amber-pale);}
+/* 1・2・3 の数字は1文字なので、字送りを入れると右にずれる。
+   幅を決めて中央に置く */
 .demo-step{
-  position:absolute;top:-11px;left:20px;
+  position:absolute;top:-13px;left:20px;
+  display:flex;align-items:center;justify-content:center;
+  min-width:26px;height:26px;padding:0 6px;border-radius:50%;
   background:var(--indigo);color:var(--white);
-  font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;
-  padding:3px 10px;
+  font-family:var(--font-display);font-weight:700;font-size:14px;line-height:1;
 }
 .demo-pane.is-result .demo-step{background:var(--amber);color:var(--ink);}
 .demo-role{
@@ -302,30 +306,30 @@ header{
   margin-bottom:var(--sp-2);
 }
 .demo-cap{
-  display:block;margin-top:10px;
+  display:block;margin-top:auto;padding-top:12px;
   font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-soft);
 }
 .demo-pane.is-result .demo-cap{color:var(--amber-deep);}
 
-/* 3枚の中身が入る「画面」。等幅にして端末っぽさを出す */
+/* 3枚の中身が入る「画面」。等幅は使わない——
+   端末の見た目にすると「黒い画面ではありません」という話と矛盾するため */
 .demo-screen{
-  flex:1;overflow:hidden;
+  overflow:hidden;
   background:var(--white);
   border:1px solid var(--grid-strong);
   border-left:3px solid var(--indigo);
-  padding:13px 14px 15px;
-  font-family:var(--font-mono);font-size:12.5px;line-height:1.95;color:var(--ink);
+  padding:14px 15px 16px;
+  font-family:var(--font-body);font-size:14.5px;line-height:1.95;color:var(--ink);
 }
 .demo-screen.is-doc{border-left-color:var(--amber);}
 
-/* 01 — 人が打ち込む指示。1行ずつ左から現れて、最後にカーソルが点滅する */
+/* 1 — 人がお願いする言葉。カギ括弧は本文に入れてあるので、
+   行頭の始め括弧だけぶら下げて左端を揃える */
 .demo-typed{margin:0;}
-.demo-typed .dl{display:block;padding-left:1.35em;}
-.demo-typed .dl:first-child{text-indent:-1.35em;}
-.demo-typed .dl:first-child::before{content:"> ";color:var(--indigo);font-weight:600;}
-.demo-caret{display:block;width:9px;height:14px;background:var(--indigo);margin-top:5px;}
+.demo-typed .dl{display:block;}
+.demo-typed .dl:first-child{text-indent:-.55em;}
 
-/* 02 — AIの実行ログ。丸チェックが1行ずつ増える */
+/* 2 — AIがやったこと。丸チェックが1行ずつ増える */
 .demo-screen.is-run .dr{display:flex;align-items:flex-start;gap:9px;}
 .dr i{
   flex:none;width:15px;height:15px;margin-top:5px;
@@ -364,7 +368,6 @@ header{
 /* --- 演出。JSが動く環境でだけ隠しておき、画面に入ったら順に出す。
        js クラスが無い(=JS無効)ときは最初から全部見えている --- */
 .js .demo-typed .dl{clip-path:inset(0 100% 0 0);}
-.js .demo-caret{opacity:0;}
 .js .demo-screen.is-run .dr{opacity:0;}
 .js .dr i{transform:scale(.3);}
 .js .demo-file{opacity:0;}
@@ -373,33 +376,30 @@ header{
 .fig.visible .demo-typed .dl{animation:demoType .8s steps(22,end) both;}
 .fig.visible .demo-typed .dl:nth-child(1){animation-delay:.35s;}
 .fig.visible .demo-typed .dl:nth-child(2){animation-delay:1.2s;}
-.fig.visible .demo-typed .dl:nth-child(3){animation-delay:2.05s;}
-.fig.visible .demo-caret{animation:demoCaret 1s step-end 2.9s infinite;}
 @keyframes demoType{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 -3px 0 0);}}
-@keyframes demoCaret{0%,50%{opacity:1;}50.01%,100%{opacity:0;}}
 
 .fig.visible .demo-screen.is-run .dr{animation:demoRow .45s var(--ease-out) both;}
-.fig.visible .demo-screen.is-run .dr:nth-child(1){animation-delay:3.3s;}
-.fig.visible .demo-screen.is-run .dr:nth-child(2){animation-delay:3.9s;}
-.fig.visible .demo-screen.is-run .dr:nth-child(3){animation-delay:4.5s;}
+.fig.visible .demo-screen.is-run .dr:nth-child(1){animation-delay:2.5s;}
+.fig.visible .demo-screen.is-run .dr:nth-child(2){animation-delay:3.1s;}
+.fig.visible .demo-screen.is-run .dr:nth-child(3){animation-delay:3.7s;}
 .fig.visible .dr i{animation:demoCheck .35s var(--ease-out) both;}
-.fig.visible .dr:nth-child(1) i{animation-delay:3.6s;}
-.fig.visible .dr:nth-child(2) i{animation-delay:4.2s;}
-.fig.visible .dr:nth-child(3) i{animation-delay:4.8s;}
-.fig.visible .demo-file{animation:demoRow .45s var(--ease-out) 5.2s both;}
+.fig.visible .dr:nth-child(1) i{animation-delay:2.8s;}
+.fig.visible .dr:nth-child(2) i{animation-delay:3.4s;}
+.fig.visible .dr:nth-child(3) i{animation-delay:4.0s;}
+.fig.visible .demo-file{animation:demoRow .45s var(--ease-out) 4.4s both;}
 @keyframes demoRow{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
 @keyframes demoCheck{from{transform:scale(.3);}60%{transform:scale(1.15);}to{transform:scale(1);}}
 
 .fig.visible .demo-screen.is-doc > *{animation:demoRow .4s var(--ease-out) both;}
-.fig.visible .is-doc > *:nth-child(1){animation-delay:5.6s;}
-.fig.visible .is-doc > *:nth-child(2){animation-delay:5.8s;}
-.fig.visible .is-doc > *:nth-child(3){animation-delay:5.95s;}
-.fig.visible .is-doc > *:nth-child(4){animation-delay:6.1s;}
-.fig.visible .is-doc > *:nth-child(5){animation-delay:6.3s;}
-.fig.visible .is-doc > *:nth-child(6){animation-delay:6.45s;}
-.fig.visible .is-doc > *:nth-child(7){animation-delay:6.6s;}
-.fig.visible .is-doc > *:nth-child(8){animation-delay:6.8s;}
-.fig.visible .is-doc > *:nth-child(9){animation-delay:6.95s;}
+.fig.visible .is-doc > *:nth-child(1){animation-delay:4.8s;}
+.fig.visible .is-doc > *:nth-child(2){animation-delay:5.0s;}
+.fig.visible .is-doc > *:nth-child(3){animation-delay:5.15s;}
+.fig.visible .is-doc > *:nth-child(4){animation-delay:5.3s;}
+.fig.visible .is-doc > *:nth-child(5){animation-delay:5.5s;}
+.fig.visible .is-doc > *:nth-child(6){animation-delay:5.65s;}
+.fig.visible .is-doc > *:nth-child(7){animation-delay:5.8s;}
+.fig.visible .is-doc > *:nth-child(8){animation-delay:6.0s;}
+.fig.visible .is-doc > *:nth-child(9){animation-delay:6.15s;}
 
 /* ============================================================
    CASES — dark readout
@@ -687,11 +687,9 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 
   /* 操作イメージは「順に組み上がる」のが演出なので、完成形をそのまま出す */
   .js .demo-typed .dl{clip-path:none;}
-  .js .demo-caret{opacity:1;}
   .js .demo-screen.is-run .dr,.js .demo-file,.js .demo-screen.is-doc > *{opacity:1;}
   .js .dr i{transform:none;}
   .fig.visible .demo-typed .dl,
-  .fig.visible .demo-caret,
   .fig.visible .demo-screen.is-run .dr,
   .fig.visible .dr i,
   .fig.visible .demo-file,
@@ -802,25 +800,34 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 
   /* 改行の調整。未対応ブラウザは宣言を無視して従来の折り返しに戻るだけ。
 
-     word-break:auto-phrase(文節単位の折り返し)は2〜3行までの短い文には
-     効くが、走り文に使うと逆効果になる。狭い画面では1行が17〜22字しかなく、
-     「基幹システム刷新プロジェクトで」のような長い文節が入りきらないと丸ごと
-     次行に落ちるため、途中に極端に短い行ができる。実測でも講師紹介の段落で
-     途中行の最短/最長が 50%(320px)・41%(390px) まで落ちていた。
-     そのため auto-phrase は見出しと2行程度の短文だけに限定する。 */
+     日本語はほぼどの文字の間でも改行できるため、pretty だけに任せると
+     「お伝/えします」「売り込みはしま/せん」「こうなり/ます。」のように
+     語の途中で割れる。読みが一度止まるので、これがいちばん効く欠陥。
+     word-break:auto-phrase(文節単位の折り返し)を全体に効かせて防ぐ。
+
+     代償として、狭い画面では長い文節が丸ごと次行に落ち、途中に短い行が
+     できることがある。実測(320px)で途中行の最短/最長が 36〜43% まで
+     落ちる段落がいくつかある。390px では最悪 50% で、ほぼ気にならない。
+     語中で割れるより行端が揃わないほうがマシ、と判断してこの形にしている。
+     文言を長くすると 320px の谷間が深くなるので、直したら tails/valley の
+     計測をやり直すこと。 */
   h2,h3,.faq summary,.plan-name,.pain-close,.teacher .mission,
   .fig-step-title,.plan-promise,.pain-card strong{
     text-wrap:balance;
     word-break:auto-phrase;
   }
   li,.fig-step-body,.plan-for,.plan-price-note,
-  .demo-cap,.demo-note,.case-note,.demo-typed .dl{
+  .demo-cap,.demo-note,.case-note,.demo-typed .dl,
+  .eyebrow,.fig-label,.work-desc,.step-body p{
     text-wrap:pretty;
     word-break:auto-phrase;
   }
-  /* 走り文は行末を揃えることを優先し、pretty で最終行だけを調整する */
+  /* 走り文。pretty だけだと「お伝/えします」「売り込みはしま/せん」のように
+     語の途中で割れる(日本語はほぼどこでも改行できるため)。
+     auto-phrase を併用して文節の切れ目でしか折り返さないようにする。 */
   p,.answer,.pain-card{
     text-wrap:pretty;
+    word-break:auto-phrase;
   }
 
   /* auto-phrase では防げない意味の切れ目を .seg で明示する。
@@ -844,7 +851,7 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   .hero{padding:var(--sp-4) 0 var(--sp-5);}
   .fig{margin-top:var(--sp-4);}
   h2{margin-bottom:var(--sp-3);}
-  .concept-cols,.plan-grid{margin-top:var(--sp-4);}
+  .concept-steps,.plan-grid{margin-top:var(--sp-4);}
   .case-grid,.step-list{margin-top:var(--sp-4);}
   .pain-close{margin-top:var(--sp-4);}
 }
@@ -1061,8 +1068,12 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
   margin-top:calc(var(--sp-2) + 6px);
 }
 .teacher-title{
-  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;
-  color:var(--indigo);margin-top:4px;line-height:1.7;
+  font-size:13px;color:var(--indigo);margin-top:6px;line-height:1.7;
+}
+/* 正式な肩書きは残しつつ、上のやさしい言い換えより控えめに置く */
+.teacher-title-note{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;
+  color:var(--ink-soft);margin-top:3px;line-height:1.7;
 }
 
 .works{margin-top:var(--sp-6);}
@@ -1177,13 +1188,6 @@ footer nav a:hover{text-decoration:underline;color:var(--indigo);}
 }
 @keyframes introOut{
   to{clip-path:inset(0 0 100% 0);visibility:hidden;pointer-events:none;}
-}
-
-.intro-fig{
-  position:absolute;top:var(--sp-4);left:var(--gutter);
-  font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;
-  color:var(--indigo);
-  opacity:0;animation:introFade .6s var(--ease-out) .3s forwards;
 }
 
 .intro-frame{position:relative;width:var(--intro-w);height:auto;}

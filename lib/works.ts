@@ -13,7 +13,7 @@ export type Work = {
   url: string;
   /** スクリーンショットのファイル名(拡張子なし)。public/works/<slug>.png など */
   slug: string;
-  /** カードに出すタグ。省略時は「Claude Codeで開発」 */
+  /** カードに出すタグ。省略時は「AIで作りました」 */
   tag?: string;
 };
 

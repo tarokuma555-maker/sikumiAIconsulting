@@ -55,7 +55,6 @@ export default function Home() {
           CSSだけで消えるので、JSが動かなくても閉じ込められることはない。
           2回目以降の表示・prefers-reduced-motion では表示しない(Effects.tsx / globals.css) */}
       <div className="intro" id="intro" aria-hidden="true">
-        <span className="intro-fig">FIG.0 — SHIKUMI</span>
         <svg className="intro-frame" viewBox="0 0 440 320" fill="none">
           {/* 枠 → 四隅の基準十字 → 寸法線 の順に、製図するように引かれる */}
           <rect className="intro-rect" x="40" y="60" width="360" height="180" />
@@ -86,8 +85,8 @@ export default function Home() {
           <small>SHIKUMI AI CONSULTING</small>
         </div>
         <p className="intro-tagline">
-          <span className="seg">非エンジニアのための、</span>
-          <span className="seg">業務設計。</span>
+          <span className="seg">毎週の面倒を、</span>
+          <span className="seg">AIに任せる。</span>
         </p>
 
         <p className="intro-hint">タップでスキップ</p>
@@ -118,7 +117,7 @@ export default function Home() {
           <div className="drawing-frame">
             <div className="hero-grid">
               <div>
-                <span className="eyebrow">AI × 業務の仕組み化スクール</span>
+                <span className="eyebrow">毎週の面倒な作業を、AIに任せるスクール</span>
                 <h1>
                   <span className="line1 reveal-line">コードは書けない。</span>
                   <span className="line2 reveal-line">
@@ -127,9 +126,8 @@ export default function Home() {
                   </span>
                 </h1>
                 <p className="sub">
-                  シクミAIコンサルは、非エンジニアのビジネス職のための、AI・Claude
-                  Code伴走型スクール。あなたの実際の業務を題材に、
-                  <strong>3ヶ月で業務自動化を1つ完成</strong>させます。
+                  プログラムが書けなくても大丈夫です。あなたが毎週やっている面倒な作業を1つ選んで、
+                  <strong>それをAIに任せる形を、3ヶ月で一緒に作ります。</strong>
                 </p>
                 <div className="cta-group">
                   <a className="btn-primary" {...bookingLink}>
@@ -141,24 +139,24 @@ export default function Home() {
                     </a>
                   )}
                 </div>
-                <p className="hero-note">{"// 相談は30分・オンライン・営業なし"}</p>
+                <p className="hero-note">相談は30分・オンライン・売り込みはしません</p>
               </div>
               <div className="tategaki">
-                非エンジニアのための、
+                毎週の面倒を、
                 <br />
-                業務設計。
+                AIに任せる。
               </div>
             </div>
           </div>
 
           {/* FIG.1 */}
           <div className="fig" id="fig1">
-            <div className="fig-label">FIG.1 — 業務の仕組み化 工程図</div>
+            <div className="fig-label">3ヶ月で、こう変わります</div>
             <svg
               className="fig-svg"
               viewBox="0 0 1000 190"
               role="img"
-              aria-label="いまの業務がシクミAIコンサルを経て仕組み化された業務に変わる工程図"
+              aria-label="いまの仕事が、3ヶ月の受講を経て、AIに任せられる形に変わる流れの図"
             >
               <line className="wire w1" x1="300" y1="95" x2="365" y2="95" />
               <line className="wire w2" x1="665" y1="95" x2="730" y2="95" />
@@ -166,23 +164,23 @@ export default function Home() {
               <polygon points="730,90 740,95 730,100" fill="#E8A33D" />
               <rect className="node" x="20" y="30" width="280" height="130" rx="2" />
               <text className="node-title" x="44" y="70">
-                いまの業務
+                いま
               </text>
               <text className="node-body" x="44" y="100">
-                毎週の報告書づくり・データ転記・
+                報告書づくり、データの打ち込み、
               </text>
               <text className="node-body" x="44" y="122">
-                メール対応に数時間
+                メール返信に毎週何時間も
               </text>
               <rect className="node" x="380" y="30" width="280" height="130" rx="2" />
               <text className="node-title" x="404" y="70">
-                シクミAIコンサル
+                3ヶ月のあいだ
               </text>
               <text className="node-body" x="404" y="100">
-                講座で基礎を学び、
+                動画で基礎を覚えながら、
               </text>
               <text className="node-body" x="404" y="122">
-                伴走で自分の業務に実装
+                月2回のレッスンで実際に作る
               </text>
               <rect
                 className="node node-result"
@@ -193,13 +191,13 @@ export default function Home() {
                 rx="2"
               />
               <text className="node-title" x="769" y="70">
-                仕組み化された業務
+                3ヶ月後
               </text>
               <text className="node-body" x="769" y="100">
-                AIが下ごしらえ、
+                面倒な部分はAIがやり、
               </text>
               <text className="node-body" x="769" y="122">
-                あなたは判断に集中
+                あなたは確認するだけ
               </text>
               <line className="dimline" x1="380" y1="178" x2="600" y2="178" />
               <line className="dimline" x1="380" y1="172" x2="380" y2="184" />
@@ -213,18 +211,18 @@ export default function Home() {
             {/* 狭い画面ではSVGの文字が潰れるため、縦積みのHTML工程図に差し替える */}
             <div className="fig-flow">
               <div className="fig-step">
-                <span className="fig-step-title">いまの業務</span>
+                <span className="fig-step-title">いま</span>
                 <span className="fig-step-body">
-                  毎週の報告書づくり・データ転記・メール対応に数時間
+                  報告書づくり、データの打ち込み、メール返信に毎週何時間も
                 </span>
               </div>
               <div className="fig-arrow" aria-hidden="true">
                 <i />
               </div>
               <div className="fig-step">
-                <span className="fig-step-title">シクミAIコンサル</span>
+                <span className="fig-step-title">3ヶ月のあいだ</span>
                 <span className="fig-step-body">
-                  講座で基礎を学び、伴走で自分の業務に実装
+                  動画で基礎を覚えながら、月2回のレッスンで実際に作る
                 </span>
               </div>
               <div className="fig-arrow is-result">
@@ -232,9 +230,9 @@ export default function Home() {
                 <span>3ヶ月</span>
               </div>
               <div className="fig-step is-result">
-                <span className="fig-step-title">仕組み化された業務</span>
+                <span className="fig-step-title">3ヶ月後</span>
                 <span className="fig-step-body">
-                  AIが下ごしらえ、あなたは判断に集中
+                  面倒な部分はAIがやり、あなたは確認するだけ
                 </span>
               </div>
             </div>
@@ -271,41 +269,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ========== CONCEPT ========== */}
+      {/* ========== CONCEPT ==========
+          「結局なにをしてもらえるのか」に、まっすぐ答えるセクション。
+          提供形態(動画+レッスン)の説明ではなく、
+          選ぶ → 一緒に作る → 手元に残る、という順で書く。 */}
       <section className="sheet" id="concept">
         <div className="container">
           <span className="eyebrow">シクミAIコンサルとは</span>
-          <h2>教材で学び、伴走で完成させる。</h2>
+          <h2 className="hang-q">
+            <span className="seg">ひとことで言うと、</span>
+            <span className="seg">こういうサービスです。</span>
+          </h2>
           <p className="concept-lead">
-            動画教材を見ただけでは、自分の業務は1ミリも変わりません。シクミAIコンサルは「学ぶ」で終わらせず、
+            「AIの使い方」を教わる教室ではありません。
             <strong>
-              あなたの実際の業務を題材に、動く仕組みを一緒に作り上げる
+              あなたが毎週やっている面倒な作業を1つ選んで、それをAIに任せる形を、3ヶ月かけて一緒に作ります。
             </strong>
-            ことをゴールにした2階建てのプログラムです。
           </p>
-          <div className="concept-cols">
+          <div className="concept-steps">
             <div className="concept-card reveal">
-              <span className="tag">STEP 1 — 学ぶ</span>
-              <h3>オンライン講座・教材</h3>
+              <span className="tag">まず</span>
+              <h3>作業を1つ選ぶ</h3>
               <p>
-                AIの業務活用の基礎から、Claude
-                Codeを「開発ツール」ではなく「業務自動化ツール」として使う方法まで。非エンジニアがつまずくポイントを先回りして解説します。
+                「毎週これに時間を取られている」という作業を、最初の無料相談で一緒に探します。たとえば報告書づくり、
+                データの打ち込み、いつも同じ内容のメール返信。
               </p>
             </div>
             <div className="concept-joint" aria-hidden="true">
               <svg viewBox="0 0 36 36" fill="none">
-                <path
-                  d="M4 18h24M22 10l8 8-8 8"
-                  stroke="#24457F"
-                  strokeWidth="1.5"
-                />
+                <path d="M4 18h24M22 10l8 8-8 8" stroke="#24457F" strokeWidth="1.5" />
               </svg>
             </div>
             <div className="concept-card accent reveal d1">
-              <span className="tag">STEP 2 — 作る</span>
-              <h3>伴走型コンサル/レッスン</h3>
+              <span className="tag">3ヶ月</span>
+              <h3>一緒に作る</h3>
               <p>
-                月2回のマンツーマンセッションとチャットサポートで、あなたの業務の自動化を設計から完成まで伴走。「作りきる」ところまで一緒に走ります。
+                動画で基礎を覚えながら、月2回のオンライン個別レッスンで実際に手を動かします。
+                行きづまったら、レッスンを待たずにチャットで質問できます。
+              </p>
+            </div>
+            <div className="concept-joint" aria-hidden="true">
+              <svg viewBox="0 0 36 36" fill="none">
+                <path d="M4 18h24M22 10l8 8-8 8" stroke="#24457F" strokeWidth="1.5" />
+              </svg>
+            </div>
+            <div className="concept-card reveal d2">
+              <span className="tag">そのあと</span>
+              <h3>ずっと手元に残る</h3>
+              <p>
+                作ったものは、あなたのパソコンに残ります。受講が終わったあとも、毎週それを使い続けられます。
+                レッスンの期間が終わったら消える、ということはありません。
               </p>
             </div>
           </div>
@@ -318,19 +331,19 @@ export default function Home() {
           public/demo.mp4 を置けば、作図の代わりに実演動画が入る。 */}
       <section className="demo-sec" id="demo">
         <div className="container">
-          <span className="eyebrow">実際の操作イメージ</span>
+          <span className="eyebrow">やることは、こんな感じです</span>
           <h2 className="hang-q">
-            <span className="seg">やることは、</span>
-            <span className="seg">日本語で頼むだけ。</span>
+            <span className="seg">むずかしいことは</span>
+            <span className="seg">しません。</span>
           </h2>
           <p className="demo-lead">
-            「黒い画面でプログラムを書く」わけではありません。
-            <strong>やってほしいことを日本語で書くと、AIが手を動かします。</strong>
-            たとえば週次報告書を仕組み化すると、こうなります。
+            プログラムを書くわけではありません。
+            <strong>やってほしいことを、人にお願いするみたいに書くだけです。</strong>
+            たとえば毎週の報告書づくりなら、こうなります。
           </p>
 
           <div className="fig demo-fig" id="fig2">
-            <div className="fig-label">FIG.2 — 週次報告書を仕組み化した場合</div>
+            <div className="fig-label">たとえば、毎週の報告書づくりなら</div>
 
             {DEMO_VIDEO ? (
               <video
@@ -348,19 +361,17 @@ export default function Home() {
               </video>
             ) : (
               <div className="demo">
-                {/* 01 — 人が書く指示 */}
+                {/* ① 人がお願いする。吹き出しにして「話しかけるだけ」に見せる */}
                 <div className="demo-pane">
-                  <span className="demo-step">01</span>
-                  <span className="demo-role">あなたが書く</span>
+                  <span className="demo-step">1</span>
+                  <span className="demo-role">あなたがお願いする</span>
                   <div className="demo-screen is-prompt">
                     <p className="demo-typed">
-                      <span className="dl">議事録フォルダの先週分を読んで、</span>
-                      <span className="dl">週報のドラフトを作って。</span>
-                      <span className="dl">書式は、先月の週報に合わせて。</span>
+                      <span className="dl">「先週の会議のメモをまとめて、</span>
+                      <span className="dl">いつもの形で報告書を作って。」</span>
                     </p>
-                    <span className="demo-caret" aria-hidden="true" />
                   </div>
-                  <span className="demo-cap">打つのは、この3行だけ</span>
+                  <span className="demo-cap">話しかけるように書くだけ</span>
                 </div>
 
                 <div className="demo-arrow" aria-hidden="true">
@@ -369,26 +380,26 @@ export default function Home() {
                   </svg>
                 </div>
 
-                {/* 02 — AIが動く */}
+                {/* ② AIが代わりにやる */}
                 <div className="demo-pane">
-                  <span className="demo-step">02</span>
-                  <span className="demo-role">AIが手を動かす</span>
+                  <span className="demo-step">2</span>
+                  <span className="demo-role">AIが代わりにやる</span>
                   <div className="demo-screen is-run">
                     <span className="dr">
                       <i aria-hidden="true" />
-                      議事録を12件読み込み
+                      会議のメモ12件に目を通す
                     </span>
                     <span className="dr">
                       <i aria-hidden="true" />
-                      先月の週報から書式を抽出
+                      先月の報告書の形をまねる
                     </span>
                     <span className="dr">
                       <i aria-hidden="true" />
-                      ドラフトを書き出し
+                      下書きを作る
                     </span>
-                    <span className="demo-file">週報_08-17.md</span>
+                    <span className="demo-file">報告書の下書き</span>
                   </div>
-                  <span className="demo-cap">待っているだけ・約1分</span>
+                  <span className="demo-cap">あなたは待っているだけ・約1分</span>
                 </div>
 
                 <div className="demo-arrow is-result" aria-hidden="true">
@@ -397,22 +408,22 @@ export default function Home() {
                   </svg>
                 </div>
 
-                {/* 03 — 人は判断だけ */}
+                {/* ③ 人は中身を見るだけ */}
                 <div className="demo-pane is-result">
-                  <span className="demo-step">03</span>
-                  <span className="demo-role">あなたは確認して出す</span>
+                  <span className="demo-step">3</span>
+                  <span className="demo-role">あなたは中身を見るだけ</span>
                   <div className="demo-screen is-doc" aria-hidden="true">
-                    <span className="doc-title">週報_08-17.md</span>
-                    <span className="doc-h">今週のトピック</span>
+                    <span className="doc-title">報告書の下書き</span>
+                    <span className="doc-h">今週やったこと</span>
                     <span className="doc-b" />
                     <span className="doc-b is-short" />
-                    <span className="doc-h">進捗と課題</span>
+                    <span className="doc-h">困っていること</span>
                     <span className="doc-b" />
                     <span className="doc-b is-short" />
-                    <span className="doc-h">来週の予定</span>
+                    <span className="doc-h">来週やること</span>
                     <span className="doc-b" />
                   </div>
-                  <span className="demo-cap">事実を確認して、ひとこと添えるだけ</span>
+                  <span className="demo-cap">合っているか確かめて、提出するだけ</span>
                 </div>
               </div>
             )}
@@ -420,8 +431,8 @@ export default function Home() {
 
           <p className="demo-note">
             {DEMO_VIDEO
-              ? "* 題材は一例です。実際に何を仕組み化するかは、あなたの業務に合わせて無料相談で決めます。"
-              : "* 画面は操作イメージです。実際に何を仕組み化するかは、あなたの業務に合わせて無料相談で決めます。"}
+              ? "* これは一例です。あなたが何をAIに任せるかは、無料相談で一緒に決めます。"
+              : "* これはイメージです。あなたが何をAIに任せるかは、無料相談で一緒に決めます。"}
           </p>
         </div>
       </section>
@@ -429,12 +440,12 @@ export default function Home() {
       {/* ========== BEFORE/AFTER ========== */}
       <section className="cases" id="cases">
         <div className="container">
-          <span className="eyebrow">Before / After</span>
-          <h2 className="hang-q">「仕組み化」で、業務はここまで変わる。</h2>
+          <span className="eyebrow">どれくらい変わるのか</span>
+          <h2 className="hang-q">「毎週これ」が、ここまで減ります。</h2>
           <div className="case-grid">
             <div className="case-card reveal">
-              <span className="job">CASE 01 — 企画職</span>
-              <h3>週次報告書の作成</h3>
+              <span className="job">事例1 — 企画のお仕事</span>
+              <h3>毎週の報告書づくり</h3>
               <div className="ba">
                 <span className="before">毎週3時間</span>
                 <span className="arrow">→</span>
@@ -451,13 +462,12 @@ export default function Home() {
                 <i />
               </div>
               <p>
-                各所からのメモやデータをClaude
-                Codeが集約・整形。人は最終チェックと判断だけに集中。
+                あちこちにあるメモや数字をAIが1つにまとめて、いつもの形に整えます。あなたは中身を確かめるだけ。
               </p>
             </div>
             <div className="case-card reveal d1">
-              <span className="job">CASE 02 — 営業職</span>
-              <h3>日報・商談メモの整理</h3>
+              <span className="job">事例2 — 営業のお仕事</span>
+              <h3>日報と打ち合わせメモの整理</h3>
               <div className="ba">
                 <span className="before">毎日40分</span>
                 <span className="arrow">→</span>
@@ -474,12 +484,12 @@ export default function Home() {
                 <i />
               </div>
               <p>
-                音声メモや箇条書きを投げるだけで、フォーマットに沿った日報と次回アクションが自動生成。
+                思いついたことを声で吹き込むか、箇条書きで渡すだけ。いつもの形の日報と「次にやること」ができあがります。
               </p>
             </div>
             <div className="case-card reveal d2">
-              <span className="job">CASE 03 — バックオフィス</span>
-              <h3>データ転記・集計</h3>
+              <span className="job">事例3 — 事務のお仕事</span>
+              <h3>データの打ち込みと集計</h3>
               <div className="ba">
                 <span className="before">月8時間</span>
                 <span className="arrow">→</span>
@@ -496,7 +506,7 @@ export default function Home() {
                 <i />
               </div>
               <p>
-                複数ファイルからの転記・集計・レポート化をワンコマンドで実行する仕組みを構築。
+                いくつものファイルを行き来してコピーする作業をやめて、合計を出して表にするところまで、まとめて終わらせます。
               </p>
             </div>
           </div>
@@ -513,22 +523,22 @@ export default function Home() {
           <span className="eyebrow">プランと料金</span>
           <h2 className="hang-q">
             <span className="seg">「学ぶだけ」か、</span>
-            <span className="seg hang-q">「完成させる」か。</span>
+            <span className="seg hang-q">「作りきる」か。</span>
           </h2>
           <div className="plan-grid">
             <div className="plan-card reveal">
               <div className="plan-name">講座プラン</div>
-              <div className="plan-for">まず自分のペースで学びたい方に</div>
+              <div className="plan-for">まずは自分のペースで、ひとりで覚えたい方に</div>
               <div className="plan-price">
                 ¥29,800<small>(税込・買い切り)</small>
               </div>
               <div className="plan-price-note">教材は買い切り・視聴期限なし</div>
               <ul>
-                <li>AI業務活用の基礎講座(動画教材)</li>
-                <li>非エンジニアのためのClaude Code入門</li>
-                <li>業務自動化テンプレート集</li>
-                <li>教材内容の質問サポート(30日間)</li>
-                <li>伴走プランへは差額でアップグレード可能</li>
+                <li>仕事でAIを使うための基礎(動画)</li>
+                <li>Claude Codeのはじめかた(動画)</li>
+                <li>よくある作業をAIに任せるためのひな形集</li>
+                <li>動画の内容についての質問(30日間)</li>
+                <li>あとから伴走プランに変えるときは、差額のお支払いだけで済みます</li>
               </ul>
               <div className="cta-pair">
                 <a className="btn-secondary" {...bookingLink}>
@@ -543,26 +553,26 @@ export default function Home() {
             </div>
             <div className="plan-card featured reveal d1">
               <div className="plan-name">伴走プラン</div>
-              <div className="plan-for">自分の業務を確実に自動化したい方に</div>
+              <div className="plan-for">自分の作業を1つ、確実に終わらせたい方に</div>
               <div className="plan-price">
                 総額 ¥150,000<small>(税込)</small>
               </div>
               <div className="plan-price-sub">
-                月額¥50,000 × 3ヶ月 / 分割払い相談可
+                月々¥50,000 × 3ヶ月。分割のご相談もできます
               </div>
               <div className="plan-price-note">
-                金額は無料相談で確定し、開始後の追加請求はありません。対象業務が複雑な場合は、右の定着プランをご提案することがあります。
+                金額は無料相談のときに決まります。始まったあとに追加でお金をいただくことはありません。作業が思ったより大きい場合は、右の定着プランをおすすめすることがあります。
               </div>
               <ul>
-                <li>講座プランの全教材が含まれます</li>
-                <li>月2回のマンツーマンセッション(60分)</li>
-                <li>期間中のチャットサポート(平日24時間以内に返信)</li>
-                <li>あなたの業務に合わせた自動化の設計・実装伴走</li>
-                <li>社内で説明するための資料化サポート</li>
+                <li>講座プランの動画がぜんぶ見られます</li>
+                <li>月2回のオンライン個別レッスン(1回60分)</li>
+                <li>分からないことはチャットで質問し放題(平日は24時間以内に返信)</li>
+                <li>あなたの作業に合わせて、何をどう作るかを一緒に考えます</li>
+                <li>社内で説明するときの資料づくりもお手伝いします</li>
               </ul>
               <div className="plan-promise">
-                <strong>成果物のお約束:</strong>
-                3ヶ月で、あなたの業務の自動化を1つ完成させます。
+                <strong>お約束:</strong>
+                3ヶ月で、あなたの作業を1つ、AIに任せられる形にします。
               </div>
               <div className="cta-pair">
                 <a className="btn-secondary" {...bookingLink}>
@@ -579,27 +589,27 @@ export default function Home() {
             <div className="plan-card reveal d2">
               <div className="plan-name">定着プラン</div>
               <div className="plan-for">
-                業務全体を仕組み化し、運用に乗せたい方に
+                いくつもの作業をまとめて片づけ、続く形にしたい方に
               </div>
               <div className="plan-price">
                 総額 ¥240,000<small>(税込)</small>
               </div>
               <div className="plan-price-sub">
-                月額¥40,000 × 6ヶ月 / 分割払い相談可
+                月々¥40,000 × 6ヶ月。分割のご相談もできます
               </div>
               <div className="plan-price-note">
-                期間が長いぶん、月あたりの負担は伴走プランより抑えられます。
+                期間が長いぶん、月々のお支払いは伴走プランより軽くなります。
               </div>
               <ul>
-                <li>伴走プランの内容がすべて含まれます</li>
+                <li>伴走プランの内容がぜんぶ含まれます</li>
                 <li>期間は6ヶ月(伴走プランの2倍)</li>
-                <li>月2回のマンツーマンセッション(60分)</li>
-                <li>業務の棚卸しから、自動化する対象の選定まで</li>
-                <li>作った仕組みの手順書化・引き継ぎ資料の作成</li>
+                <li>月2回のオンライン個別レッスン(1回60分)</li>
+                <li>いまの作業を一つずつ書き出して、どれから手をつけるか決めます</li>
+                <li>作ったものの使い方を手順書にして、人に引き継げるようにします</li>
               </ul>
               <div className="plan-promise">
-                <strong>成果物のお約束:</strong>
-                6ヶ月で、あなたの業務の自動化を3つ完成させ、運用に乗せます。
+                <strong>お約束:</strong>
+                6ヶ月で、あなたの作業を3つAIに任せられる形にして、続けられる状態にします。
               </div>
               <div className="cta-pair">
                 <a className="btn-secondary" {...bookingLink}>
@@ -615,7 +625,7 @@ export default function Home() {
           </div>
           <div className="price-policy reveal">
             <strong>料金の考え方</strong>
-            まずは伴走プラン(3ヶ月・総額¥150,000)で自動化を1つ完成させるのが基本です。対象業務が複数にまたがる場合や、作った仕組みを運用に定着させたい場合は定着プラン(6ヶ月・総額¥240,000)をご提案します。いずれの場合も、無料相談で業務内容を伺ったうえで確定金額をお伝えし、開始後に追加請求することはありません。相談したからといって申し込む必要は一切ありません。
+            まずは伴走プラン(3ヶ月・総額¥150,000)で、作業を1つ片づけるのが基本の形です。片づけたい作業がいくつもある場合や、作ったあと自分で使い続けられる状態まで持っていきたい場合は、定着プラン(6ヶ月・総額¥240,000)をおすすめします。どちらの場合も、無料相談でお仕事の内容をうかがったうえで金額をお伝えします。始まったあとに追加でお金をいただくことはありません。相談したからといって、申し込む必要はまったくありません。
           </div>
         </div>
       </section>
@@ -645,7 +655,10 @@ export default function Home() {
               </div>
               <div className="teacher-name">大熊　太郎</div>
               <div className="teacher-title">
-                事業側プロキシ型ITコンサル / PMO
+                大手企業のシステム刷新プロジェクトのまとめ役
+              </div>
+              <div className="teacher-title-note">
+                (事業側プロキシ型ITコンサル / PMO)
               </div>
             </div>
             <div>
@@ -661,18 +674,18 @@ export default function Home() {
                 </span>
                 <span className="cp-group">
                   <span className="arrow">→</span>
-                  <span className="cp now">ITコンサル / PMO</span>
+                  <span className="cp now">ITのまとめ役</span>
                 </span>
               </div>
               <p>
-                私自身、キャリアのスタートは飲食店の店長でした。コードとは無縁の現場から、営業、労務コンサルを経てIT業界へ。現在は大手企業グループの基幹システム刷新プロジェクトでPMOを務めながら、AIを活用した業務の仕組み化を実践しています。
+                私自身、最初の仕事は飲食店の店長でした。パソコンとはほぼ無縁の現場から、営業、労務の相談役を経てIT業界へ。いまは大手企業グループの社内システムを作り替える大きなプロジェクトで、現場とエンジニアの間をつなぐ役をしています。そのかたわらで、自分の仕事もAIに任せる形に変えてきました。
               </p>
               <p>
                 だからこそ、
                 <strong>
                   「非エンジニアがどこでつまずくか」を自分の体験として知っています。
                 </strong>
-                エンジニアの「当たり前」を前提にしない、ビジネス職のための言葉で教えます。
+                エンジニアが「当たり前」と思っていることを前提にせず、ふだんの言葉で説明します。
               </p>
               <p className="mission">
                 <span className="seg">眠っている可能性を、</span>
@@ -686,7 +699,7 @@ export default function Home() {
 
           {/* 実績。カードは lib/works.ts の配列から生成する */}
           <div className="works reveal">
-            <h3 className="works-title">講師が実際にAIで作ったもの</h3>
+            <h3 className="works-title">実際にAIで作ったもの</h3>
             <div className="works-grid">
               {WORKS.map((work) => (
                 <a
@@ -710,7 +723,7 @@ export default function Home() {
                     </span>
                   )}
                   <span className="work-body">
-                    <span className="work-tag">{work.tag ?? "Claude Codeで開発"}</span>
+                    <span className="work-tag">{work.tag ?? "AIで作りました"}</span>
                     <span className="work-name">{work.name}</span>
                     <span className="work-desc">{work.desc}</span>
                     <span className="work-link">サイトを見る →</span>
@@ -745,39 +758,39 @@ export default function Home() {
           <h2>まずは30分、話すところから。</h2>
           <div className="step-list">
             <div className="step-item reveal">
-              <div className="step-num">STEP 01</div>
+              <div className="step-num">ステップ 1</div>
               <div className="step-body">
                 <h3>無料相談を申し込む</h3>
                 <p>
-                  下のフォームから希望日時を選ぶだけ。オンライン(Google
-                  Meet)で30分です。
+                  カレンダーから空いている時間を選ぶだけです。当日はオンライン(Google
+                  Meet)で30分お話しします。
                 </p>
               </div>
             </div>
             <div className="step-item reveal">
-              <div className="step-num">STEP 02</div>
+              <div className="step-num">ステップ 2</div>
               <div className="step-body">
-                <h3>業務のヒアリング</h3>
+                <h3>お仕事の話をうかがう</h3>
                 <p>
-                  いまの業務内容と「時間を取られている作業」を伺い、自動化できそうなポイントをその場で診断します。
+                  ふだんどんな仕事をしていて、どの作業に時間を取られているかをうかがいます。その場で「これはAIに任せられそう」という部分をお伝えします。
                 </p>
               </div>
             </div>
             <div className="step-item reveal">
-              <div className="step-num">STEP 03</div>
+              <div className="step-num">ステップ 3</div>
               <div className="step-body">
-                <h3>プランのご提案</h3>
+                <h3>プランと金額をお伝えする</h3>
                 <p>
-                  診断結果をもとに、最適なプランと確定金額をご提案。検討期間はいくらでもどうぞ。無理な勧誘はしません。
+                  お話をふまえて、合いそうなプランと金額をお伝えします。考える時間はいくらでも取ってください。しつこく誘うことはしません。
                 </p>
               </div>
             </div>
             <div className="step-item reveal">
-              <div className="step-num">STEP 04</div>
+              <div className="step-num">ステップ 4</div>
               <div className="step-body">
-                <h3>受講スタート</h3>
+                <h3>スタート</h3>
                 <p>
-                  教材で基礎を固めながら、伴走セッションで自動化の設計に着手。3ヶ月後、あなたの業務に「仕組み」が1つ増えています。
+                  動画で基礎を覚えながら、レッスンで実際に作りはじめます。3ヶ月後には、毎週使えるものが1つ手元にあります。
                 </p>
               </div>
             </div>
@@ -789,35 +802,35 @@ export default function Home() {
       <section className="faq" id="faq">
         <div className="container">
           <span className="eyebrow">よくある質問</span>
-          <h2>不安な点は、ここで解消を。</h2>
+          <h2>心配なことは、ここで。</h2>
           <details>
-            <summary>PCスキルに自信がなくても大丈夫ですか?</summary>
+            <summary>パソコンが得意ではないのですが、大丈夫ですか?</summary>
             <div className="answer">
-              はい。Excelやブラウザを日常業務で使えるレベルであれば問題ありません。プログラミング経験は一切不要です。むしろ「非エンジニアであること」を前提にカリキュラムを設計しています。
+              はい。ふだんの仕事でExcelやインターネットを使えていれば十分です。プログラムを書いた経験はまったく要りません。むしろ「書けない人向け」に内容を組み立てています。
             </div>
           </details>
           <details>
-            <summary>WindowsでもMacでも受講できますか?</summary>
+            <summary>WindowsとMac、どちらでも受けられますか?</summary>
             <div className="answer">
-              どちらでも受講可能です。お使いの環境に合わせてセットアップからサポートします。
+              どちらでも受けられます。最初の準備からお使いのパソコンに合わせてお手伝いします。
             </div>
           </details>
           <details>
-            <summary>会社のセキュリティ的に問題ないでしょうか?</summary>
+            <summary>会社の情報をAIに渡して大丈夫でしょうか?</summary>
             <div className="answer">
-              扱う情報の機密度に応じた進め方をご提案します。機密情報をAIに渡さずに業務を仕組み化する設計(匿名化・ダミーデータの活用など)も講座内で扱います。会社の規定が不明な場合の確認ポイントもお伝えします。
+              扱う情報の重さに合わせて進め方を変えます。名前や数字を伏せたり、本物そっくりの架空データで作ったりして、大事な情報をAIに渡さずに済ませるやり方も講座で扱います。会社のルールが分からない場合は、何を確認すればいいかもお伝えします。
             </div>
           </details>
           <details>
-            <summary>AIツールの利用料は別途かかりますか?</summary>
+            <summary>受講料のほかに、お金はかかりますか?</summary>
             <div className="answer">
-              はい、Claude等のAIサービス利用料(月数千円程度〜)は別途ご負担いただきます。無料枠や最小プランから始める方法もご案内します。
+              はい。AI(Claudeなど)の月々の利用料は別にかかります。だいたい月数千円からです。無料で使える範囲や、いちばん安いプランから始めるやり方もご案内します。
             </div>
           </details>
           <details>
-            <summary>忙しくて時間が取れるか不安です。</summary>
+            <summary>忙しくて、時間が取れるか心配です。</summary>
             <div className="answer">
-              伴走プランのセッションは月2回・各60分。それ以外は隙間時間のチャット(平日24時間以内返信)で進められる設計です。「学習時間を捻出する」のではなく「業務の中で作る」のがこのプログラムの考え方です。
+              レッスンは月2回、1回60分だけです。あとは空いた時間にチャットで質問しながら進められます。「勉強の時間を別に作る」のではなく、「ふだんの仕事をしながら作る」のがこのスクールの考え方です。
             </div>
           </details>
         </div>
@@ -828,18 +841,18 @@ export default function Home() {
         <div className="container">
           <span className="eyebrow">無料相談</span>
           <h2>
-            あなたの業務、
+            あなたの仕事のどこを
             <br />
-            どこまで自動化できるか診断します。
+            AIに任せられるか、お伝えします。
           </h2>
           <div className="closing-inner">
             <p className="closing-lead">
-              30分のオンライン相談で、いまの業務の「仕組み化ポイント」をその場でお伝えします。相談だけで終わってもまったく問題ありません。
+              30分お話をうかがって、「ここはAIに任せられます」という部分をその場でお伝えします。相談だけで終わっても、まったく問題ありません。
             </p>
             <ul className="closing-points">
               <li>所要30分・オンライン(Google Meet)</li>
-              <li>その場で「自動化できる業務」を診断</li>
-              <li>無理な勧誘・しつこい営業は一切なし</li>
+              <li>その場で「任せられる作業」をお伝えします</li>
+              <li>しつこい売り込みは一切しません</li>
             </ul>
             <div className="cta-pair closing-cta">
               <a className="btn-primary" {...bookingLink}>
@@ -852,7 +865,7 @@ export default function Home() {
               )}
             </div>
             <p className="closing-note">
-              カレンダーの空いている時間から選ぶだけで予約できます。まず質問だけしたい方はLINEへどうぞ。
+              カレンダーの空いている時間を選ぶだけで予約できます。まず質問だけしたい方は、LINEからどうぞ。
             </p>
           </div>
         </div>
