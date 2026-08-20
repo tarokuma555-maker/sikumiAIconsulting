@@ -1,0 +1,299 @@
+<title>動画の作り方</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#F5F7F9;--surface:#FFFFFF;--sunk:#EDF2F6;
+  --ink:#0F1D33;--soft:#51617C;--line:#DCE5EC;--line-firm:#C3D2DE;
+  --indigo:#24457F;--amber:#E8A33D;--amber-deep:#8A5B0B;--amber-wash:#FFF6E6;
+  --display:"Zen Old Mincho",serif;
+  --body:"Zen Kaku Gothic New",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0C1728;--surface:#142138;--sunk:#0F1B2E;
+    --ink:#E7EEF6;--soft:#9DAFC7;--line:#24354F;--line-firm:#33486A;
+    --indigo:#8FB3F0;--amber:#E8A33D;--amber-deep:#F0C075;--amber-wash:#2A2113;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0C1728;--surface:#142138;--sunk:#0F1B2E;
+  --ink:#E7EEF6;--soft:#9DAFC7;--line:#24354F;--line-firm:#33486A;
+  --indigo:#8FB3F0;--amber:#E8A33D;--amber-deep:#F0C075;--amber-wash:#2A2113;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.95;-webkit-text-size-adjust:100%;}
+.wrap{max-width:780px;margin:0 auto;padding:56px 22px 96px;}
+
+.masthead{border-top:3px solid var(--indigo);padding-top:22px;margin-bottom:44px;}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--indigo);margin:0 0 14px;}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(27px,6.2vw,38px);
+  line-height:1.45;margin:0 0 18px;text-wrap:balance;}
+.standfirst{margin:0;color:var(--soft);font-size:15.5px;max-width:62ch;}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);}
+
+h2{font-family:var(--display);font-weight:600;font-size:clamp(21px,4.2vw,27px);
+  line-height:1.55;margin:0 0 8px;text-wrap:balance;}
+.chapter-head{margin-top:66px;padding:22px 0 0;border-top:2px solid var(--indigo);}
+.chapter-sum{color:var(--soft);font-size:14.5px;margin:6px 0 0;}
+p{margin:0 0 15px;max-width:68ch;}
+p:last-child{margin-bottom:0;}
+ul,ol{margin:0 0 15px;padding-left:1.4em;max-width:68ch;}
+li{margin-bottom:6px;}
+li::marker{color:var(--soft);}
+code{font-family:var(--mono);font-size:.88em;background:var(--sunk);
+  border:1px solid var(--line);padding:1px 5px;border-radius:2px;}
+
+/* 動画1本 */
+.clip{background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--indigo);margin:26px 0;}
+.clip-head{padding:16px 20px 14px;border-bottom:1px solid var(--line);background:var(--sunk);}
+.clip-no{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--indigo);
+  display:block;margin-bottom:5px;}
+.clip-title{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.5;
+  display:block;text-wrap:balance;}
+.clip-facts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:9px;
+  font-family:var(--mono);font-size:11px;color:var(--soft);}
+.clip-body{padding:18px 20px 20px;}
+.role{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--indigo);
+  font-weight:600;margin:20px 0 7px;padding-bottom:5px;border-bottom:1px dashed var(--line-firm);}
+.role:first-child{margin-top:0;}
+.say{border-left:2px solid var(--amber);padding:2px 0 2px 14px;margin:0 0 13px;
+  max-width:64ch;}
+.say:last-child{margin-bottom:0;}
+.screen{font-size:14px;color:var(--soft);}
+.screen li{margin-bottom:4px;}
+
+.callout{border-left:3px solid var(--amber);background:var(--amber-wash);
+  padding:17px 20px;margin:24px 0;}
+.callout .head{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  color:var(--amber-deep);margin-bottom:8px;font-weight:600;}
+.callout p{margin-bottom:9px;font-size:15px;}
+.callout p:last-child{margin-bottom:0;}
+
+.scroll{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);background:var(--surface);}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px;}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;
+  border-bottom:1px solid var(--line);line-height:1.8;}
+th{background:var(--sunk);font-weight:700;font-size:12.5px;white-space:nowrap;}
+tbody tr:last-child td{border-bottom:0;}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+.pending{background:var(--sunk);border:1px dashed var(--line-firm);padding:18px 20px;margin:26px 0;}
+.pending h3{font-family:var(--body);font-weight:700;font-size:16px;margin:0 0 8px;}
+.pending p{font-size:14.5px;color:var(--soft);}
+
+.foot{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);line-height:2;}
+@media (max-width:520px){.wrap{padding:38px 18px 72px;}body{font-size:15.5px;}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">シクミAIコンサル / 講座プラン</p>
+  <h1>動画の作り方</h1>
+  <p class="standfirst">
+    収録は太郎さんにしかできません。それ以外は用意できます。
+    <strong>いちばん早く1本目を仕上げる道</strong>と、そのあとの見通しをまとめました。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-20</span>
+    <span>版 v0.1</span>
+  </div>
+</header>
+
+<div class="callout">
+  <div class="head">できることと、できないこと</div>
+  <p>
+    動画づくりは <strong>台本 → スライド → 素材 → 収録 → 書き出し</strong> の順で進みます。
+    このうち<strong>収録だけが太郎さんの手作業</strong>で、前後は私が用意できます。
+  </p>
+</div>
+
+<div class="scroll">
+  <table>
+    <thead><tr><th>工程</th><th>だれが</th><th>いまの状態</th></tr></thead>
+    <tbody>
+      <tr><td>台本</td><td>私</td><td><strong>第0〜3章 完成</strong></td></tr>
+      <tr><td>スライド</td><td>私</td><td><strong>第0章 完成</strong>(8枚・ナレーション入り)</td></tr>
+      <tr><td>画面に映す練習用ファイル</td><td>私</td><td>これから(第1章以降で必要)</td></tr>
+      <tr><td>ひな形集</td><td>私</td><td>これから</td></tr>
+      <tr><td><strong>収録(声・顔・画面)</strong></td><td><strong>太郎さん</strong></td><td><strong>ここだけ代われません</strong></td></tr>
+      <tr><td>書き出し</td><td>太郎さん</td><td>Keynote / PowerPointの機能で完結</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="chapter-head">
+  <h2>いちばん早い道:第0章を今日撮る</h2>
+  <p class="chapter-sum">15分・3本 ／ アプリの画面もWindowsもひな形集も要りません</p>
+</div>
+
+<p>
+  第0章は<strong>顔とスライドだけ</strong>で成立します。アプリの画面を映さないので、
+  収録前の確認事項(ローカル設定・許可の設定・Windows実機)にも一切引っかかりません。
+  <strong>いま手元にあるもので、最後まで撮れる唯一の章</strong>です。
+</p>
+
+<div class="callout">
+  <div class="head">編集ソフトは要りません</div>
+  <p>
+    KeynoteとPowerPointには、<strong>スライドを送りながら声を録り、そのまま動画に書き出す機能</strong>が入っています。
+    第0章はこれだけで完成します。別の編集ソフトを覚える必要はありません。
+  </p>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">手順 1</span>
+    <span class="clip-title">スライドを開いて、ナレーションを確かめる</span>
+    <div class="clip-facts"><span>10分</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">やること</div>
+    <ul class="screen">
+      <li><code>ch0-slides.pptx</code> を Keynote か PowerPoint で開きます</li>
+      <li><strong>各スライドの「発表者ノート」に、話す内容がそのまま入っています。</strong>そこを読めば収録できます</li>
+      <li>Keynoteは <strong>表示 →「発表者ノート」</strong>、PowerPointは下部の<strong>「ノート」</strong>で表示できます</li>
+      <li>自分の言い回しに直したいところは、先に書き換えてください</li>
+    </ul>
+    <div class="role">補足</div>
+    <ul class="screen">
+      <li>フォントは<strong>游ゴシック</strong>を指定しています。見た目が崩れていたら、好みのフォントに置き換えてください</li>
+      <li>色はLPと同じ(紺 <code>#24457F</code> / 山吹 <code>#E8A33D</code>)にそろえてあります</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">手順 2</span>
+    <span class="clip-title">0-1 だけ、先に顔を撮る</span>
+    <div class="clip-facts"><span>20分</span><span>顔出し</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">やること</div>
+    <ul class="screen">
+      <li>Macに入っている <strong>QuickTime Player</strong> を開きます</li>
+      <li><strong>ファイル →「新規ムービー収録」</strong>で、カメラの録画が始められます</li>
+      <li>0-1(約5分)は<strong>スライドなし・顔だけ</strong>です。台本の「話すこと」を読みます</li>
+    </ul>
+    <div class="role">撮るときのコツ</div>
+    <ul class="screen">
+      <li><strong>窓を正面に</strong>して座る。逆光だと顔が暗くなります</li>
+      <li>カメラは<strong>目線の高さ</strong>に。本を積んで上げるだけで印象が変わります</li>
+      <li><strong>音がいちばん大事です。</strong>映像が多少粗くても許されますが、音が悪いと最後まで見てもらえません。
+        エアコンを止め、できればイヤホンのマイクを使ってください</li>
+      <li>背景に<strong>実在の書類が映り込んでいないか</strong>、撮る前に振り返って確認してください</li>
+      <li>言い間違えたら<strong>止めずに、少し間を置いて言い直す。</strong>あとで切れます</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">手順 3</span>
+    <span class="clip-title">0-2 と 0-3 を、スライドを送りながら録る</span>
+    <div class="clip-facts"><span>40分</span><span>スライド＋声</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">やること</div>
+    <ul class="screen">
+      <li><strong>Keynote:</strong> 再生メニュー →「スライドショーを記録」</li>
+      <li><strong>PowerPoint:</strong> スライドショータブ →「記録」</li>
+      <li>(表示名はバージョンで少し違います。<strong>「記録」と付いた項目</strong>を探してください)</li>
+      <li>録音を始めて、ノートを読みながらスライドを送ります</li>
+      <li><strong>1枚ごとに録り直せます。</strong>通しで完璧に録る必要はありません</li>
+    </ul>
+    <div class="role">分け方</div>
+    <ul class="screen">
+      <li>0-2 は <strong>スライド2〜4</strong>(できること / やらないこと / 比較表)</li>
+      <li>0-3 は <strong>スライド5〜8</strong>(進め方 / 用意するもの / 質問サポート / 締め)</li>
+      <li>2本に分けて書き出すか、1本で書き出してあとから切るかは、やりやすいほうで</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">手順 4</span>
+    <span class="clip-title">動画として書き出す</span>
+    <div class="clip-facts"><span>15分</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">やること</div>
+    <ul class="screen">
+      <li><strong>Keynote:</strong> ファイル → 書き出す → ムービー</li>
+      <li><strong>PowerPoint:</strong> ファイル → エクスポート → ビデオの作成</li>
+      <li>画質は <strong>1080p</strong> を選びます。それ以上は容量が増えるだけです</li>
+      <li>ファイル名は <code>0-1_ようこそ.mp4</code> のように<strong>番号を頭に付けて</strong>ください。並び順が崩れません</li>
+    </ul>
+    <div class="role">これで完成</div>
+    <ul class="screen">
+      <li>この時点で、<strong>実際に売り物になる動画が3本できています</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="chapter-head">
+  <h2>第1章から先に必要なもの</h2>
+  <p class="chapter-sum">画面収録が入るので、準備が1段増えます</p>
+</div>
+
+<p>
+  第1章以降は<strong>画面録画</strong>が中心です。Macなら QuickTime Player の
+  <strong>ファイル →「新規画面収録」</strong>で撮れます。ソフトを買う必要はありません。
+</p>
+
+<div class="scroll">
+  <table>
+    <thead><tr><th>必要なもの</th><th>だれが用意</th><th>内容</th></tr></thead>
+    <tbody>
+      <tr><td>スライド(第1〜3章)</td><td><strong>私</strong></td><td>第0章と同じ形式で作れます</td></tr>
+      <tr><td>画面に映す練習用ファイル</td><td><strong>私</strong></td><td>架空の会議メモ、先月の報告書、練習用フォルダ一式。<strong>実在の情報を映さないために必須</strong></td></tr>
+      <tr><td>ひな形集(7種)</td><td><strong>私</strong></td><td>1-6と第4章で実際に画面に映すもの</td></tr>
+      <tr><td>Windows実機</td><td>太郎さん</td><td>3-2のみ。無ければ後日撮影か外注</td></tr>
+      <tr><td>アプリの設定戻し</td><td>太郎さん</td><td>3-7を撮る前に、許可の設定を初期状態へ</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout">
+  <div class="head">かかる時間の目安</div>
+  <p>
+    この形式(スライド＋画面録画、凝った編集なし)だと、
+    <strong>できあがり1分あたり、収録と手直しで5〜10分</strong>を見ておくと外しません。
+  </p>
+  <ul>
+    <li><strong>第0章(15分)</strong> → 1時間半〜2時間半。<strong>今日から着手できます</strong></li>
+    <li><strong>第0〜3章(約3時間)</strong> → 15〜30時間。週末2〜3回ぶん</li>
+  </ul>
+  <p>
+    1本5〜12分に切ってあるのは、この撮り直しを軽くするためでもあります。
+    <strong>失敗しても、その1本を撮り直すだけで済みます。</strong>
+  </p>
+</div>
+
+<div class="pending">
+  <h3>次に私が作れるもの</h3>
+  <p>
+    <strong>1. 第1〜3章のスライド</strong>(第0章と同じ形式・ナレーション入り)<br>
+    <strong>2. 画面に映す練習用ファイル一式</strong>(架空の会議メモ、先月の報告書、練習用フォルダ)<br>
+    <strong>3. ひな形集7種</strong><br><br>
+    <strong>2番を先に作るのがおすすめです。</strong>これが無いと、第1章の実演で
+    実在の資料を映すことになり、1-5で自分が教える内容と矛盾します。
+  </p>
+</div>
+
+<p class="foot">
+  シクミAIコンサル 講座プラン 動画の作り方 v0.1<br>
+  台本(第0〜3章)と第0章スライドは別紙。要件定義 v0.5 にもとづく。
+</p>
+
+</div>
