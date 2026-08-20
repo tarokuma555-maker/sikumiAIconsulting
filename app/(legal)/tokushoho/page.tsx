@@ -89,6 +89,11 @@ const ROWS: { label: string; value: React.ReactNode }[] = [
       <>
         インターネットに接続されたパソコン(Windows または macOS)
         <br />
+        講座で扱うClaude Codeのご利用には、Claudeデスクトップアプリ(無料)が必要です。
+        Windowsをお使いの場合は、あわせてGit for Windows(無料)の導入が必要です。
+        <br />
+        AIサービス(Claude等)の利用料は受講料に含まれません。別途ご負担いただきます。
+        <br />
         オンラインセッションにはGoogle Meetを使用します。
       </>
     ),

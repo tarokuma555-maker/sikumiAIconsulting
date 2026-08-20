@@ -1,0 +1,582 @@
+<title>講座台本 第0章・第1章</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#F5F7F9;--surface:#FFFFFF;--sunk:#EDF2F6;
+  --ink:#0F1D33;--soft:#51617C;--line:#DCE5EC;--line-firm:#C3D2DE;
+  --indigo:#24457F;--amber:#E8A33D;--amber-deep:#8A5B0B;--amber-wash:#FFF6E6;
+  --display:"Zen Old Mincho",serif;
+  --body:"Zen Kaku Gothic New",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0C1728;--surface:#142138;--sunk:#0F1B2E;
+    --ink:#E7EEF6;--soft:#9DAFC7;--line:#24354F;--line-firm:#33486A;
+    --indigo:#8FB3F0;--amber:#E8A33D;--amber-deep:#F0C075;--amber-wash:#2A2113;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0C1728;--surface:#142138;--sunk:#0F1B2E;
+  --ink:#E7EEF6;--soft:#9DAFC7;--line:#24354F;--line-firm:#33486A;
+  --indigo:#8FB3F0;--amber:#E8A33D;--amber-deep:#F0C075;--amber-wash:#2A2113;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.95;-webkit-text-size-adjust:100%;}
+.wrap{max-width:780px;margin:0 auto;padding:56px 22px 96px;}
+
+.masthead{border-top:3px solid var(--indigo);padding-top:22px;margin-bottom:44px;}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--indigo);margin:0 0 14px;}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(27px,6.2vw,38px);
+  line-height:1.45;margin:0 0 18px;text-wrap:balance;}
+.standfirst{margin:0;color:var(--soft);font-size:15.5px;max-width:62ch;}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);}
+
+h2{font-family:var(--display);font-weight:600;font-size:clamp(21px,4.2vw,27px);
+  line-height:1.55;margin:0 0 8px;text-wrap:balance;}
+.chapter-head{margin-top:66px;padding:22px 0 0;border-top:2px solid var(--indigo);}
+.chapter-sum{color:var(--soft);font-size:14.5px;margin:6px 0 0;}
+p{margin:0 0 15px;max-width:68ch;}
+p:last-child{margin-bottom:0;}
+ul,ol{margin:0 0 15px;padding-left:1.4em;max-width:68ch;}
+li{margin-bottom:6px;}
+li::marker{color:var(--soft);}
+code{font-family:var(--mono);font-size:.88em;background:var(--sunk);
+  border:1px solid var(--line);padding:1px 5px;border-radius:2px;}
+
+/* 動画1本 */
+.clip{background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--indigo);margin:26px 0;}
+.clip-head{padding:16px 20px 14px;border-bottom:1px solid var(--line);background:var(--sunk);}
+.clip-no{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--indigo);
+  display:block;margin-bottom:5px;}
+.clip-title{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.5;
+  display:block;text-wrap:balance;}
+.clip-facts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:9px;
+  font-family:var(--mono);font-size:11px;color:var(--soft);}
+.clip-body{padding:18px 20px 20px;}
+.role{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--indigo);
+  font-weight:600;margin:20px 0 7px;padding-bottom:5px;border-bottom:1px dashed var(--line-firm);}
+.role:first-child{margin-top:0;}
+.say{border-left:2px solid var(--amber);padding:2px 0 2px 14px;margin:0 0 13px;
+  max-width:64ch;}
+.say:last-child{margin-bottom:0;}
+.screen{font-size:14px;color:var(--soft);}
+.screen li{margin-bottom:4px;}
+
+.callout{border-left:3px solid var(--amber);background:var(--amber-wash);
+  padding:17px 20px;margin:24px 0;}
+.callout .head{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  color:var(--amber-deep);margin-bottom:8px;font-weight:600;}
+.callout p{margin-bottom:9px;font-size:15px;}
+.callout p:last-child{margin-bottom:0;}
+
+.scroll{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);background:var(--surface);}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px;}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;
+  border-bottom:1px solid var(--line);line-height:1.8;}
+th{background:var(--sunk);font-weight:700;font-size:12.5px;white-space:nowrap;}
+tbody tr:last-child td{border-bottom:0;}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+.pending{background:var(--sunk);border:1px dashed var(--line-firm);padding:18px 20px;margin:26px 0;}
+.pending h3{font-family:var(--body);font-weight:700;font-size:16px;margin:0 0 8px;}
+.pending p{font-size:14.5px;color:var(--soft);}
+
+.foot{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);line-height:2;}
+@media (max-width:520px){.wrap{padding:38px 18px 72px;}body{font-size:15.5px;}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">シクミAIコンサル / 講座プラン 台本</p>
+  <h1>第0章・第1章 台本</h1>
+  <p class="standfirst">
+    収録用の台本です。<strong>読み上げ用の原稿ではありません。</strong>
+    「話すこと」は言い回しの目安なので、自分の言葉に置き換えて構いません。
+    「画面」に書いてあるものだけは、そのとおりに映してください。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-20</span>
+    <span>版 v0.1</span>
+    <span>第0章 15分 / 第1章 60分</span>
+  </div>
+</header>
+
+<div class="callout">
+  <div class="head">収録の共通ルール</div>
+  <p><strong>1本を5〜12分に収める。</strong>長くなったら切ってください。細切れの時間で見る人が対象です。</p>
+  <p><strong>顔出しは第0章だけ。</strong>第1章以降は画面録画＋音声です(決定4)。</p>
+  <p><strong>実在の社名・人名・数字は映さない。</strong>第1章で自分が教えることを、自分でも守っている画を撮ります。</p>
+  <p><strong>アプリの画面は変わります。</strong>撮り直しやすいよう、UIが大きく映る場面は短く切っておいてください。</p>
+</div>
+
+<!-- ================= 第0章 ================= -->
+<div class="chapter-head">
+  <h2>第0章 この講座で、どこまでやるか</h2>
+  <p class="chapter-sum">全3本・約15分 ／ 到達点:何ができるようになるか、何はやらないかを受講者が理解している</p>
+</div>
+
+<div class="callout">
+  <div class="head">この章のねらい</div>
+  <p>
+    ここは<strong>期待値を合わせるための章</strong>です。「3ヶ月で業務が全部自動化される」と思ったまま進むと、
+    最後に不満が残ります。<strong>やらないことを先に言う</strong>のが目的です。
+  </p>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">0-1</span>
+    <span class="clip-title">ようこそ。これは「AIの使い方講座」ではありません</span>
+    <div class="clip-facts"><span>約5分</span><span>顔出し</span><span>画面なし</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      はじめまして。シクミAIコンサルの大熊太郎です。この講座を選んでいただいて、ありがとうございます。
+    </p>
+    <p class="say">
+      最初にお伝えしておきたいことがあります。これは「AIの使い方を覚える講座」ではありません。
+      <strong>あなたが毎週やっている面倒な作業を1つ選んで、それをAIに任せる形を作る</strong>ための講座です。
+    </p>
+    <p class="say">
+      違いは何かというと、順番です。ふつうは道具の使い方から入りますよね。でもそれだと、
+      使い方を覚えたあとで「で、これを何に使うんだっけ」で止まってしまう。私も最初そうでした。
+      なので、この講座では<strong>先に「これを楽にしたい」を決めてから</strong>、道具を触ります。
+    </p>
+    <p class="say">
+      私自身、最初の仕事は飲食店の店長でした。パソコンとはほぼ無縁の現場から、営業、労務の相談役を経てIT業界へ。
+      いまは大きなシステムを作り替えるプロジェクトで、現場とエンジニアの間をつなぐ仕事をしています。
+      つまり<strong>私も、もともとは非エンジニアです。</strong>
+      どこでつまずくかは、自分の体験として分かっているつもりです。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>顔出しのみ。スライドなし</li>
+      <li>背景は生活感が出ない場所。実在の書類が映り込まないこと</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">0-2</span>
+    <span class="clip-title">この講座でやること・やらないこと</span>
+    <div class="clip-facts"><span>約6分</span><span>顔出し＋スライド</span><span>最重要</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      この講座を見終わったときに、あなたができるようになっていることは4つです。
+    </p>
+    <p class="say">
+      1つめ。自分の仕事の中から<strong>「AIに任せられそうな作業」を3つ挙げられる</strong>。<br>
+      2つめ。自分のパソコンで<strong>Claude Codeを動かして、日本語で指示が出せる</strong>。<br>
+      3つめ。用意したひな形を使って、<strong>1つの作業の下書きをAIに作らせられる</strong>。<br>
+      4つめ。うまくいかないときに、<strong>自分で直す手順を持っている</strong>。
+    </p>
+    <p class="say">
+      逆に、この講座が<strong>やらないこと</strong>もはっきり言っておきます。
+    </p>
+    <p class="say">
+      <strong>あなたの業務に合わせた設計は、この講座には含まれません。</strong>
+      動画は、私が用意した例で進みます。あなたの会社の事情、扱っている情報の種類、
+      上司への説明の仕方——そういう個別のことは、動画では扱えません。
+    </p>
+    <p class="say">
+      そこまでやりたい方のために伴走プランがあります。ただ、
+      <strong>まずはこの講座を一周してみてください。</strong>ひとりで最後まで行ける方も多いはずです。
+      行けなかったところが分かってから相談したほうが、話が早いです。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド1:「できるようになる4つ」——番号つきで1つずつ出す</li>
+      <li>スライド2:「この講座がやらないこと」——赤系ではなく、落ち着いた色で</li>
+      <li>スライド3:講座プランと伴走プランの線引き(下表と同じ内容)</li>
+    </ul>
+    <div class="role">スライド3の中身</div>
+    <div class="scroll">
+      <table>
+        <thead><tr><th></th><th>この講座</th><th>伴走プラン</th></tr></thead>
+        <tbody>
+          <tr><td>進め方</td><td>動画を見て、自分で手を動かす</td><td>月2回、一緒に手を動かす</td></tr>
+          <tr><td>題材</td><td>こちらで用意した例</td><td>あなたの実際の作業</td></tr>
+          <tr><td>質問</td><td>動画の内容について、30日間</td><td>期間中いつでも</td></tr>
+          <tr><td>ゴール</td><td>やり方が分かる</td><td>作業が1つ、実際に終わる</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">0-3</span>
+    <span class="clip-title">進め方と、必要なもの</span>
+    <div class="clip-facts"><span>約4分</span><span>顔出し＋スライド</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      進め方です。<strong>順番に見てください。</strong>とばすと後半で困ります。
+      とくに第2章で「任せる作業」を決めてから第3章に進むのが大事です。
+    </p>
+    <p class="say">
+      <strong>見るだけでは身につきません。</strong>第2章と第4章には、実際に手を動かす回があります。
+      そこは動画を止めて、自分でやってから先に進んでください。
+    </p>
+    <p class="say">
+      用意していただくものは3つです。ひとつ、インターネットにつながるパソコン。
+      WindowsでもMacでもかまいません。ふたつ、Claudeのアプリ。無料でダウンロードできます。入れ方は第3章でやります。
+      みっつ、AIの利用料。これは<strong>受講料とは別に、月に数千円ほどかかります。</strong>
+      無料で試せる範囲もあるので、そこも第3章でご案内します。
+    </p>
+    <p class="say">
+      それから、質問について。<strong>動画の内容についてのご質問を、30日間お受けします。</strong>
+      「この手順のとおりにやったが動かない」といったものです。窓口はメールで、平日3営業日以内にお返しします。
+      あなたの業務そのものをどう設計するかというご相談は、伴走プランの範囲になります。
+    </p>
+    <p class="say">
+      では、始めましょう。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:「用意するもの3つ」</li>
+      <li>スライド:「質問サポート」——期間・窓口・返信目安・対象範囲を1枚に</li>
+      <li>最後に第1章へのつなぎカット</li>
+    </ul>
+    <div class="role">注意</div>
+    <ul class="screen">
+      <li>AI利用料の金額は変わります。<strong>具体的な金額をスライドに焼き込まない</strong>でください。「月に数千円ほど」までにとどめ、正確な金額は購入案内メールに書きます</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= 第1章 ================= -->
+<div class="chapter-head">
+  <h2>第1章 仕事でAIを使うための基礎</h2>
+  <p class="chapter-sum">全7本・約60分 ／ 到達点:AIに向く仕事と向かない仕事を、自分で判断できる</p>
+</div>
+
+<div class="callout">
+  <div class="head">この章のねらい</div>
+  <p>
+    <strong>ここでは、まだClaude Codeを触りません。</strong>先に「AIに何をどう頼むか」の考え方を入れます。
+    道具を触る前に頭ができていないと、第3章で手が止まります。
+  </p>
+  <p>
+    順番も意図的です。<strong>「苦手なこと」を先に見せます。</strong>
+    できることから見せると期待が上がりすぎて、最初の失敗で心が折れます。
+  </p>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">1-1</span>
+    <span class="clip-title">AIが苦手なこと</span>
+    <div class="clip-facts"><span>約8分</span><span>画面録画</span><span>先に苦手から</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      まず、AIが苦手なことから話します。順番が逆に思えるかもしれませんが、
+      ここを先に知っておくと、あとで無駄に悩まずに済みます。
+    </p>
+    <p class="say">
+      ひとつめ。<strong>AIは、平気で間違えます。</strong>しかも、間違えるときも自信たっぷりに答えます。
+      「たぶん違うかも」とは言ってくれません。だから<strong>出てきたものを人が確かめる工程は、必ず要ります。</strong>
+    </p>
+    <p class="say">
+      ふたつめ。<strong>AIは、あなたの会社の事情を知りません。</strong>
+      社内の言い回し、暗黙のルール、この人にはこう書くという配慮。教えなければ分かりません。
+    </p>
+    <p class="say">
+      みっつめ。<strong>AIは、責任を取れません。</strong>間違ったまま出した資料の責任は、出した人にあります。
+    </p>
+    <p class="say">
+      ここから分かるのは、<strong>最初にAIに任せるべき作業の条件</strong>です。
+      間違いに気づける作業。取り返しがつく作業。この2つを満たすものから始めます。
+      いきなり「お客様に直接送るメール」を任せてはいけません。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:「AIが苦手な3つ」</li>
+      <li>実演:わざと間違った答えを出させて見せる(もっともらしく間違える様子を見せるのが目的)</li>
+      <li>スライド:「最初に任せる作業の2条件——間違いに気づける／取り返しがつく」</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">1-2</span>
+    <span class="clip-title">AIが得意なこと</span>
+    <div class="clip-facts"><span>約7分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      では得意なことです。ひとことで言うと、<strong>「決まった形に整えること」</strong>です。
+    </p>
+    <p class="say">
+      散らばったメモを1つにまとめる。長い文章を短くする。同じ形式に揃える。
+      表から数字を拾って集計する。ファイルの名前を規則どおりに付け替える。
+      <strong>どれも、あなたが手でやれば必ずできるけれど、時間だけかかる作業</strong>です。
+    </p>
+    <p class="say">
+      逆に言うと、<strong>あなたにしかできない判断は、AIには渡せません。</strong>
+      「この案件、今週報告すべきか」といった判断です。
+      そこはあなたが持ったまま、<strong>その手前の下ごしらえだけを渡す。</strong>これがこの講座の考え方です。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:「得意なこと=決まった形に整えること」+ 具体例5つ</li>
+      <li>スライド:「渡すのは下ごしらえまで。判断は自分が持つ」——第4章の図と同じ絵にする</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">1-3</span>
+    <span class="clip-title">お願いの書き方——3つ入れるだけ</span>
+    <div class="clip-facts"><span>約10分</span><span>画面録画</span><span>この章の核</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      ここがこの章でいちばん大事なところです。AIへのお願いには、<strong>3つ入れれば足ります。</strong>
+    </p>
+    <p class="say">
+      <strong>1. 何を</strong>——材料です。「このフォルダの先週分の会議メモを」<br>
+      <strong>2. どうしてほしいか</strong>——してほしいことです。「まとめて、報告書の下書きにして」<br>
+      <strong>3. どんな形で</strong>——出来上がりの形です。「先月の報告書と同じ形で」
+    </p>
+    <p class="say">
+      この3つです。難しい言葉は要りません。<strong>人にお願いするときと同じ</strong>です。
+      新しく入った人に仕事を頼むところを想像してください。材料を渡して、何をしてほしいか言って、
+      出来上がりの見本を見せる。それと同じことをします。
+    </p>
+    <p class="say">
+      よくある失敗が、<strong>3つめを言わないこと</strong>です。「まとめておいて」だけだと、
+      AIは自分の好きな形でまとめます。それが自分の欲しい形と違うので「使えない」となる。
+      <strong>見本を見せるのが、いちばん手っ取り早い</strong>です。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:「3つ入れるだけ」——何を / どうしてほしいか / どんな形で</li>
+      <li>実演:3つめを抜いた頼み方 → 期待と違う結果</li>
+      <li>実演:3つめを足した頼み方 → 期待どおりの結果</li>
+      <li><strong>同じ材料で2回やって、差だけを見せる</strong>のがポイント</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">1-4</span>
+    <span class="clip-title">思ったとおりに出ないときの直し方</span>
+    <div class="clip-facts"><span>約9分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      思ったものが出てこなかったとき、<strong>最初から書き直す必要はありません。</strong>
+      そのまま「ここをこうして」と続けて言えば直ります。会話の続きとして直せる、というのが大きな特徴です。
+    </p>
+    <p class="say">
+      直し方には順番があります。<strong>まず、どこが違うのかを具体的に言う。</strong>
+      「なんか違う」では直りません。「長すぎる」「この項目が抜けている」「もっと固い言葉で」。
+      具体的に言うほど、まっすぐ直ります。
+    </p>
+    <p class="say">
+      それでも直らないときは、<strong>いったん諦めて、頼み方を変えます。</strong>
+      同じ言い方で3回粘るより、材料の渡し方や見本を変えたほうが早いことが多いです。
+    </p>
+    <p class="say">
+      それから、これは覚えておいてください。<strong>途中でおかしくなったら、新しく始め直す。</strong>
+      長く続けたやりとりは、だんだん噛み合わなくなることがあります。そういうときは、
+      うまくいっていたところまでの内容を持って、新しく始めたほうが早いです。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>実演:「なんか違う」と言ってみる → 直らない様子</li>
+      <li>実演:「長すぎるので半分に。あと日付を入れて」→ 直る様子</li>
+      <li>スライド:「直し方の順番——具体的に言う → 頼み方を変える → 始め直す」</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">1-5</span>
+    <span class="clip-title">会社の情報を、そのまま渡さない</span>
+    <div class="clip-facts"><span>約12分</span><span>画面録画</span><span>いちばん質問が来る</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      ここは慎重に話します。<strong>「会社の情報をAIに入れて大丈夫なのか」</strong>——
+      いちばん多い心配だと思います。
+    </p>
+    <p class="say">
+      まず前提として、<strong>これは会社ごとにルールが違います。</strong>
+      「大丈夫です」と私が言い切れる話ではありません。なので、
+      <strong>ルールを確かめる方法</strong>と、<strong>そもそも渡さずに済ませる方法</strong>の2つをお伝えします。
+    </p>
+    <p class="say">
+      渡さずに済ませる方法は、大きく2つです。ひとつは<strong>伏せる。</strong>
+      会社名を「A社」、人の名前を「担当者」、金額を「◯円」に置き換えてから渡す。
+      形を整えてもらうだけなら、中身が本物である必要はありません。
+    </p>
+    <p class="say">
+      もうひとつは<strong>作りものを使う。</strong>本物そっくりの、でも中身は架空のデータを用意して、
+      それで仕組みを作る。できあがってから、本物を通す。
+      <strong>作っている最中に本物を渡す必要はない</strong>——これは意外と知られていません。
+    </p>
+    <p class="say">
+      そのうえで、会社のルールが分からない場合。確認するとよいのは3つです。
+      <strong>生成AIの業務利用について決まりがあるか。使ってよいサービスが決まっているか。
+      持ち出してはいけない情報の種類が定義されているか。</strong>
+      この3つを情報システム部門か上長に聞けば、たいてい話が進みます。
+    </p>
+    <p class="say">
+      最後に、これだけは。<strong>お客様の個人情報と、まだ公表していない数字。</strong>
+      この2つは、判断がつかないうちは渡さないでください。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>実演:本物っぽい資料 → 伏せたあとの資料。<strong>並べて見せる</strong></li>
+      <li>スライド:「確認する3つの質問」——そのまま上長に送れる文面にしておく</li>
+      <li>スライド:「判断がつかないうちは渡さない2つ」</li>
+    </ul>
+    <div class="role">注意</div>
+    <ul class="screen">
+      <li>特定のAIサービスの規約内容を断定しないこと。規約は変わります</li>
+      <li>「安全です」と言い切らない。<strong>「会社のルールを確かめてください」</strong>で通す</li>
+      <li>実演に使う資料は<strong>すべて架空のもの</strong>を新規に作ること</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">1-6</span>
+    <span class="clip-title">ひな形集の使い方</span>
+    <div class="clip-facts"><span>約7分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      この講座には、ひな形集が付いています。<strong>ゼロから考えなくていいように</strong>用意したものです。
+    </p>
+    <p class="say">
+      使い方は、<strong>コピーして、かぎ括弧の中を自分の言葉に置き換えるだけ</strong>です。
+      たとえば報告書のひな形なら、「〔材料のある場所〕」「〔出したい形〕」というところを埋めます。
+    </p>
+    <p class="say">
+      ここで1-3の話とつながります。ひな形は、<strong>さっきの3つが最初から入った状態</strong>です。
+      何を・どうしてほしいか・どんな形で。埋めるところが3つあるのは、そのためです。
+    </p>
+    <p class="say">
+      慣れてきたら、自分用に書き換えてください。<strong>ひな形は完成品ではなく、出発点です。</strong>
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>ひな形集を実際に開いて、中身を見せる</li>
+      <li>1つを選んでコピーし、かぎ括弧を埋めるところまで実演</li>
+      <li>埋めたものが1-3の「3つ」に対応していることを、色分けなどで示す</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">1-7</span>
+    <span class="clip-title">この章のまとめ</span>
+    <div class="clip-facts"><span>約4分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      この章では、AIに何をどう頼むかを見てきました。覚えておいてほしいのは3つです。
+    </p>
+    <p class="say">
+      <strong>間違えるものだから、確かめる工程を残す。</strong><br>
+      <strong>お願いには、何を・どうしてほしいか・どんな形で、を入れる。</strong><br>
+      <strong>本物の情報は、作っている最中には渡さなくていい。</strong>
+    </p>
+    <p class="say">
+      次の章では、いよいよ<strong>あなたの仕事の中から「任せる作業」を選びます。</strong>
+      紙とペン、または開いたままにできるパソコンを用意してください。手を動かす回です。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:3点のまとめ</li>
+      <li>次章の予告——「手を動かす回」であることを明示</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= 第2〜3章 ================= -->
+<div class="chapter-head">
+  <h2>第2章・第3章の割り付け</h2>
+  <p class="chapter-sum">台本は次に書きます。ここでは本数と尺の見込みだけ置いています</p>
+</div>
+
+<div class="scroll">
+  <table>
+    <thead><tr><th>本</th><th>タイトル</th><th>尺</th><th>形式</th></tr></thead>
+    <tbody>
+      <tr><td class="num">2-1</td><td>1週間の作業を、全部書き出す</td><td class="num">8分</td><td>画面＋ワーク</td></tr>
+      <tr><td class="num">2-2</td><td>選ぶ基準——毎週やる・手順が決まっている・判断が少ない</td><td class="num">9分</td><td>画面録画</td></tr>
+      <tr><td class="num">2-3</td><td>最初に選んではいけない作業</td><td class="num">7分</td><td>画面録画</td></tr>
+      <tr><td class="num">2-4</td><td>ワーク:3つに絞る(動画を止めて実施)</td><td class="num">16分</td><td>ワーク</td></tr>
+      <tr><td class="num">3-1</td><td>Claude Codeの入口は2つある。この講座はアプリを使う</td><td class="num">6分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-2</td><td>入れる:Windows編(Git for Windowsを含む)</td><td class="num">14分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-3</td><td>入れる:macOS編</td><td class="num">10分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-4</td><td>Codeタブを開いて、作業するフォルダを選ぶ</td><td class="num">8分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-5</td><td>最初の1回:日本語でお願いしてみる</td><td class="num">12分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-6</td><td>画面の見方と、変更箇所の確かめ方</td><td class="num">10分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-7</td><td>やってはいけない操作</td><td class="num">8分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-8</td><td>つまずいたときに見るところ</td><td class="num">12分</td><td>画面録画</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="callout">
+  <div class="head">第3章を撮るときの注意</div>
+  <p>
+    <strong>3-2から3-6は、アプリの画面がそのまま映ります。</strong>アプリは更新が早いので、
+    ここがいちばん先に古くなります。1本を長くせず、<strong>差し替えたい単位で切っておいてください。</strong>
+  </p>
+  <p>
+    WindowsとmacOSは<strong>別々に撮ります</strong>(3-2 / 3-3)。片方だけで済ませると、
+    もう片方の受講者が最初の10分で止まります。
+  </p>
+</div>
+
+<div class="pending">
+  <h3>まだ書いていないもの</h3>
+  <p>
+    第2章・第3章の台本、第4章・第5章・付録の台本、ひな形集の中身。<br>
+    <strong>次は第2章と第3章の台本を書きます。</strong>
+    ただし第3章はアプリの実際の画面を見ながら書かないと、手順が空想になります。
+    先に太郎さんの環境でアプリを開き、画面のスクリーンショットをいただけると正確に書けます。
+  </p>
+</div>
+
+<p class="foot">
+  シクミAIコンサル 講座プラン 第0章・第1章 台本 v0.1<br>
+  要件定義 v0.3 にもとづく。決定4(第0章のみ顔出し)・決定6(第0〜3章で先行販売)を反映。
+</p>
+
+</div>
