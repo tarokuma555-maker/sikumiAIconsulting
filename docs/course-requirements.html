@@ -167,6 +167,13 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
   padding-bottom:12px;border-bottom:1px dashed var(--line-firm);
 }
 .chapter ul{margin:0;font-size:14.5px;}
+.chapter.appendix{border-left-color:var(--line-firm);background:var(--sunk);}
+code{
+  font-family:var(--mono);font-size:.88em;
+  background:var(--sunk);border:1px solid var(--line);
+  padding:1px 5px;border-radius:2px;
+}
+.chapter.appendix code{background:var(--surface);}
 
 /* ---- 決定事項 ---- */
 .decision{
@@ -206,7 +213,7 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
   </p>
   <div class="meta">
     <span>作成 2026-08-20</span>
-    <span>版 v0.1(草案)</span>
+    <span>版 v0.2(草案)</span>
     <span>対象 講座プラン</span>
   </div>
 </header>
@@ -237,7 +244,7 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
         <tr><td>中身</td><td>①仕事でAIを使うための基礎(動画)<br>②Claude Codeのはじめかた(動画)<br>③よくある作業をAIに任せるためのひな形集<br>④動画の内容についての質問(30日間)</td><td>LP</td></tr>
         <tr><td>引き渡し</td><td>入金確認後、<strong>3営業日以内</strong>にメールで閲覧方法を案内</td><td>特商法</td></tr>
         <tr><td>返金</td><td><strong>閲覧開始前</strong>かつ支払後8日以内なら全額返金。<br>閲覧開始後は返金なし。</td><td>特商法</td></tr>
-        <tr><td>動作環境</td><td>Windows または macOS</td><td>特商法</td></tr>
+        <tr><td>動作環境</td><td>Windows または macOS<br><span style="color:var(--soft);font-size:13px;">※Windowsは別途Git for Windowsの導入が必要。特商法ページに追記するか要判断(決定7)</span></td><td>特商法</td></tr>
         <tr><td>乗り換え</td><td>伴走プランへは差額の支払いだけで移行できる</td><td>LP</td></tr>
       </tbody>
     </table>
@@ -270,8 +277,9 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
     <li><strong>「黒い画面」に強い抵抗がある</strong>。ここを解けるかが教材の成否を分けます</li>
   </ul>
   <p>
-    最後の1点が、この教材のいちばん難しいところです。
-    技術的な内容そのものより、<strong>「自分にもできそうだ」と思わせる順番で見せること</strong>が設計の中心になります。
+    最後の1点が、この教材のいちばん難しいところでした。
+    ただし<strong>Claudeのデスクトップアプリを使えば、最初から黒い画面を見ずに始められます</strong>(第4節)。
+    LPで「黒い画面でプログラムを書くわけではありません」と書いている内容と、教材で見せる画面がようやく一致します。
   </p>
 </section>
 
@@ -379,14 +387,17 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
 
   <div class="chapter">
     <div class="chapter-top">
-      <span class="chapter-name">第3章 Claude Codeのはじめかた</span>
+      <span class="chapter-name">第3章 Claude Codeを使えるようにする</span>
       <span class="chapter-time">約90分</span>
     </div>
-    <p class="chapter-goal">到達点:自分のパソコンでClaude Codeが動き、日本語で1往復できる</p>
+    <p class="chapter-goal">到達点:Claudeアプリが動き、日本語で1往復のやりとりができる</p>
     <ul>
-      <li>Claude Codeとは何か(「黒い画面」への抵抗を解く回)</li>
-      <li>入れ方:Windows編 / macOS編を<strong>別々に撮る</strong></li>
-      <li>最初の1回:フォルダを見せて、日本語でお願いしてみる</li>
+      <li>Claude Codeとは何か。入口は2つある(アプリ / ターミナル)。<strong>この講座はアプリを使います</strong></li>
+      <li>入れ方:Windows編 — Claudeアプリに加えて<strong>Git for Windowsが必要</strong>(入れたあとアプリを再起動)</li>
+      <li>入れ方:macOS編</li>
+      <li>Codeタブを開いて、作業するフォルダを選ぶ</li>
+      <li>最初の1回:日本語でお願いしてみる</li>
+      <li>画面の見方(どこに何が出るか、変更箇所の確かめ方)</li>
       <li>やってはいけない操作(消してしまう系の指示)</li>
       <li>つまずきやすい場所と、その直し方</li>
     </ul>
@@ -418,6 +429,38 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
       <li>人に見せる・引き継ぐときの注意</li>
       <li>ここから先(伴走プランで何が変わるか)</li>
     </ul>
+  </div>
+
+  <div class="chapter appendix">
+    <div class="chapter-top">
+      <span class="chapter-name">付録 ターミナルを使うとき</span>
+      <span class="chapter-time">約20分</span>
+    </div>
+    <p class="chapter-goal">到達点:必要になったとき、アプリの中のターミナルを開いて操作できる</p>
+    <ul>
+      <li>ターミナルは<strong>Claudeアプリの中に入っています</strong>(<code>Ctrl</code>+<code>`</code>で下から出ます)。別のアプリを開く必要はありません</li>
+      <li>どんなときに必要になるか</li>
+      <li>貼り付けるだけで済ませる進め方</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <div class="head">なぜアプリを主にするか</div>
+    <p>
+      Claude Codeには<strong>デスクトップアプリ</strong>と<strong>ターミナル</strong>の2つの入口があります。
+      設定ファイル・CLAUDE.md・スキル・権限の設定は<strong>両方で共通</strong>なので、できることはほぼ同じです。
+    </p>
+    <p>
+      そのうえでアプリには、受講者にとって効きが大きい差があります。
+      <strong>スキル・プラグイン・外部サービス連携は画面から追加・管理でき、ターミナルを開かずに設定できます。</strong>
+      画像やPDFを貼って渡せるのもアプリだけです(ターミナルではできません)。
+      変更箇所を画面で見比べられるのも、非エンジニアには大きい違いです。
+    </p>
+    <p>
+      ターミナルが要る場面もありますが、<strong>ターミナルはアプリの中にあります</strong>。
+      別のアプリを立ち上げるのではなく、画面の下から出てくるだけです。
+      「黒い画面」への抵抗は、ここでほぼ解けます。だから付録に置きました。
+    </p>
   </div>
 
   <div class="callout">
@@ -560,6 +603,8 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
     <li>英語版</li>
     <li>法人向けの複数アカウント販売</li>
     <li>Claude Code以外のツールの解説(ChatGPT単体の使い方など)</li>
+    <li>自分でスキルやプラグインを作る方法(使う側だけ扱います)</li>
+    <li>ターミナルのコマンドを覚える回(付録で必要最小限にとどめます)</li>
   </ul>
 </section>
 
@@ -604,6 +649,16 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
     <p>締め切りが決まると、削るものが決まります。全6章そろわないと売れない、という制約はありません。</p>
     <div class="rec"><b>推奨:</b> 第0〜3章(約3時間)で先行販売し、第4〜5章は追加公開する。買い切り・視聴期限なしなので、あとから足しても筋が通ります。</div>
   </div>
+
+  <div class="decision">
+    <h3><span class="d-no">決定7</span><span>特商法の動作環境を直すか</span></h3>
+    <p>
+      いまの特商法ページは「インターネットに接続されたパソコン(Windows または macOS)」だけです。
+      Windowsでアプリを使うには<strong>Git for Windowsの導入が別途必要</strong>なので、
+      買ったあとに「動かない」と言われる余地があります。
+    </p>
+    <div class="rec"><b>推奨:</b> 動作環境に追記する。「Windowsの場合はGit for Windows(無料)の導入が必要」と1行足すだけで、購入前に伝わります。</div>
+  </div>
 </section>
 
 <!-- 11 -->
@@ -623,8 +678,9 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
 </section>
 
 <p class="foot">
-  シクミAIコンサル 講座プラン 要件定義 v0.1(草案)<br>
-  この文書は、決定1〜6の回答を受けて v0.2 に更新します。
+  シクミAIコンサル 講座プラン 要件定義 v0.2(草案)<br>
+  v0.2の変更点:Claudeデスクトップアプリを主、ターミナルを従とする方針を反映(第3章・付録・第7節)。<br>
+  この文書は、決定1〜7の回答を受けて v0.3 に更新します。
 </p>
 
 </div>
