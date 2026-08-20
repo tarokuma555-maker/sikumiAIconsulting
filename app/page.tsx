@@ -276,7 +276,7 @@ export default function Home() {
       <section className="sheet" id="concept">
         <div className="container">
           <span className="eyebrow">シクミAIコンサルとは</span>
-          <h2 className="hang-q">
+          <h2>
             <span className="seg">ひとことで言うと、</span>
             <span className="seg">こういうサービスです。</span>
           </h2>
@@ -332,7 +332,7 @@ export default function Home() {
       <section className="demo-sec" id="demo">
         <div className="container">
           <span className="eyebrow">やることは、こんな感じです</span>
-          <h2 className="hang-q">
+          <h2>
             <span className="seg">むずかしいことは</span>
             <span className="seg">しません。</span>
           </h2>
@@ -441,7 +441,10 @@ export default function Home() {
       <section className="cases" id="cases">
         <div className="container">
           <span className="eyebrow">どれくらい変わるのか</span>
-          <h2 className="hang-q">「毎週これ」が、ここまで減ります。</h2>
+          <h2>
+            <span className="seg">面倒な作業が、</span>
+            <span className="seg">ここまで減ります。</span>
+          </h2>
           <div className="case-grid">
             <div className="case-card reveal">
               <span className="job">事例1 — 企画のお仕事</span>
