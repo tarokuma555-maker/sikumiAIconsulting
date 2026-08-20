@@ -540,10 +540,10 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
       <tr><td class="num">2-2</td><td>選ぶ基準——毎週やる・手順が決まっている・判断が少ない</td><td class="num">9分</td><td>画面録画</td></tr>
       <tr><td class="num">2-3</td><td>最初に選んではいけない作業</td><td class="num">7分</td><td>画面録画</td></tr>
       <tr><td class="num">2-4</td><td>ワーク:3つに絞る(動画を止めて実施)</td><td class="num">16分</td><td>ワーク</td></tr>
-      <tr><td class="num">3-1</td><td><strong>入口は3つある。ブラウザ版では、この講座はできない</strong></td><td class="num">9分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-1</td><td><strong>「ローカル」と「クラウド」の違い。この講座はローカルだけ</strong></td><td class="num">9分</td><td>画面録画</td></tr>
       <tr><td class="num">3-2</td><td>入れる:Windows編(Git for Windowsを含む)</td><td class="num">14分</td><td>画面録画</td></tr>
       <tr><td class="num">3-3</td><td>入れる:macOS編</td><td class="num">10分</td><td>画面録画</td></tr>
-      <tr><td class="num">3-4</td><td>Codeタブを開いて、作業するフォルダを選ぶ</td><td class="num">8分</td><td>画面録画</td></tr>
+      <tr><td class="num">3-4</td><td><strong>環境を「ローカル」にしてから</strong>、作業するフォルダを選ぶ</td><td class="num">11分</td><td>画面録画</td></tr>
       <tr><td class="num">3-5</td><td>最初の1回:日本語でお願いしてみる</td><td class="num">12分</td><td>画面録画</td></tr>
       <tr><td class="num">3-6</td><td>画面の見方と、変更箇所の確かめ方</td><td class="num">10分</td><td>画面録画</td></tr>
       <tr><td class="num">3-7</td><td>やってはいけない操作</td><td class="num">8分</td><td>画面録画</td></tr>
@@ -553,19 +553,25 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:now
 </div>
 
 <div class="callout">
-  <div class="head">3-1は、この講座でいちばん事故が起きる回</div>
+  <div class="head">3-1と3-4は、この講座でいちばん事故が起きる回</div>
   <p>
-    Claude Codeには入口が3つあり、<strong>そのうちブラウザ版(claude.ai)では、この講座の内容はできません。</strong>
-    クラウド上の別のマシンで動くため、受講者のパソコンの中のファイルに触れないからです。
-    使うにはGitHubのリポジトリも必要になります。
+    伝えるべき違いは「アプリかブラウザか」ではありません。<strong>「ローカルかクラウドか」</strong>です。
+    Claude Codeのセッションには、自分のパソコンで動く<strong>ローカル</strong>と、
+    Anthropicの別のマシンで動く<strong>クラウド</strong>があり、
+    <strong>この講座で使えるのはローカルだけ</strong>です。
   </p>
   <p>
-    そしてブラウザで開くのが<strong>いちばん手軽</strong>なので、放っておけば受講者はそこへ行きます。
-    そして「リポジトリを選択」の画面で完全に止まります。<strong>3-1で、実際にその画面を見せて先に潰してください。</strong>
+    やっかいなのは、<strong>デスクトップアプリを入れてもクラウドを選べてしまう</strong>ことです。
+    「アプリを入れれば大丈夫」では足りません。<strong>環境を「ローカル」にする操作まで見せて、はじめて完了です。</strong>
   </p>
   <p>
-    見分け方も具体的に伝えます。<strong>サイドバーに「Claude Desktop version available」と出ていたら、それはブラウザ版です。</strong>
-    フォルダではなく「リポジトリを選択」と出るのも、ブラウザ版の印です。
+    見分け方はプロンプト欄の左端のボタンです。<strong>「ローカル」と出ていれば正解で、次に選ぶのはフォルダ。</strong>
+    環境名(「デフォルト」など)が出ていて、その右に<strong>リポジトリ名とブランチ名</strong>が並んでいたら、それはクラウドです。
+  </p>
+  <p>
+    クラウドを選ぶと、パソコンのファイルに触れないだけでなく、
+    <strong>アプリ内のターミナルもファイル一覧もプラグインも使えなくなります</strong>(いずれもローカル専用)。
+    受講者は原因が分からないまま止まります。<strong>3-1で概念を、3-4で実際の操作を</strong>、2回に分けて潰してください。
   </p>
 </div>
 
