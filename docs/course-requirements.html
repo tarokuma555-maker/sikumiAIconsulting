@@ -1,0 +1,630 @@
+<title>講座プラン 要件定義</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#F5F7F9;
+  --surface:#FFFFFF;
+  --sunk:#EDF2F6;
+  --ink:#0F1D33;
+  --soft:#51617C;
+  --line:#DCE5EC;
+  --line-firm:#C3D2DE;
+  --indigo:#24457F;
+  --amber:#E8A33D;
+  --amber-deep:#8A5B0B;
+  --amber-wash:#FFF6E6;
+  --display:"Zen Old Mincho",serif;
+  --body:"Zen Kaku Gothic New",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0C1728;
+    --surface:#142138;
+    --sunk:#0F1B2E;
+    --ink:#E7EEF6;
+    --soft:#9DAFC7;
+    --line:#24354F;
+    --line-firm:#33486A;
+    --indigo:#8FB3F0;
+    --amber:#E8A33D;
+    --amber-deep:#F0C075;
+    --amber-wash:#2A2113;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0C1728;
+  --surface:#142138;
+  --sunk:#0F1B2E;
+  --ink:#E7EEF6;
+  --soft:#9DAFC7;
+  --line:#24354F;
+  --line-firm:#33486A;
+  --indigo:#8FB3F0;
+  --amber:#E8A33D;
+  --amber-deep:#F0C075;
+  --amber-wash:#2A2113;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.95;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{max-width:760px;margin:0 auto;padding:56px 22px 96px;}
+
+/* ---- 冒頭 ---- */
+.masthead{
+  border-top:3px solid var(--indigo);
+  padding-top:22px;margin-bottom:52px;
+}
+.kicker{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
+  color:var(--indigo);margin:0 0 14px;
+}
+h1{
+  font-family:var(--display);font-weight:900;
+  font-size:clamp(28px,6.4vw,40px);line-height:1.45;
+  margin:0 0 18px;text-wrap:balance;
+}
+.standfirst{margin:0;color:var(--soft);font-size:15.5px;max-width:60ch;}
+.meta{
+  display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--soft);
+}
+
+/* ---- 節 ---- */
+section{margin-top:60px;}
+h2{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(20px,4vw,25px);line-height:1.6;
+  margin:0 0 6px;text-wrap:balance;
+  display:flex;gap:14px;align-items:baseline;
+}
+h2 .no{
+  font-family:var(--mono);font-size:13px;font-weight:600;
+  color:var(--indigo);flex:none;letter-spacing:.04em;
+}
+.rule{height:1px;background:var(--line-firm);margin:14px 0 22px;border:0;}
+h3{
+  font-family:var(--body);font-weight:700;font-size:16.5px;line-height:1.7;
+  margin:34px 0 8px;text-wrap:balance;
+}
+p{margin:0 0 16px;max-width:68ch;}
+p:last-child{margin-bottom:0;}
+strong{font-weight:700;}
+a{color:var(--indigo);}
+
+ul,ol{margin:0 0 16px;padding-left:1.4em;max-width:68ch;}
+li{margin-bottom:7px;}
+li::marker{color:var(--soft);}
+
+/* ---- 状態チップ ---- */
+.chip{
+  display:inline-block;vertical-align:2px;
+  font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.08em;
+  padding:2px 8px;border-radius:2px;margin-right:8px;white-space:nowrap;
+}
+.chip.fixed{background:var(--indigo);color:var(--ground);}
+.chip.todo{background:var(--amber);color:#2A1B02;}
+.chip.draft{border:1px solid var(--line-firm);color:var(--soft);}
+.legend{
+  display:flex;flex-direction:column;gap:10px;
+  background:var(--sunk);border:1px solid var(--line);
+  padding:18px 20px;margin-top:28px;font-size:14.5px;
+}
+.legend div{display:flex;gap:4px;align-items:baseline;flex-wrap:wrap;}
+
+/* ---- 表 ---- */
+.scroll{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);background:var(--surface);}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px;}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.8;}
+th{
+  background:var(--sunk);font-weight:700;font-size:12.5px;
+  letter-spacing:.04em;white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0;}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+/* ---- 注意書き ---- */
+.callout{
+  border-left:3px solid var(--amber);
+  background:var(--amber-wash);
+  padding:18px 20px;margin:22px 0;
+}
+.callout p{margin-bottom:10px;}
+.callout p:last-child{margin-bottom:0;}
+.callout .head{
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  color:var(--amber-deep);margin-bottom:8px;font-weight:600;
+}
+
+/* ---- カリキュラムの章 ---- */
+.chapter{
+  background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--indigo);
+  padding:18px 20px;margin-bottom:14px;
+}
+.chapter-top{
+  display:flex;justify-content:space-between;gap:16px;align-items:baseline;
+  margin-bottom:4px;flex-wrap:wrap;
+}
+.chapter-name{font-family:var(--display);font-weight:600;font-size:17.5px;line-height:1.6;}
+.chapter-time{
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.chapter-goal{
+  font-size:13.5px;color:var(--soft);margin:0 0 12px;
+  padding-bottom:12px;border-bottom:1px dashed var(--line-firm);
+}
+.chapter ul{margin:0;font-size:14.5px;}
+
+/* ---- 決定事項 ---- */
+.decision{
+  background:var(--surface);border:1px solid var(--line-firm);
+  padding:20px;margin-bottom:14px;
+}
+.decision h3{margin:0 0 10px;display:flex;gap:10px;align-items:baseline;}
+.decision h3 .d-no{
+  font-family:var(--mono);font-size:12px;color:var(--amber-deep);flex:none;
+}
+.decision p{font-size:14.5px;margin-bottom:10px;}
+.rec{
+  font-size:14px;background:var(--sunk);padding:12px 14px;
+  border-left:2px solid var(--indigo);
+}
+.rec b{color:var(--indigo);}
+
+.foot{
+  margin-top:72px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);line-height:2;
+}
+@media (max-width:520px){
+  .wrap{padding:38px 18px 72px;}
+  h2{flex-direction:column;gap:2px;}
+  body{font-size:15.5px;}
+}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">シクミAIコンサル / 要件定義</p>
+  <h1>講座プラン 要件定義</h1>
+  <p class="standfirst">
+    ¥29,800の買い切り教材として何を作り、何を作らないかを決めるための文書です。
+    中身の制作に入る前に、ここで線を引いておきます。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-20</span>
+    <span>版 v0.1(草案)</span>
+    <span>対象 講座プラン</span>
+  </div>
+</header>
+
+<div class="legend">
+  <div><span class="chip fixed">確定</span> LP・特商法ページで公開済み。すでにお客様への約束なので、変えるならページも直す必要があります。</div>
+  <div><span class="chip draft">提案</span> 私の案です。太郎さんの判断で変えて構いません。</div>
+  <div><span class="chip todo">要決定</span> 太郎さんに決めていただかないと、先に進めない項目です。</div>
+</div>
+
+<!-- 1 -->
+<section>
+  <h2><span class="no">01</span><span>動かせない前提</span></h2>
+  <hr class="rule">
+  <p>
+    すでにLPと特定商取引法のページで公開している内容です。
+    <strong>これは広告ではなく契約条件</strong>なので、教材の中身はこの範囲に収める必要があります。
+  </p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th>項目</th><th>約束している内容</th><th>出典</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>価格</td><td class="num">¥29,800(税込・買い切り)</td><td>LP / 特商法</td></tr>
+        <tr><td>視聴期限</td><td>なし(ずっと見られる)</td><td>LP</td></tr>
+        <tr><td>中身</td><td>①仕事でAIを使うための基礎(動画)<br>②Claude Codeのはじめかた(動画)<br>③よくある作業をAIに任せるためのひな形集<br>④動画の内容についての質問(30日間)</td><td>LP</td></tr>
+        <tr><td>引き渡し</td><td>入金確認後、<strong>3営業日以内</strong>にメールで閲覧方法を案内</td><td>特商法</td></tr>
+        <tr><td>返金</td><td><strong>閲覧開始前</strong>かつ支払後8日以内なら全額返金。<br>閲覧開始後は返金なし。</td><td>特商法</td></tr>
+        <tr><td>動作環境</td><td>Windows または macOS</td><td>特商法</td></tr>
+        <tr><td>乗り換え</td><td>伴走プランへは差額の支払いだけで移行できる</td><td>LP</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <div class="head">見落としやすい点</div>
+    <p>
+      返金の条件が<strong>「閲覧を開始したかどうか」</strong>で分かれています。
+      つまり、<strong>誰がいつ最初に動画を再生したかを記録できる仕組みが必須</strong>です。
+      これがないと、返金を求められたときに「まだ見ていない」と言われても反論できません。
+    </p>
+    <p>
+      動画をGoogleドライブやギガファイル便で渡す方式は、この一点だけで失格になります。
+      教材の置き場所を選ぶときの、最初の条件がこれです(第7節)。
+    </p>
+  </div>
+</section>
+
+<!-- 2 -->
+<section>
+  <h2><span class="no">02</span><span>だれのための教材か</span></h2>
+  <hr class="rule">
+  <p><span class="chip draft">提案</span>LPの内容から、受講者像をこう置きます。</p>
+  <ul>
+    <li>非エンジニアのビジネス職(企画・営業・事務・バックオフィス)</li>
+    <li>ふだんの仕事でExcelとブラウザは使える。プログラムを書いた経験はゼロ</li>
+    <li>ChatGPTは触ったことがあるが、「文章を直してもらう」程度で止まっている</li>
+    <li>まとまった学習時間は取れない。平日の夜か週末に、30分〜1時間ずつ</li>
+    <li><strong>「黒い画面」に強い抵抗がある</strong>。ここを解けるかが教材の成否を分けます</li>
+  </ul>
+  <p>
+    最後の1点が、この教材のいちばん難しいところです。
+    技術的な内容そのものより、<strong>「自分にもできそうだ」と思わせる順番で見せること</strong>が設計の中心になります。
+  </p>
+</section>
+
+<!-- 3 -->
+<section>
+  <h2><span class="no">03</span><span>どこまでできるようにするか</span></h2>
+  <hr class="rule">
+  <p>
+    <strong>ここがこの文書でいちばん重要な部分です。</strong>
+    講座プランのゴールを高く置きすぎると、伴走プラン(¥150,000)を買う理由がなくなります。
+    逆に低すぎると、¥29,800の価値がありません。
+  </p>
+
+  <h3>プランごとの線引き</h3>
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th>プラン</th><th>約束していること</th><th>約束していないこと</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>講座プラン<br><span class="chip draft">提案</span></td>
+          <td>やり方が分かる。ひとりで一周できる。</td>
+          <td>成果物の保証はしない</td>
+        </tr>
+        <tr>
+          <td>伴走プラン<br><span class="chip fixed">確定</span></td>
+          <td>3ヶ月で作業を1つ、AIに任せられる形にする(LPに「お約束」として明記)</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    LPの講座プランには「お約束」の欄がありません。これは正しい状態です。
+    <strong>講座プランは成果を保証しない</strong>という前提で、以下のゴールを置きます。
+  </p>
+
+  <h3>講座プラン修了時点のゴール</h3>
+  <p><span class="chip draft">提案</span>受講者が、自分ひとりで次の4つができる状態。</p>
+  <ol>
+    <li>自分の仕事の中から「AIに任せられそうな作業」を<strong>3つ挙げられる</strong></li>
+    <li>自分のパソコンでClaude Codeを<strong>起動して、日本語で指示が出せる</strong></li>
+    <li>ひな形を使って、1つの作業の<strong>下書きをAIに作らせられる</strong></li>
+    <li>うまく動かないとき、<strong>自分で調べ直す手順を持っている</strong></li>
+  </ol>
+  <p>
+    「実際の業務で運用に乗せる」「会社の事情に合わせて設計する」は<strong>伴走プランの領域</strong>として、
+    教材では扱いません。この線を教材の冒頭(第0章)で受講者にはっきり伝えます。
+    後出しにすると不満の原因になります。
+  </p>
+</section>
+
+<!-- 4 -->
+<section>
+  <h2><span class="no">04</span><span>教材の中身(章立て案)</span></h2>
+  <hr class="rule">
+  <p>
+    <span class="chip draft">提案</span>
+    全6章・合計およそ<strong>5時間30分</strong>。1本あたり5〜12分に切って、
+    細切れの時間でも進められるようにします。時間はすべて目安です。
+  </p>
+
+  <div class="chapter">
+    <div class="chapter-top">
+      <span class="chapter-name">第0章 この講座で、どこまでやるか</span>
+      <span class="chapter-time">約15分</span>
+    </div>
+    <p class="chapter-goal">到達点:何ができるようになるか、何はやらないかを受講者が理解している</p>
+    <ul>
+      <li>この講座のゴールと、あえて扱わないこと</li>
+      <li>受講の進め方(順番に見る・手を動かす前提)</li>
+      <li>必要なもの(パソコン・AIの利用契約)と、かかる費用の目安</li>
+    </ul>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-top">
+      <span class="chapter-name">第1章 仕事でAIを使うための基礎</span>
+      <span class="chapter-time">約60分</span>
+    </div>
+    <p class="chapter-goal">到達点:AIに向く仕事と向かない仕事を、自分で判断できる</p>
+    <ul>
+      <li>AIが得意なこと・苦手なこと(苦手を先に見せる)</li>
+      <li>指示の書き方の型:<strong>何を・どうしてほしいか・どんな形で出すか</strong></li>
+      <li>思った通りにならないときの直し方</li>
+      <li><strong>会社の情報を渡さないための工夫</strong>(名前や数字を伏せる・架空データで作る)</li>
+      <li>会社のルールが分からないときに確認すべきこと</li>
+    </ul>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-top">
+      <span class="chapter-name">第2章 自分の「面倒な作業」を見つける</span>
+      <span class="chapter-time">約40分</span>
+    </div>
+    <p class="chapter-goal">到達点:任せる候補の作業を3つ、紙に書き出せている</p>
+    <ul>
+      <li>1週間の作業を書き出す(棚卸しシートを使う)</li>
+      <li>選ぶ基準:<strong>毎週やる・手順が決まっている・判断が少ない</strong></li>
+      <li>最初の1つに選んではいけない作業(判断が多い・失敗の影響が大きい)</li>
+      <li>受講者が実際に手を動かす回(ワーク)</li>
+    </ul>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-top">
+      <span class="chapter-name">第3章 Claude Codeのはじめかた</span>
+      <span class="chapter-time">約90分</span>
+    </div>
+    <p class="chapter-goal">到達点:自分のパソコンでClaude Codeが動き、日本語で1往復できる</p>
+    <ul>
+      <li>Claude Codeとは何か(「黒い画面」への抵抗を解く回)</li>
+      <li>入れ方:Windows編 / macOS編を<strong>別々に撮る</strong></li>
+      <li>最初の1回:フォルダを見せて、日本語でお願いしてみる</li>
+      <li>やってはいけない操作(消してしまう系の指示)</li>
+      <li>つまずきやすい場所と、その直し方</li>
+    </ul>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-top">
+      <span class="chapter-name">第4章 ひな形を使って、1つ作ってみる</span>
+      <span class="chapter-time">約90分</span>
+    </div>
+    <p class="chapter-goal">到達点:ひな形を自分の作業に当てはめて、下書きが出せる</p>
+    <ul>
+      <li>ひな形の使い方(どこを自分の言葉に置き換えるか)</li>
+      <li>例1:毎週の報告書の下書きを作る(<strong>LPの図と同じ題材</strong>)</li>
+      <li>例2:ファイルの整理と名前の付け替え</li>
+      <li>例3:いつも同じ内容のメールの下書き</li>
+      <li>思った通りに出ないときの、確認する順番</li>
+    </ul>
+  </div>
+
+  <div class="chapter">
+    <div class="chapter-top">
+      <span class="chapter-name">第5章 続けられる形にする</span>
+      <span class="chapter-time">約35分</span>
+    </div>
+    <p class="chapter-goal">到達点:来週も同じことを再現できる</p>
+    <ul>
+      <li>毎週使うための置き場所と、自分用の手順メモ</li>
+      <li>人に見せる・引き継ぐときの注意</li>
+      <li>ここから先(伴走プランで何が変わるか)</li>
+    </ul>
+  </div>
+
+  <div class="callout">
+    <div class="head">章立てで意識したこと</div>
+    <p>
+      <strong>第2章(作業を見つける)を、第3章(Claude Codeを入れる)より前に置いています。</strong>
+      道具の使い方から入ると「で、これを何に使うの?」で止まります。
+      先に「これを楽にしたい」を決めてから道具を触るほうが、最後まで進みます。
+    </p>
+  </div>
+</section>
+
+<!-- 5 -->
+<section>
+  <h2><span class="no">05</span><span>ひな形集の中身</span></h2>
+  <hr class="rule">
+  <p>
+    <span class="chip draft">提案</span>
+    LPで「よくある作業をAIに任せるためのひな形集」と約束しているものの中身です。
+    受講者が<strong>コピーして自分の言葉に書き換えるだけで使える</strong>状態にします。
+  </p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>ひな形</th><th>使う場面</th><th>形式</th></tr></thead>
+      <tbody>
+        <tr><td>作業の棚卸しシート</td><td>第2章のワーク。1週間の作業を書き出す</td><td>スプレッドシート</td></tr>
+        <tr><td>指示文の基本形</td><td>すべての土台。何を・どうしてほしいか・どんな形で</td><td>文書</td></tr>
+        <tr><td>報告書・議事録まとめ</td><td>メモから下書きを作らせる</td><td>文書</td></tr>
+        <tr><td>定型メールの返信</td><td>いつも同じ内容の返信</td><td>文書</td></tr>
+        <tr><td>ファイル整理・名前の付け替え</td><td>フォルダの片づけ</td><td>文書</td></tr>
+        <tr><td>表の集計・転記</td><td>複数ファイルからの集計</td><td>文書</td></tr>
+        <tr><td>情報を伏せるためのチェックリスト</td><td>会社の情報を渡す前の確認</td><td>チェックリスト</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>
+    形式は、受講者が編集しやすいものに揃えます(第7節の決定事項)。
+    PDFで配ると<strong>コピーして書き換える</strong>という使い方ができないので避けます。
+  </p>
+</section>
+
+<!-- 6 -->
+<section>
+  <h2><span class="no">06</span><span>30日間の質問サポート</span></h2>
+  <hr class="rule">
+  <p>
+    LPで「動画の内容についての質問(30日間)」と約束している部分です。
+    <strong>範囲を決めておかないと、実質的に無料の個別コンサルになります。</strong>
+  </p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>項目</th><th>内容</th><th>状態</th></tr></thead>
+      <tbody>
+        <tr><td>期間</td><td class="num">30日間</td><td><span class="chip fixed">確定</span></td></tr>
+        <tr><td>起算日</td><td>閲覧方法を案内したメールの送信日</td><td><span class="chip draft">提案</span></td></tr>
+        <tr><td>対象</td><td><strong>教材の内容についての質問のみ</strong>。「動画のこの手順で動かない」はOK。「私の会社のこの業務をどう設計するか」は伴走プランの範囲</td><td><span class="chip draft">提案</span></td></tr>
+        <tr><td>回数</td><td>制限なし。ただし1往復を1件として扱う</td><td><span class="chip draft">提案</span></td></tr>
+        <tr><td>返信の目安</td><td>平日3営業日以内(伴走プランの「24時間以内」と差をつける)</td><td><span class="chip draft">提案</span></td></tr>
+        <tr><td>窓口</td><td>未定</td><td><span class="chip todo">要決定</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout">
+    <div class="head">注意</div>
+    <p>
+      返信の目安を<strong>LPに書いていない</strong>ので、いま決めれば自由に設定できます。
+      ただし決めた内容は、教材の第0章か購入案内メールに明記してください。
+      書いていないと「すぐ返信が来るはず」と期待されます。
+    </p>
+  </div>
+</section>
+
+<!-- 7 -->
+<section>
+  <h2><span class="no">07</span><span>教材の置き場所に必要な条件</span></h2>
+  <hr class="rule">
+  <p>どのサービスを使うかを決める前に、外せない条件を並べます。</p>
+  <ol>
+    <li><strong>誰がいつ最初に再生したか記録できる</strong>(第1節の返金条件のため。最優先)</li>
+    <li><strong>買い切りで売れる</strong>(月額課金の仕組みしかないサービスは不可)</li>
+    <li><strong>視聴期限を無期限にできる</strong></li>
+    <li>入金から3営業日以内に案内できる(自動なら理想、手作業でも可)</li>
+    <li>受講者がスマホでも動画を見られる</li>
+    <li>ひな形ファイルを一緒に配れる</li>
+    <li>個人事業主でも契約できる</li>
+    <li>値引きセールを勝手にかけられない(ブランドと価格が崩れるため)</li>
+  </ol>
+  <p>
+    候補としては、<strong>①教材販売サービスを借りる</strong>、<strong>②動画配信サービス＋決済を組み合わせる</strong>、
+    <strong>③いまのLPに自分で作り足す</strong>の3通りがあります。
+    それぞれの料金と機能は<strong>変動するので、契約前に必ず現在の条件をご確認ください</strong>。
+    上の8条件を満たすかどうかで絞り込むのが早いです。
+  </p>
+  <div class="callout">
+    <div class="head">私の見立て</div>
+    <p>
+      ③(自分で作る)は、いまNext.jsのLPがVercelで動いているので技術的には可能ですし、
+      「自分の業務を仕組み化する」というサービス内容とも一致します。
+      ただし<strong>決済・返金の記録・動画の不正共有対策</strong>を自前で抱えることになります。
+    </p>
+    <p>
+      最初の数人に売る段階では①か②で早く出し、
+      売れ方が見えてから③に移すほうが、リスクが小さいと考えています。
+    </p>
+  </div>
+</section>
+
+<!-- 8 -->
+<section>
+  <h2><span class="no">08</span><span>買ってから見るまでの流れ</span></h2>
+  <hr class="rule">
+  <p><span class="chip draft">提案</span>特商法ページの記載と矛盾しない形にしています。</p>
+  <ol>
+    <li>無料相談、またはLINEから購入の意思をもらう</li>
+    <li>支払方法(銀行振込 / クレジットカード)を決めて案内する</li>
+    <li>入金を確認する</li>
+    <li><strong>3営業日以内</strong>に、閲覧方法を書いたメールを送る<span class="chip fixed">確定</span></li>
+    <li>受講者が最初に再生した日を記録する(返金判定のため)</li>
+    <li>案内メールの送信日から30日間、質問を受け付ける</li>
+    <li>30日経過時に、伴走プランの案内を1通送る</li>
+  </ol>
+  <p>
+    手順4のメールには、<strong>視聴期限がないこと・返金の条件・質問の期限と範囲</strong>を必ず書きます。
+    ここに書いておけば、あとで揉めません。
+  </p>
+</section>
+
+<!-- 9 -->
+<section>
+  <h2><span class="no">09</span><span>今回は作らないもの</span></h2>
+  <hr class="rule">
+  <p>
+    最初の版に入れないものです。入れないと決めておかないと、いつまでも完成しません。
+  </p>
+  <ul>
+    <li>受講者どうしのコミュニティ・掲示板</li>
+    <li>修了証の発行</li>
+    <li>章ごとの小テスト・進捗バッジ</li>
+    <li>スマホアプリ</li>
+    <li>英語版</li>
+    <li>法人向けの複数アカウント販売</li>
+    <li>Claude Code以外のツールの解説(ChatGPT単体の使い方など)</li>
+  </ul>
+</section>
+
+<!-- 10 -->
+<section>
+  <h2><span class="no">10</span><span>決めていただきたいこと</span></h2>
+  <hr class="rule">
+  <p>次に進むために、判断が必要な6点です。それぞれ私の推奨も書いています。</p>
+
+  <div class="decision">
+    <h3><span class="d-no">決定1</span><span>教材の置き場所</span></h3>
+    <p>第7節の8条件を満たすものを選びます。ここが決まらないと、動画の書き出し設定も決まりません。</p>
+    <div class="rec"><b>推奨:</b> まずは教材販売サービスを借りて早く出す。自作は売れ方が見えてから。</div>
+  </div>
+
+  <div class="decision">
+    <h3><span class="d-no">決定2</span><span>支払方法</span></h3>
+    <p>特商法ページには「銀行振込、またはクレジットカード決済(Stripe)」と書いてあります。実際にどちらを用意しますか。</p>
+    <div class="rec"><b>推奨:</b> 両方。¥29,800は振込だと離脱が出ます。カードのほうが入金確認も早く、3営業日の約束を守りやすくなります。</div>
+  </div>
+
+  <div class="decision">
+    <h3><span class="d-no">決定3</span><span>質問サポートの窓口</span></h3>
+    <p>LINE公式アカウントを使うか、メールにするか。LINEは既にありますが、<strong>見込み客と受講者が同じ場所に混ざります</strong>。</p>
+    <div class="rec"><b>推奨:</b> メール。受講者だけを分けられ、やりとりが記録として残ります。</div>
+  </div>
+
+  <div class="decision">
+    <h3><span class="d-no">決定4</span><span>動画に顔を出すか</span></h3>
+    <p>「元・非エンジニア」が教えることがLPの売りなので、顔が見えるほうが一致します。撮影の手間と相談です。</p>
+    <div class="rec"><b>推奨:</b> 第0章と第5章だけ顔出し。他は画面録画＋音声。撮り直しがしやすくなります。</div>
+  </div>
+
+  <div class="decision">
+    <h3><span class="d-no">決定5</span><span>すでにある素材</span></h3>
+    <p>過去に作った資料・note記事・録画などはありますか。あれば第1章と第2章はかなり短縮できます。</p>
+    <div class="rec"><b>確認したいこと:</b> 流用できるものの有無。あれば章立てを組み替えます。</div>
+  </div>
+
+  <div class="decision">
+    <h3><span class="d-no">決定6</span><span>いつ売り始めるか</span></h3>
+    <p>締め切りが決まると、削るものが決まります。全6章そろわないと売れない、という制約はありません。</p>
+    <div class="rec"><b>推奨:</b> 第0〜3章(約3時間)で先行販売し、第4〜5章は追加公開する。買い切り・視聴期限なしなので、あとから足しても筋が通ります。</div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section>
+  <h2><span class="no">11</span><span>作る順番の提案</span></h2>
+  <hr class="rule">
+  <p>決定1〜6が固まったあとの進め方です。</p>
+  <ol>
+    <li><strong>台本を全章ぶん先に書く</strong>。撮影より先に、全体の流れを文字で確定させます</li>
+    <li>ひな形集を先に完成させる。第4章の台本はひな形が決まらないと書けません</li>
+    <li>第3章(Claude Codeのはじめかた)を最初に撮る。<strong>いちばん陳腐化が早く、作り直しが起きやすい</strong>ため、手順を早く固めます</li>
+    <li>残りを撮る</li>
+    <li>受講者役を1人立てて、通しで試してもらう</li>
+    <li>購入から視聴までを、自分で1回通す(テスト購入)</li>
+    <li>販売開始</li>
+  </ol>
+</section>
+
+<p class="foot">
+  シクミAIコンサル 講座プラン 要件定義 v0.1(草案)<br>
+  この文書は、決定1〜6の回答を受けて v0.2 に更新します。
+</p>
+
+</div>
