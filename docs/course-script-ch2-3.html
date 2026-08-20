@@ -1,0 +1,608 @@
+<title>講座台本 第2章・第3章</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+
+<style>
+:root{
+  --ground:#F5F7F9;--surface:#FFFFFF;--sunk:#EDF2F6;
+  --ink:#0F1D33;--soft:#51617C;--line:#DCE5EC;--line-firm:#C3D2DE;
+  --indigo:#24457F;--amber:#E8A33D;--amber-deep:#8A5B0B;--amber-wash:#FFF6E6;
+  --display:"Zen Old Mincho",serif;
+  --body:"Zen Kaku Gothic New",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0C1728;--surface:#142138;--sunk:#0F1B2E;
+    --ink:#E7EEF6;--soft:#9DAFC7;--line:#24354F;--line-firm:#33486A;
+    --indigo:#8FB3F0;--amber:#E8A33D;--amber-deep:#F0C075;--amber-wash:#2A2113;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0C1728;--surface:#142138;--sunk:#0F1B2E;
+  --ink:#E7EEF6;--soft:#9DAFC7;--line:#24354F;--line-firm:#33486A;
+  --indigo:#8FB3F0;--amber:#E8A33D;--amber-deep:#F0C075;--amber-wash:#2A2113;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--body);
+  font-size:16px;line-height:1.95;-webkit-text-size-adjust:100%;}
+.wrap{max-width:780px;margin:0 auto;padding:56px 22px 96px;}
+
+.masthead{border-top:3px solid var(--indigo);padding-top:22px;margin-bottom:44px;}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--indigo);margin:0 0 14px;}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(27px,6.2vw,38px);
+  line-height:1.45;margin:0 0 18px;text-wrap:balance;}
+.standfirst{margin:0;color:var(--soft);font-size:15.5px;max-width:62ch;}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);}
+
+h2{font-family:var(--display);font-weight:600;font-size:clamp(21px,4.2vw,27px);
+  line-height:1.55;margin:0 0 8px;text-wrap:balance;}
+.chapter-head{margin-top:66px;padding:22px 0 0;border-top:2px solid var(--indigo);}
+.chapter-sum{color:var(--soft);font-size:14.5px;margin:6px 0 0;}
+p{margin:0 0 15px;max-width:68ch;}
+p:last-child{margin-bottom:0;}
+ul,ol{margin:0 0 15px;padding-left:1.4em;max-width:68ch;}
+li{margin-bottom:6px;}
+li::marker{color:var(--soft);}
+code{font-family:var(--mono);font-size:.88em;background:var(--sunk);
+  border:1px solid var(--line);padding:1px 5px;border-radius:2px;}
+
+/* 動画1本 */
+.clip{background:var(--surface);border:1px solid var(--line);
+  border-left:3px solid var(--indigo);margin:26px 0;}
+.clip-head{padding:16px 20px 14px;border-bottom:1px solid var(--line);background:var(--sunk);}
+.clip-no{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--indigo);
+  display:block;margin-bottom:5px;}
+.clip-title{font-family:var(--display);font-weight:600;font-size:19px;line-height:1.5;
+  display:block;text-wrap:balance;}
+.clip-facts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:9px;
+  font-family:var(--mono);font-size:11px;color:var(--soft);}
+.clip-body{padding:18px 20px 20px;}
+.role{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--indigo);
+  font-weight:600;margin:20px 0 7px;padding-bottom:5px;border-bottom:1px dashed var(--line-firm);}
+.role:first-child{margin-top:0;}
+.say{border-left:2px solid var(--amber);padding:2px 0 2px 14px;margin:0 0 13px;
+  max-width:64ch;}
+.say:last-child{margin-bottom:0;}
+.screen{font-size:14px;color:var(--soft);}
+.screen li{margin-bottom:4px;}
+
+.callout{border-left:3px solid var(--amber);background:var(--amber-wash);
+  padding:17px 20px;margin:24px 0;}
+.callout .head{font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  color:var(--amber-deep);margin-bottom:8px;font-weight:600;}
+.callout p{margin-bottom:9px;font-size:15px;}
+.callout p:last-child{margin-bottom:0;}
+
+.scroll{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);background:var(--surface);}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px;}
+th,td{padding:11px 14px;text-align:left;vertical-align:top;
+  border-bottom:1px solid var(--line);line-height:1.8;}
+th{background:var(--sunk);font-weight:700;font-size:12.5px;white-space:nowrap;}
+tbody tr:last-child td{border-bottom:0;}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+.pending{background:var(--sunk);border:1px dashed var(--line-firm);padding:18px 20px;margin:26px 0;}
+.pending h3{font-family:var(--body);font-weight:700;font-size:16px;margin:0 0 8px;}
+.pending p{font-size:14.5px;color:var(--soft);}
+
+.foot{margin-top:70px;padding-top:20px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11.5px;color:var(--soft);line-height:2;}
+@media (max-width:520px){.wrap{padding:38px 18px 72px;}body{font-size:15.5px;}}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <p class="kicker">シクミAIコンサル / 講座プラン 台本</p>
+  <h1>第2章・第3章 台本</h1>
+  <p class="standfirst">
+    収録用の台本です。「話すこと」は言い回しの目安なので、自分の言葉に置き換えて構いません。
+    「画面」に書いてあるものだけは、そのとおりに映してください。
+  </p>
+  <div class="meta">
+    <span>作成 2026-08-20</span>
+    <span>版 v0.1</span>
+    <span>第2章 40分 / 第3章 90分</span>
+  </div>
+</header>
+
+<div class="callout">
+  <div class="head">先行販売はここまで</div>
+  <p>
+    決定6により、<strong>第0章から第3章までで先に販売します。</strong>
+    つまりこの2章が、受講者が最初に受け取る内容の後半にあたります。
+    <strong>第3章の最後で「動いた」を体験させるところまでが、先行版のゴール</strong>です。
+  </p>
+</div>
+
+<!-- ================= 第2章 ================= -->
+<div class="chapter-head">
+  <h2>第2章 自分の「面倒な作業」を見つける</h2>
+  <p class="chapter-sum">全4本・約40分 ／ 到達点:任せる候補の作業を3つ、書き出せている</p>
+</div>
+
+<div class="callout">
+  <div class="head">この章のねらい</div>
+  <p>
+    <strong>まだ道具は触りません。</strong>先に「何を楽にしたいか」を決めます。
+    ここを飛ばすと、第3章でClaude Codeが動いたあと「で、何をさせよう」で止まります。
+  </p>
+  <p>
+    この章には<strong>受講者が手を止めて書き出す回(2-4)</strong>があります。
+    そこを飛ばされると第4章が成立しないので、各本の最後で繰り返し促してください。
+  </p>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">2-1</span>
+    <span class="clip-title">まず、1週間の作業を全部書き出す</span>
+    <div class="clip-facts"><span>約8分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      いきなり「何を自動化したいですか」と聞かれても、たぶん出てきません。私も出ませんでした。
+      <strong>面倒な作業ほど、慣れてしまって意識に上らない</strong>からです。
+    </p>
+    <p class="say">
+      なので先に、<strong>1週間ぶんの作業を全部書き出します。</strong>
+      月曜の朝から金曜の夕方まで、順番に。ひな形集の「作業の棚卸しシート」を使ってください。
+    </p>
+    <p class="say">
+      粒度のコツをひとつ。<strong>「メールを見る」は細かすぎます。「週次報告書を作る」くらい</strong>がちょうどいい。
+      目安は<strong>「30分以上かかるもの」</strong>です。それ未満は、いま無視して構いません。
+    </p>
+    <p class="say">
+      いちばん正確なのは、1週間ほんとうに記録を取ることです。でもそれを待つと止まってしまうので、
+      <strong>まずは思い出せる範囲で書いてください。</strong>あとから足せます。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>棚卸しシートを開いて、実際に埋めていくところを見せる</li>
+      <li>書き込む例は<strong>架空の職場</strong>のもの(第1章1-5で言ったことを自分でも守る)</li>
+      <li>「30分以上かかるもの」を画面の隅に出しておく</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">2-2</span>
+    <span class="clip-title">選ぶ基準は3つだけ</span>
+    <div class="clip-facts"><span>約9分</span><span>画面録画</span><span>この章の核</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      書き出した中から選びます。基準は3つです。<strong>毎週やる。手順が決まっている。判断が少ない。</strong>
+    </p>
+    <p class="say">
+      <strong>ひとつめ、毎週やること。</strong>年に1回の作業を楽にしても、割に合いません。
+      毎週やるものなら、1回30分の短縮でも<strong>年に25時間</strong>返ってきます。
+    </p>
+    <p class="say">
+      <strong>ふたつめ、手順が決まっていること。</strong>ここが大事です。
+      <strong>人に説明できる作業は、AIにも説明できます。</strong>
+      逆に、自分でも説明できない作業は、AIにも頼めません。
+      「新しく入った人に、口で説明して任せられるか」で考えてみてください。
+    </p>
+    <p class="say">
+      <strong>みっつめ、判断が少ないこと。</strong>第1章で言ったとおり、AIは平気で間違えます。
+      判断が多い作業だと、間違いに気づけません。
+    </p>
+    <p class="say">
+      この3つに、<strong>○△×をつけるだけ</strong>です。点数の計算は要りません。
+      <strong>○が3つ揃ったものを選びます。</strong>揃わなければ、まだ早いということです。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>2-1で埋めたシートに、3列(毎週 / 手順 / 判断)を足して○△×をつけていく</li>
+      <li>○が3つ揃うもの、揃わないものを<strong>両方見せる</strong></li>
+      <li>スライド:「年に25時間」の計算を1枚で(30分 × 週1 × 50週)</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">2-3</span>
+    <span class="clip-title">最初に選んではいけない作業</span>
+    <div class="clip-facts"><span>約7分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      逆に、<strong>最初には選ばないほうがいい作業</strong>を挙げます。
+    </p>
+    <p class="say">
+      <strong>お客様に直接届くもの。</strong>送信メール、提案書、請求書。間違いがそのまま外に出ます。<br>
+      <strong>毎回やり方が違うもの。</strong>手順が決まっていないので、頼みようがありません。<br>
+      <strong>自分でも説明できないもの。</strong>「なんとなくこうしてる」は、まだ言葉になっていません。
+    </p>
+    <p class="say">
+      ここで、よく言われることがあります。<strong>「でも、それが一番面倒なんです」</strong>と。
+      分かります。面倒な作業ほど、判断が多いものです。
+    </p>
+    <p class="say">
+      その場合は<strong>分解してください。</strong>たとえば提案書づくりなら、
+      「何を提案するか決める」のは<strong>あなたの仕事のまま</strong>。
+      「決めたことを、いつもの形に流し込む」のは<strong>渡せます</strong>。
+      <strong>丸ごと渡そうとしないこと。</strong>判断の手前だけを切り出す。これがコツです。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:「最初に選ばない3つ」</li>
+      <li>スライド:提案書づくりを縦に分解した図——上が「自分の仕事」、下が「渡せる部分」</li>
+      <li>この図は<strong>第1章1-2の「下ごしらえ」の絵と同じ形</strong>にして、つながりを見せる</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">2-4</span>
+    <span class="clip-title">ワーク:3つに絞る</span>
+    <div class="clip-facts"><span>約16分</span><span>ワーク</span><span>飛ばされやすい</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      ここは手を動かす回です。<strong>動画を止めて、実際にやってください。</strong>
+      ここで3つ選べていないと、このあとの章が「見るだけ」になってしまいます。
+    </p>
+    <p class="say">
+      手順は3つです。<strong>1週間の作業を書き出す。3つの基準で○△×をつける。○が3つのものを選ぶ。</strong>
+      全部で15分ほどです。
+    </p>
+    <p class="say">
+      <strong>3つ選べなかった場合。</strong>それでも構いません。1つでも大丈夫です。
+      逆に<strong>5つ以上ある場合は、3つに絞ってください。</strong>
+      最初から欲張ると、どれも完成しません。
+    </p>
+    <p class="say">
+      選んだら、<strong>その紙かファイルを手元に置いたまま</strong>次の章に進んでください。第4章でそのまま使います。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>手順3つをスライドで出し、<strong>そのまま静止画で15分</strong>置く(受講者が作業する時間)</li>
+      <li>あるいは冒頭2分で説明し、「止めてください」と明示して終わる短い本にする</li>
+      <li><strong>どちらの形にするかは、撮ってみて決めてください。</strong>静止画15分は間延びする可能性があります</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ================= 第3章 ================= -->
+<div class="chapter-head">
+  <h2>第3章 Claude Codeを使えるようにする</h2>
+  <p class="chapter-sum">全8本・約90分 ／ 到達点:自分のパソコンでアプリが動き、日本語で1往復できる</p>
+</div>
+
+<div class="callout">
+  <div class="head">この章の勝敗を分ける1点</div>
+  <p>
+    <strong>環境が「ローカル」になっているか。</strong>これだけです。
+    ここを間違えると、以降のすべてが動きません。しかも<strong>エラーは出ません。</strong>
+    ただ「自分のファイルが見つからない」という、原因の分かりにくい形で失敗します。
+  </p>
+  <p>
+    3-1で<strong>なぜ大事か</strong>を、3-4で<strong>実際の操作</strong>を見せます。2回言ってちょうどいいくらいです。
+  </p>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-1</span>
+    <span class="clip-title">「ローカル」と「クラウド」の違い</span>
+    <div class="clip-facts"><span>約9分</span><span>画面録画</span><span>最重要</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      Claude Codeを使う前に、ひとつだけ知っておいてほしいことがあります。
+      <strong>Claudeには「どこで動くか」の設定があります。</strong>
+    </p>
+    <p class="say">
+      ひとつは<strong>ローカル。あなたのパソコンの中で動きます。</strong>
+      だから、あなたのフォルダの中のファイルを読んだり、書いたりできます。
+    </p>
+    <p class="say">
+      もうひとつは<strong>クラウド。インターネットの向こうにある、別のマシンで動きます。</strong>
+      こちらは便利な使い方もあるのですが、<strong>あなたのパソコンの中には一切触れません。</strong>
+    </p>
+    <p class="say">
+      この講座でやりたいのは、<strong>あなたのパソコンにある、毎週の面倒な作業を楽にすること</strong>です。
+      なので<strong>使うのはローカルだけ</strong>です。ここを間違えると、何をやっても動きません。
+    </p>
+    <p class="say">
+      それから、<strong>ブラウザでclaude.aiを開くやり方もあります</strong>が、
+      <strong>そちらはクラウドしか選べません。</strong>手軽なのでつい開きたくなりますが、
+      この講座では使いません。<strong>必ずアプリのほうを使ってください。</strong>
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:ローカル=手元のパソコン / クラウド=向こうのマシン、の絵</li>
+      <li><strong>実際にブラウザ版を開いて見せる。</strong>「リポジトリを選択」しか出ないところまで</li>
+      <li>見分け方:サイドバーに「Claude Desktop version available」と出ていたら、それはブラウザ版</li>
+      <li>アプリ側に切り替えて、左端が<strong>「ローカル」</strong>と出ている状態を見せる</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-2</span>
+    <span class="clip-title">入れる:Windows編</span>
+    <div class="clip-facts"><span>約14分</span><span>画面録画</span><span>Windows実機</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      Windowsをお使いの方向けです。Macの方は次の動画へどうぞ。
+    </p>
+    <p class="say">
+      入れるものは<strong>2つ</strong>あります。Claudeのアプリと、<strong>Git for Windows</strong>というものです。
+      2つめは聞き慣れないと思いますが、<strong>Claudeが内部で使うので必要</strong>というだけです。
+      中身を理解する必要はありません。入れるだけです。
+    </p>
+    <p class="say">
+      順番も決まっています。<strong>Git for Windowsを先に入れて、そのあとアプリを起動</strong>してください。
+      逆にしてしまった場合は、<strong>アプリを一度閉じて開き直せば大丈夫</strong>です。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>Git for Windows のダウンロードから、インストーラを進めるところまで</li>
+      <li>Claudeアプリのダウンロード、サインイン、Codeタブを開くところまで</li>
+      <li><strong>インストーラの選択肢は「そのまま次へ」で通す</strong>。選択肢の意味を説明しない</li>
+    </ul>
+    <div class="role">収録前に確認</div>
+    <ul class="screen">
+      <li>Windows実機が必要です。<strong>お持ちでなければ、ここだけ外注か後日撮影</strong>にしてください</li>
+      <li>ARM版Windowsは別のインストーラです。台本では触れず、質問が来たら個別対応でよいと思います</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-3</span>
+    <span class="clip-title">入れる:macOS編</span>
+    <div class="clip-facts"><span>約10分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      Macの方向けです。こちらは<strong>Claudeのアプリを入れるだけ</strong>で済みます。
+    </p>
+    <p class="say">
+      ダウンロードして、アプリケーションフォルダに入れて、開く。サインインして、<strong>上の「Code」タブ</strong>を押す。
+      ここまでで準備は終わりです。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>ダウンロード → アプリケーションへドラッグ → 起動 → サインイン → Codeタブ</li>
+      <li><strong>Codeタブの位置を、はっきり指し示す</strong>。「ホーム」と並んでいることを言う</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-4</span>
+    <span class="clip-title">環境を「ローカル」にしてから、フォルダを選ぶ</span>
+    <div class="clip-facts"><span>約11分</span><span>画面録画</span><span>最重要</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      ここが第3章でいちばん大事なところです。<strong>入力欄のすぐ上に、小さなボタンが並んでいます。</strong>
+      その<strong>いちばん左</strong>を見てください。
+    </p>
+    <p class="say">
+      ここが<strong>「ローカル」</strong>になっていれば正解です。なっていなければ、押して切り替えてください。
+    </p>
+    <p class="say">
+      切り替わると、<strong>その右がフォルダを選ぶボタン</strong>になります。
+      ここで、<strong>作業したいファイルが入っているフォルダ</strong>を選びます。
+    </p>
+    <p class="say">
+      フォルダ選びにもコツがあります。<strong>いきなり「書類」フォルダ全体を選ばないでください。</strong>
+      範囲が広すぎると、関係ないファイルまで見えてしまいます。
+      <strong>まずは、練習用のフォルダを1つ作る</strong>ところから始めましょう。
+    </p>
+    <p class="say">
+      デスクトップに<strong>「AI練習」</strong>という名前でフォルダを作ってください。
+      そこにファイルを2、3個入れておきます。この講座では、しばらくこのフォルダだけを使います。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>間違った状態(クラウド)と、正しい状態(ローカル)を<strong>並べて</strong>見せる</li>
+      <li>実際に切り替える操作</li>
+      <li>デスクトップに「AI練習」フォルダを新規作成 → 中身を入れる → 選択する、まで通しで</li>
+    </ul>
+    <div class="role">収録前に必ず確認</div>
+    <ul class="screen">
+      <li>
+        <strong>「AI練習」のような、ふつうのフォルダを選んだときの画面を先に確かめてください。</strong>
+        太郎さんがいま選んでいる <code>claude-projects</code> は開発用のフォルダなので、
+        <strong>ブランチ名や「ワークツリー」といった、受講者には無関係なボタンが出ています。</strong>
+        ふつうのフォルダでそれらが出るのか出ないのかで、<strong>説明の要否が変わります</strong>
+      </li>
+      <li>出る場合は「これは無視してください」と一言添える。出ないなら触れない</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-5</span>
+    <span class="clip-title">最初の1回:日本語でお願いしてみる</span>
+    <div class="clip-facts"><span>約12分</span><span>画面録画</span><span>感動する回</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      では、初めてお願いしてみます。<strong>最初は、何も変えない頼み方から</strong>いきましょう。
+    </p>
+    <p class="say">
+      入力欄に、こう打ってみてください。<br>
+      <strong>「このフォルダに何が入っているか、日本語で教えて」</strong>
+    </p>
+    <p class="say">
+      これだけです。コマンドも記号も要りません。……いま、あなたのパソコンの中のフォルダを、
+      Claudeが実際に見て答えました。<strong>これが「ローカル」ということです。</strong>
+    </p>
+    <p class="say">
+      次に、<strong>何かを作らせてみます。</strong><br>
+      <strong>「このフォルダに、練習用のメモというファイルを作って。中身は今日の日付だけでいい」</strong>
+    </p>
+    <p class="say">
+      フォルダを開いてみてください。ファイルができているはずです。
+      <strong>読むこともできるし、作ることもできる。</strong>ここまで来れば、あとは応用です。
+    </p>
+    <p class="say">
+      なぜこの順番かというと、<strong>読むだけの頼みごとは、失敗しても何も壊れない</strong>からです。
+      <strong>いきなり「消して」「書き換えて」から始めないでください。</strong>
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>入力 → 返事、を<strong>等速で</strong>見せる(早送りしない。待つ体験も含めて見せる)</li>
+      <li>ファイルができたことを、Finder / エクスプローラーを開いて確認</li>
+      <li>許可を求める画面が出たら、<strong>それも隠さず見せて</strong>、読み方を説明する</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-6</span>
+    <span class="clip-title">画面の見方と、変わったところの確かめ方</span>
+    <div class="clip-facts"><span>約10分</span><span>画面録画</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      画面の見方を整理します。覚えるのは<strong>3か所だけ</strong>です。
+    </p>
+    <p class="say">
+      <strong>入力欄。</strong>ここに日本語で書く。<br>
+      <strong>その上の小さなボタン。</strong>左端が「ローカル」、その右が今のフォルダ。<br>
+      <strong>真ん中の広い部分。</strong>やりとりと、Claudeがやったことが出ます。
+    </p>
+    <p class="say">
+      大事なのは、<strong>ファイルが変わったときの見え方</strong>です。
+      Claudeがファイルを直すと、<strong>どこをどう変えたかが画面に出ます。</strong>
+      <strong>足した行と、消した行が色分けされて見えます。</strong>
+    </p>
+    <p class="say">
+      ここは<strong>必ず目を通してください。</strong>第1章で言ったとおり、AIは間違えます。
+      <strong>変わったところを見るのは、あなたの仕事</strong>です。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>3か所を順に指し示す(枠で囲むなどの後処理を入れる)</li>
+      <li>実際にファイルを1行直させて、<strong>変更の表示が出るところ</strong>を見せる</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-7</span>
+    <span class="clip-title">やってはいけないこと</span>
+    <div class="clip-facts"><span>約8分</span><span>画面録画</span><span>安全の回</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      安全に使うために、4つだけ守ってください。
+    </p>
+    <p class="say">
+      <strong>ひとつ。大事なフォルダを丸ごと選ばない。</strong>
+      「書類」フォルダ全体やデスクトップ全体ではなく、練習用のフォルダから始めます。
+    </p>
+    <p class="say">
+      <strong>ふたつ。「いらないものを消して」と頼まない。</strong>
+      何がいらないかを決めるのは判断です。第2章でお話ししたとおり、判断は渡さない。
+      消す作業は、慣れてからでも遅くありません。
+    </p>
+    <p class="say">
+      <strong>みっつ。大事なファイルは、先にコピーを取る。</strong>
+      本物を直させる前に、複製を1つ作っておく。これだけで、ほとんどの事故が防げます。
+    </p>
+    <p class="say">
+      <strong>よっつ。許可を求める画面が出たら、読む。</strong>
+      Claudeは、何かをする前に「これをしていいですか」と聞いてくることがあります。
+      <strong>ここを「毎回自動で許可」に設定してしまうと、聞かれなくなります。</strong>
+      慣れるまでは<strong>聞かれる設定のまま</strong>使ってください。
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>許可を求める画面を実際に出して、どこを読むか説明する</li>
+      <li>設定を変えるボタンの場所を見せて、<strong>「ここは触らないでください」</strong>と言う</li>
+    </ul>
+    <div class="role">収録前に確認</div>
+    <ul class="screen">
+      <li>
+        許可の設定は<strong>画面左下</strong>にあります。太郎さんの環境はいま<strong>「自動」</strong>になっています。
+        <strong>収録するときは、初期状態(聞いてくる設定)に戻してから撮ってください。</strong>
+        「自動」のまま撮ると、許可画面が一度も出ず、この回が撮れません
+      </li>
+      <li>日本語の表示名を画面で確認して、台本の言い方をそれに合わせてください</li>
+    </ul>
+  </div>
+</div>
+
+<div class="clip">
+  <div class="clip-head">
+    <span class="clip-no">3-8</span>
+    <span class="clip-title">つまずいたときに見るところ</span>
+    <div class="clip-facts"><span>約12分</span><span>画面録画</span><span>問い合わせを減らす回</span></div>
+  </div>
+  <div class="clip-body">
+    <div class="role">話すこと</div>
+    <p class="say">
+      最後に、うまくいかないときの確認手順です。<strong>上から順に見てください。</strong>
+    </p>
+    <p class="say">
+      <strong>1. 左端は「ローカル」になっていますか。</strong>ここが9割です。<br>
+      <strong>2. フォルダは正しいものが選ばれていますか。</strong>別のフォルダを見ているかもしれません。<br>
+      <strong>3. ファイルは、そのフォルダの中にありますか。</strong>選んだフォルダの外にあるものは見えません。<br>
+      <strong>4. 頼み方に、3つ入っていますか。</strong>何を・どうしてほしいか・どんな形で。<br>
+      <strong>5. それでもダメなら、新しく始め直す。</strong>長いやりとりは噛み合わなくなることがあります。
+    </p>
+    <p class="say">
+      ここまでやってもダメなときは、<strong>ご質問ください。</strong>
+      購入時にご案内したメールアドレスに、<strong>この5つのどこまで試したかを書いて</strong>送っていただけると、
+      こちらもすぐ答えられます。<strong>30日間、動画の内容についてのご質問をお受けします。</strong>
+    </p>
+    <p class="say">
+      次の章から、いよいよ<strong>第2章で選んだ作業を、実際にやってみます。</strong>
+    </p>
+    <div class="role">画面</div>
+    <ul class="screen">
+      <li>スライド:「確認する5つ」を番号つきで。<strong>この1枚は画像でも配る</strong></li>
+      <li>1と2は、実際に間違った状態を作って直すところを見せる</li>
+      <li>質問の送り先と、書いてほしいことを1枚に</li>
+    </ul>
+  </div>
+</div>
+
+<div class="pending">
+  <h3>まだ書いていないもの</h3>
+  <p>
+    第4章・第5章・付録の台本、ひな形集の中身。<br>
+    先行販売は第0〜3章なので、<strong>次はひな形集を作るのが順番です。</strong>
+    第4章の台本はひな形が決まらないと書けません(要件定義 第11節)。
+  </p>
+</div>
+
+<p class="foot">
+  シクミAIコンサル 講座プラン 第2章・第3章 台本 v0.1<br>
+  要件定義 v0.5 にもとづく。決定6(第0〜3章で先行販売)により、第3章までが先行版の範囲。
+</p>
+
+</div>
