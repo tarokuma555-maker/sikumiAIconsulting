@@ -53,17 +53,13 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${mincho.variable} ${gothic.variable} ${mono.variable}`}>
-        {/* オープニング演出は同じ訪問中1回だけ。描画前にクラスを付けたいので
-            インラインで先に実行する(遅らせると一瞬だけ幕が見えてしまう) */}
+        {/* 描画前にクラスを付けたいのでインラインで先に実行する */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              // アンカー付き(リッチメニューの /#plans など)で来た人は、
-              // 目的のセクションが幕で隠れてしまうので演出を出さない
               // js クラスは「段階的に出す」演出の前提。付いていない(=JSが動かない)
               // 環境では、隠さず最初から全部見えるようにCSS側で分岐している
-              "document.documentElement.classList.add('js');" +
-              "try{if(location.hash||sessionStorage.getItem('intro'))document.documentElement.classList.add('intro-skip')}catch(e){if(location.hash)document.documentElement.classList.add('intro-skip')}",
+              "document.documentElement.classList.add('js');",
           }}
         />
         {children}
