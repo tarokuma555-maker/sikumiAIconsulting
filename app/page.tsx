@@ -46,6 +46,19 @@ const DEMO_POSTER = ["demo.jpg", "demo.png", "demo.webp"].find((file) =>
   fs.existsSync(path.join(process.cwd(), "public", file))
 );
 
+/**
+ * 冒頭の紹介動画。public/consulting-promo.mp4(または webm)を置くと、
+ * ヒーローの一番上で再生される。置いていない間は何も出ないので、
+ * 動画がなくてもファーストビューは成立する。
+ */
+const PROMO_VIDEO = ["consulting-promo.mp4", "consulting-promo.webm"].find((file) =>
+  fs.existsSync(path.join(process.cwd(), "public", file))
+);
+/** 紹介動画のサムネイル(再生前に出る静止画)。あれば使う */
+const PROMO_POSTER = ["consulting-promo.jpg", "consulting-promo.png", "consulting-promo.webp"].find(
+  (file) => fs.existsSync(path.join(process.cwd(), "public", file))
+);
+
 export default function Home() {
   return (
     <>
@@ -114,6 +127,30 @@ export default function Home() {
       {/* ========== HERO ========== */}
       <section className="hero sheet" id="top">
         <div className="container">
+          {PROMO_VIDEO && (
+            <div className="hero-video">
+              <div className="hero-video-frame">
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                  poster={PROMO_POSTER ? `/${PROMO_POSTER}` : undefined}
+                  aria-label="シクミAIコンサルの紹介動画"
+                >
+                  <source
+                    src={`/${PROMO_VIDEO}`}
+                    type={PROMO_VIDEO.endsWith(".webm") ? "video/webm" : "video/mp4"}
+                  />
+                  お使いのブラウザは動画の再生に対応していません。
+                </video>
+              </div>
+              <p className="hero-video-note">30秒の紹介動画です。音は右下のボタンから出せます</p>
+            </div>
+          )}
+
           <div className="drawing-frame">
             <div className="hero-grid">
               <div>
